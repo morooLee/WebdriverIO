@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NGM-Layer Test</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!-- <script src="ngm-layer.js"></script> -->
+        <script src="http://js.nx.com/s1/p2/ngm-layer.min.js"></script>
+        <style type="text/css">
+            .moroo-container {
+                width: 40%;
+                margin-top: 20px;
+                padding-left: 30%;
+                padding-right: 30%;
+            }
+            .moroo-h3 {
+                font-weight: bold;
+                text-align: center;
+            }
+            .moroo-h4 {
+                text-align: center;
+                font-size: 12px;
+                font-weight: 100;
+            }
+            .moroo-group {
+                text-align: center;
+            }
+            .moroo-label {
+                display:inline-block;
+                height: 100%;
+                font-weight: bold;
+                text-align: left;
+            }
+            .moroo-button {
+                display:inline-block;
+                width: 70px;
+            }
+            .moroo-textbox {
+                display:inline-block;
+                width: 70px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .moroo-span {
+                font-size: 40px;
+                font-weight: bold;
+            }
+            .moroo-checkbox {
+                vertical-align: text-bottom;
+                display:inline-block;
+                margin-left: 10px;
+            }
+            .moroo-group > span {
+                margin-right: 10px;
+            }
+        </style>
+    </head>
+    <body id="moroo-body">
+        <div class="moroo-container">
+            <h3 class="moroo-h3">NGM-Layer Test</h3>
+            <div class="moroo-group">
+                <label class="moroo-label">시간 설정</label>
+                <input class="moroo-textbox" id="moroo-value_textbox" placeholder="단위(초)">
+                <input type="button" class="moroo-button" id="moroo-open_button" value="열기">
+                <input type="button" class="moroo-button" id="moroo-close_button" value="닫기">
+            </div>
+            <h4 class="moroo-h4">※ 미 입력 시 기본값(5분)으로 설정됨</h4>
+            <div class="moroo-group">
+                <label class="moroo-label">옵션</label>
+                <input type="checkbox" class="moroo-checkbox" id="moroo-scrollBar_checkbox"><span>ScrollBar</span></input>
+                <input type="button" class="moroo-button" id="moroo-apply_button" value="적용">
+            </div>
+            <h4 class="moroo-h4">※ 적용 시 레이어 초기화</h4>
+            <h3 class="moroo-h3">Timer</h3>
+            <div class="moroo-group">
+                <span class="moroo-span" id="moroo-timer">0.0초</span>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('moroo-open_button').addEventListener('click', function() {
+                var second = document.getElementById('moroo-value_textbox').value;
+                NgmLayer.openNgmLayer(second);
+                
+                var progress = 0;
+                
+                var interval = setInterval(function() {
+                    progress++;
+                    displayTime(progress);
+
+                    if (document.getElementById('ngmInstallLayer') == null)
+                    {
+                        clearInterval(interval);
+                    }
+                }, 100);
+
+
+            })
+            document.getElementById('moroo-close_button').addEventListener('click', function() {
+                NgmLayer.closeNgmLayer();
+            })
+            document.getElementById('moroo-apply_button').addEventListener('click', function() {
+                NgmLayer.closeNgmLayer();
+                
+                var bodyElement = document.getElementById('moroo-body');
+                var isScrollBarChecked = document.getElementById('moroo-scrollBar_checkbox').checked;
+                
+                if (isScrollBarChecked)
+                {
+                    bodyElement.style.width = '2000px';
+                    bodyElement.style.height = '3000px';
+                }
+                else
+                {
+                    bodyElement.style.removeProperty('width');
+                    bodyElement.style.removeProperty('height');
+                }
+            })
+
+            function displayTime(progress) {
+                var format = (progress / 10).toFixed(1) + '초';
+                var target = document.getElementById("moroo-timer");
+                    target.innerText = format;
+            }
+        </script>
+    </body>
+</html>
