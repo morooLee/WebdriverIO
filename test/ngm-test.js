@@ -1,3 +1,7 @@
+var chai = require('chai');
+var chaiWebdriver = require('chai-webdriverio').default;
+chai.use(chaiWebdriver(browser));
+
 var gameWebInfoList = [
     {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
@@ -33,37 +37,68 @@ var gameWebInfoList = [
     {'name': '하이퍼유니버스', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://hu.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
 ]
 var index = 0;
+var path = 'http://127.0.0.1/moroo/ngm-layer.js';
 
-describe('NGM Layer 게임웹 테스트', function() {
-    testCase();
-});
+runTestCase();
 
-function testCase() {
+function runTestCase() {
+    console.log(index + '/ ' + gameWebInfoList.length + ') start');
     describe(gameWebInfoList[index].name, function() {
-        it('게임웹 접속' + gameWebInfoList[index].name, function() {
+        before(function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') ' + gameWebInfoList[index].name);
+        })
+        
+        it('게임웹 접속', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') 게임웹 접속');
             navigateToGameWeb(gameWebInfoList[index], browser);
-            console.log(index + '/ ' + gameWebInfoList.length + ') start');
-            expect(browser.getUrl()).toEqual(gameWebInfoList[index].url);
+            chai.expect(browser.getUrl()).to.equal(gameWebInfoList[index].url);
         });
 
         it('openNgmLayer() 실행', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') openNgmLayer() 실행');
             runOpenNgmLayer(browser);
-            browser.pause(2000);
         });
+
+        it('Ngm Layer 출력여부 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') Ngm Layer 출력여부 확인');
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').to.be.there();
+        });
+
+        it('Ngm Layer 출력위치 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') Ngm Layer 출력위치 확인');
+            var result = browser.execute(function() {
+                var imgElements = document.getElementsByTagName('img');
+                var text = [];
+                for (var index = 0; index < imgElements.length; index++)
+                {
+                    if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+                    {
+                        element = imgElements[index].parentElement.parentElement;
+                        var currentStyle = window.getComputedStyle(element, null);
+                        for (var i = 0; i < currentStyle.length; i++)
+                        {
+                            text.push(new Object().currentStyle[i] = window.getComputedStyle(element, null).getPropertyValue(currentStyle[i]));
+                        }
+                    }
+                }
+                return text;
+            });
+            console.log(result.value);
+        });
+
+        after(function() {
+            if (index < 2)
+            {
+                index++;
+                console.log(index + '/ ' + gameWebInfoList.length + ') next');
+                runTestCase();
+            }
+            else
+            {
+                console.log(index + '/ ' + gameWebInfoList.length + ') finish');
+            }
+        })
     });
-    afterAll(function() {
-        index++;
-        if(index == gameWebInfoList.length)
-        {
-            console.log(index + '/ ' + gameWebInfoList.length + ') finish');
-            return;
-        }
-        else
-        {
-            console.log(index + '/ ' + gameWebInfoList.length + ') next');
-            testCase();
-        }
-    })
 };
 
 function navigateToGameWeb(gameWebInfo, browser) {
@@ -115,6 +150,7 @@ function runOpenNgmLayer(browser) {
             }
         }
         script.onload = function() {
+            loaded = true;
             NgmLayer.openNgmLayer();
         }
         script.src='http://127.0.0.1/moroo/ngm-layer.js';

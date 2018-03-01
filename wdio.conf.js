@@ -139,17 +139,20 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'jasmine',
+    framework: 'mocha',
+    mochaOpts: {
+        ui: 'bdd'
+    },
     //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['dot','spec','allure','json'],
+    reporters: ['spec'],
     reporterOptions: {
-        dot: {outputDir: './reports/dot-result/'},
+        // dot: {outputDir: './reports/dot-result/'},
         spec: {outputDir: './reports/spec-result/'},
-        allure: {outputDir: './reports/allure-result/'},
-        json: {outputDir: './reports/json-result/'}
+        // allure: {outputDir: './reports/allure-result/'},
+        // json: {outputDir: './reports/json-result/'}
     }, 
     
     //
