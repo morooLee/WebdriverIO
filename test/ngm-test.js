@@ -46,44 +46,153 @@ function runTestCase() {
     describe(gameWebInfoList[index].name, function() {
         before(function() {
             console.log(index + '/ ' + gameWebInfoList.length + ') ' + gameWebInfoList[index].name);
+            browser.setViewportSize({width: 800, height: 800});
+            
         })
         
         it('게임웹 접속', function() {
             console.log(index + '/ ' + gameWebInfoList.length + ') 게임웹 접속');
+
             navigateToGameWeb(gameWebInfoList[index], browser);
             chai.expect(browser.getUrl()).to.equal(gameWebInfoList[index].url);
         });
 
         it('openNgmLayer() 실행', function() {
             console.log(index + '/ ' + gameWebInfoList.length + ') openNgmLayer() 실행');
+
             runOpenNgmLayer(browser);
         });
 
-        it('Ngm Layer 출력여부 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') Ngm Layer 출력여부 확인');
+        it('NGM Layer 출력여부 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 출력여부 확인');
+
             chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').to.be.there();
         });
+        
+        it('NGM Layer 출력위치 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 출력위치 확인');
+            
+            browser.execute(function() {
+                var html = document.getElementsByTagName('html')[0];
+                html.style.overflowX = 'hidden';
+                html.style.overflowY = 'hidden';
+            });
+            
+            var result = checkLocation(browser);
+            
+            chai.expect(result.checkedX).to.equal(true);
+            chai.expect(result.checkedY).to.equal(true);
+        });
 
-        it('Ngm Layer 출력위치 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') Ngm Layer 출력위치 확인');
+        it('창크기 축소 후 NGM Layer 위치 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') 창크기 변경 후 NGM Layer 위치 확인');
+            
+            browser.setViewportSize({width: 600, height: 600});
+            
+            var result = checkLocation(browser);
+            
+            chai.expect(result.checkedX).to.equal(true);
+            chai.expect(result.checkedY).to.equal(true);
+        });
+
+        it('창크기 확대 후 NGM Layer 위치 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') 창크기 확대 후 NGM Layer 위치 확인');
+            
+            browser.setViewportSize({width: 800, height: 800});
+            
+            var result = checkLocation(browser);
+            
+            chai.expect(result.checkedX).to.equal(true);
+            chai.expect(result.checkedY).to.equal(true);
+        });
+
+        it('스크롤 이동 후 NGM Layer 위치 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') 스크롤 이동 후 NGM Layer 위치 확인');
+
+            var size = browser.getElementSize('html')
+            browser.scroll(size.width, size.height);
+            
+            var result = checkLocation(browser);
+            
+            chai.expect(result.checkedX).to.equal(true);
+            chai.expect(result.checkedY).to.equal(true);
+        });
+
+        it('NGM 설치하기 버튼 URL 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM 설치하기 버튼 URL 확인');
+
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
+            chai.expect(element.getAttribute('href')).to.equal('http://help.nexon.com/Download/ngm');
+        });
+
+        it('NGM 설치하기 버튼 Target 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM 설치하기 버튼 Target 확인');
+
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
+            chai.expect(element.getAttribute('target')).to.equal('_blank');
+        });
+
+        it('NGM 설치하기 버튼 클릭', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM 설치하기 버튼 클릭');
+
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
+            
+            element.click();
+        });
+
+        it('버튼 클릭 후 새창에서 이동 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') 새창에서 이동 확인');
+
+            var tabIds = browser.getTabIds();
+            var newUrl = browser.switchTab(tabIds[1]).getUrl();
+            
+            browser.close();
+
+            chai.expect(newUrl).to.equal('http://help.nexon.com/Download/ngm');
+        });
+
+        it('버튼 클릭 후 NGM Layer 삭제 확인', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 삭제 확인');
+            
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+        });
+        
+        it('NGM Layer 시간 설정 확인(5초)', function() {
+            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 시간 설정 확인(5초)');
+
             var result = browser.execute(function() {
-                var imgElements = document.getElementsByTagName('img');
-                var text = [];
-                for (var index = 0; index < imgElements.length; index++)
-                {
-                    if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+                window.NgmLayer.openNgmLayer(5);
+
+                var progressTime = 0;
+                
+                var interval = setInterval(function() {
+                    progressTime++;
+                    var element = findNgmLayerElement();
+
+                    if (element == false)
                     {
-                        element = imgElements[index].parentElement.parentElement;
-                        var currentStyle = window.getComputedStyle(element, null);
-                        for (var i = 0; i < currentStyle.length; i++)
+                        clearInterval(interval);
+                    }
+                }, 100);
+
+                return progressTime;
+
+                function findNgmLayerElement() {
+                    var isFound = false;
+                    var imgElements = document.getElementsByTagName('img');
+                    for (var index = 0; index < imgElements.length; index++)
+                    {
+                        if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
                         {
-                            text.push(new Object().currentStyle[i] = window.getComputedStyle(element, null).getPropertyValue(currentStyle[i]));
+                            isFound = true;
                         }
                     }
+                    return isFound;
                 }
-                return text;
             });
+
             console.log(result.value);
+            // chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
         });
 
         after(function() {
@@ -156,4 +265,48 @@ function runOpenNgmLayer(browser) {
         script.src='http://127.0.0.1/moroo/ngm-layer.js';
         window.document.head.appendChild(script);
     });
+}
+
+function checkLocation(browser) {
+    var element = this.$('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').$('..').$('..');
+    var elementLocation = element.getLocation();
+    
+    var result = this.browser.execute(function() {
+        var left;
+        var top;
+        var imgElements = document.getElementsByTagName('img');
+        
+        for (var index = 0; index < imgElements.length; index++)
+        {
+            if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+            {
+                var element = imgElements[index].parentNode.parentNode;
+
+                left = element.offsetLeft - document.body.scrollLeft;
+                top = element.offsetTop - document.body.scrollTop;
+            }
+        }
+
+        return {'left': left, 'top': top};
+    });
+    
+    var viewportSize = this.browser.getViewportSize();
+
+    var positionX = viewportSize.width / 2 - 275;
+    var positionY = viewportSize.height / 2 - 100 + 30;
+
+    var checkedX = false; 
+    var checkedY = false;
+
+    if (result.value.left == positionX)
+    {
+        checkedX = true;
+    }
+
+    if (result.value.top == positionY - 60)
+    {
+        checkedY = true;
+    }
+
+    return {'checkedX': checkedX, 'checkedY': checkedY};
 }
