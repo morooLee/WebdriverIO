@@ -1,0 +1,4 @@
+{
+    "script": "return (function () {\r\n        var loaded = false;\r\n        var script = window.document.createElement('script');\r\n        script.type= 'text/javascript';\r\n        script.charset = \"utf-8\";\r\n        \r\n        script.onreadystatechange = function() {\r\n            if (this.readyState == 'loaded' || this.readyState == 'complete') {\r\n                if (loaded) {\r\n                    return;\r\n                }\r\n                loaded = true;\r\n                NgmLayer.openNgmLayer();\r\n            }\r\n        }\r\n        script.onload = function() {\r\n            loaded = true;\r\n            NgmLayer.openNgmLayer();\r\n        }\r\n        script.src='http://127.0.0.1/moroo/ngm-layer.js';\r\n        window.document.head.appendChild(script);\r\n    }).apply(null, arguments)",
+    "args": []
+}

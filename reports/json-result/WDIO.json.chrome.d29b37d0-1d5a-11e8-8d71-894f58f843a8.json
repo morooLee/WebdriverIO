@@ -1,0 +1,1 @@
+{"start":"2018-03-01T14:14:09.073Z","end":"2018-03-01T14:14:15.242Z","capabilities":{"maxInstances":5,"browserName":"chrome"},"host":"127.0.0.1","port":4444,"baseUrl":"http://localhost","framework":"jasmine","mochaOpts":{"timeout":10000},"suites":[]}

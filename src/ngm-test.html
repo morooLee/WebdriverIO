@@ -4,7 +4,7 @@
         <title>NGM-Layer Test</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <!-- <script src="ngm-layer.js"></script> -->
-        <script src="http://js.nx.com/s1/p2/ngm-layer.min.js"></script>
+        <script src="http://127.0.0.1/moroo/ngm-layer.js"></script>
         <style type="text/css">
             .moroo-container {
                 width: 40%;
@@ -66,7 +66,7 @@
             <h4 class="moroo-h4">※ 미 입력 시 기본값(5분)으로 설정됨</h4>
             <div class="moroo-group">
                 <label class="moroo-label">옵션</label>
-                <input type="checkbox" class="moroo-checkbox" id="moroo-scrollBar_checkbox"><span>ScrollBar</span></input>
+                <input type="checkbox" class="moroo-checkbox" id="moroo-scrollBar_checkbox"><span>ScrollBar</span>
                 <input type="button" class="moroo-button" id="moroo-apply_button" value="적용">
             </div>
             <h4 class="moroo-h4">※ 적용 시 레이어 초기화</h4>
@@ -86,8 +86,8 @@
                 var interval = setInterval(function() {
                     progress++;
                     displayTime(progress);
-
-                    if (document.getElementById('ngmInstallLayer') == null)
+                    var element = findNgmLayerElement();
+                    if (element == false)
                     {
                         clearInterval(interval);
                     }
@@ -120,6 +120,19 @@
                 var format = (progress / 10).toFixed(1) + '초';
                 var target = document.getElementById("moroo-timer");
                     target.innerText = format;
+            }
+
+            function findNgmLayerElement() {
+                var isFound = false;
+                var imgElements = document.getElementsByTagName('img');
+                for (var index = 0; index < imgElements.length; index++)
+                {
+                    if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+                    {
+                        isFound = true;
+                    }
+                }
+                return isFound;
             }
         </script>
     </body>
