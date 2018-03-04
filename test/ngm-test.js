@@ -1,3 +1,4 @@
+var path = require('path');
 var chai = require('chai');
 var chaiWebdriver = require('chai-webdriverio').default;
 chai.use(chaiWebdriver(browser));
@@ -37,40 +38,120 @@ var gameWebInfoList = [
     {'name': '하이퍼유니버스', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://hu.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
 ]
 var index = 0;
-var path = 'http://127.0.0.1/moroo/ngm-layer.js';
 
+capturingdOroginalImage();
 runTestCase();
 
+
 function runTestCase() {
-    console.log(index + '/ ' + gameWebInfoList.length + ') start');
-    describe(gameWebInfoList[index].name, function() {
+    describe(setDigits(index + 1, 2) + '. ' + gameWebInfoList[index].name, function() {
+        var count = 1;
+        var host = '';
+        var suiteCount = setDigits(index + 1, 2) + '/' + setDigits(gameWebInfoList.length, 2);;
+        var caseCount = '';
+
         before(function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') ' + gameWebInfoList[index].name);
+            console.log(suiteCount + ') ' + gameWebInfoList[index].name);
             browser.setViewportSize({width: 800, height: 800});
-            
-        })
+        });
+
+        beforeEach(function() {
+            caseCount = 'TC-' + setDigits(count, 2);
+        });
         
-        it('게임웹 접속', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') 게임웹 접속');
+        it('[' + caseCount + '] 게임웹 접속', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] 게임웹 접속');
+            console.log(suiteCount + ') │\t  ├  기대 결과: ' + gameWebInfoList[index].url);
 
             navigateToGameWeb(gameWebInfoList[index], browser);
-            chai.expect(browser.getUrl()).to.equal(gameWebInfoList[index].url);
+
+            var url = browser.getUrl();
+            var protocolSplits = url.split('//');
+            var dotSplits = protocolSplits[1].split('.');
+            host = dotSplits[0]; 
+
+            chai.expect(url).to.equal(gameWebInfoList[index].url);
+            console.log(suiteCount + ') │\t  ├  실제 결과: ' + url);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
 
-        it('openNgmLayer() 실행', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') openNgmLayer() 실행');
+        it('[' + caseCount + '] ngm-layer.js 적용', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] ngm-layer.js 적용');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
 
-            runOpenNgmLayer(browser);
+
+            loadedNgmLayer(browser);
+
+            var result = browser.isExisting('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]');
+            
+            chai.expect('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]').to.be.there();
+            console.log(suiteCount + ') │\t  └  실제 결과 : ' + result);
         });
 
-        it('NGM Layer 출력여부 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 출력여부 확인');
+        it('[' + caseCount + '] openNgmLayer() 기능 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] openNgmLayer() 기능 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
+
+            browser.execute(function() {
+                window.NgmLayer.openNgmLayer();
+            });
+            
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
 
             chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').to.be.there();
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+        });
+
+        it('[' + caseCount + '] closeNgmLayer() 기능 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] closeNgmLayer() 기능 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
+            
+            browser.execute(function() {
+                window.NgmLayer.closeNgmLayer();
+            });
+
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+        });
+
+        it('[' + caseCount + '] NGM Layer 출력여부 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM Layer 출력여부 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
+
+            browser.execute(function() {
+                window.NgmLayer.openNgmLayer();
+            });
+
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').to.be.there();
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
         
-        it('NGM Layer 출력위치 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 출력위치 확인');
+        it('[' + caseCount + '] NGM Layer 출력위치 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM Layer 출력위치 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 125 / Top : 270');
             
             browser.execute(function() {
                 var html = document.getElementsByTagName('html')[0];
@@ -80,144 +161,305 @@ function runTestCase() {
             
             var result = checkLocation(browser);
             
-            chai.expect(result.checkedX).to.equal(true);
-            chai.expect(result.checkedY).to.equal(true);
+            chai.expect(result.positionX).to.equal(125);
+            chai.expect(result.positionY).to.equal(270);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
 
-        it('창크기 축소 후 NGM Layer 위치 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') 창크기 변경 후 NGM Layer 위치 확인');
-            
+        it('[' + caseCount + '] 창크기 축소 후 NGM Layer 위치 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] 창크기 축소 후 NGM Layer 위치 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 25 / Top : 170');
+
             browser.setViewportSize({width: 600, height: 600});
             
             var result = checkLocation(browser);
             
-            chai.expect(result.checkedX).to.equal(true);
-            chai.expect(result.checkedY).to.equal(true);
+            chai.expect(result.positionX).to.equal(25);
+            chai.expect(result.positionY).to.equal(170);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
 
-        it('창크기 확대 후 NGM Layer 위치 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') 창크기 확대 후 NGM Layer 위치 확인');
-            
+        it('[' + caseCount + '] 창크기 확대 후 NGM Layer 위치 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] 창크기 확대 후 NGM Layer 위치 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 125 / Top : 270');
+
             browser.setViewportSize({width: 800, height: 800});
             
             var result = checkLocation(browser);
             
-            chai.expect(result.checkedX).to.equal(true);
-            chai.expect(result.checkedY).to.equal(true);
+            chai.expect(result.positionX).to.equal(125);
+            chai.expect(result.positionY).to.equal(270);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
 
-        it('스크롤 이동 후 NGM Layer 위치 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') 스크롤 이동 후 NGM Layer 위치 확인');
+        it('[' + caseCount + '] 스크롤 이동 후 NGM Layer 위치 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] 스크롤 이동 후 NGM Layer 위치 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 125 / Top : 270');
 
-            var size = browser.getElementSize('html')
-            browser.scroll(size.width, size.height);
+            var size = browser.execute(function() {
+                window.scrollTop = document.body.scrollHeight;
+                window.scrollLeft = document.body.scrollWidth;
+
+                return {'width': window.scrollLeft, 'height': window.scrollTop};
+            });
             
+            browser.scroll('body', size.value.width, size.value.height);
+
             var result = checkLocation(browser);
             
-            chai.expect(result.checkedX).to.equal(true);
-            chai.expect(result.checkedY).to.equal(true);
-        });
+            chai.expect(result.positionX).to.equal(125);
+            chai.expect(result.positionY).to.equal(270);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
 
-        it('NGM 설치하기 버튼 URL 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM 설치하기 버튼 URL 확인');
-
-            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
-            chai.expect(element.getAttribute('href')).to.equal('http://help.nexon.com/Download/ngm');
-        });
-
-        it('NGM 설치하기 버튼 Target 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM 설치하기 버튼 Target 확인');
-
-            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
-            chai.expect(element.getAttribute('target')).to.equal('_blank');
-        });
-
-        it('NGM 설치하기 버튼 클릭', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM 설치하기 버튼 클릭');
-
-            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             
-            element.click();
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
 
-        it('버튼 클릭 후 새창에서 이동 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') 새창에서 이동 확인');
+        it('[' + caseCount + '] NGM 설치하기 버튼 URL 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM 설치하기 버튼 URL 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'http://help.nexon.com/Download/ngm');
+
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
+
+            chai.expect(element.getAttribute('href')).to.equal('http://help.nexon.com/Download/ngm');
+            console.log(suiteCount + ') │\t  └  실제 결과 : ' + element.getAttribute('href'));
+        });
+
+        it('[' + caseCount + '] NGM 설치하기 버튼 Target 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM 설치하기 버튼 Target 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + '_blank');
+
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');
+
+            chai.expect(element.getAttribute('target')).to.equal('_blank');
+            console.log(suiteCount + ') │\t  └  실제 결과 : ' + element.getAttribute('target'));
+        });
+
+        it('[' + caseCount + '] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm');
+            
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_ngminstall.gif"]').$('..');        
+            element.click();
 
             var tabIds = browser.getTabIds();
             var newUrl = browser.switchTab(tabIds[1]).getUrl();
-            
-            browser.close();
 
             chai.expect(newUrl).to.equal('http://help.nexon.com/Download/ngm');
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Tab Count : '  + tabIds.length + ' / url : ' + newUrl);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            browser.close();
         });
 
-        it('버튼 클릭 후 NGM Layer 삭제 확인', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 삭제 확인');
-            
+        it('[' + caseCount + '] 버튼 클릭 후 NGM Layer 삭제 확인', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM Layer 삭제 확인');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
+
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+
             chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
         
-        it('NGM Layer 시간 설정 확인(5초)', function() {
-            console.log(index + '/ ' + gameWebInfoList.length + ') NGM Layer 시간 설정 확인(5초)');
+        it('[' + caseCount + '] 시간 설정 후 NGM Layer 삭제 확인(2초)', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] 시간 설정 후 NGM Layer 삭제 확인(2초)');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
 
-            var result = browser.execute(function() {
-                window.NgmLayer.openNgmLayer(5);
-
-                var progressTime = 0;
-                
-                var interval = setInterval(function() {
-                    progressTime++;
-                    var element = findNgmLayerElement();
-
-                    if (element == false)
-                    {
-                        clearInterval(interval);
-                    }
-                }, 100);
-
-                return progressTime;
-
-                function findNgmLayerElement() {
-                    var isFound = false;
-                    var imgElements = document.getElementsByTagName('img');
-                    for (var index = 0; index < imgElements.length; index++)
-                    {
-                        if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
-                        {
-                            isFound = true;
-                        }
-                    }
-                    return isFound;
-                }
+            browser.execute(function() {
+                window.NgmLayer.openNgmLayer(2);
             });
+            browser.pause(2000);
 
-            console.log(result.value);
-            // chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
 
+        it('[' + caseCount + '] NGM Layer 중복 출력 여부 확인 (5회)', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] NGM Layer 중복 출력 여부 확인 (5회)');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'NGM Layer Count : 1');
+
+            browser.execute(function() {
+                window.NgmLayer.openNgmLayer(2);
+                window.NgmLayer.openNgmLayer(2);
+                window.NgmLayer.openNgmLayer(2);
+                window.NgmLayer.openNgmLayer(2);
+                window.NgmLayer.openNgmLayer(2);
+            });
+
+            var elements = browser.elements('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+            
+            chai.expect(elements.value.length).to.equal(1);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'NGM Layer Count : ' + elements.value.length);
+        });
+
+        it('[' + caseCount + '] 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)', function() {
+            console.log(suiteCount + ') ├  [' + caseCount + '] 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)');
+            console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'false');
+
+            browser.pause(2000);
+
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+        });
+
+        it('[' + caseCount + '] 닫기 버튼 클릭 시 NGM Layer 삭제 확인', function() {
+            console.log(suiteCount + ') └  [' + caseCount + '] 닫기 버튼 클릭 시 NGM Layer 삭제 확인');
+            console.log(suiteCount + ')  \t  ├  기대 결과 : ' + 'true');
+
+            browser.execute(function() {
+                window.NgmLayer.openNgmLayer();
+            });
+            var element = $('div a img[src="https://ssl.nx.com/s2/p3/ngm/bt_close.gif"]').$('..');
+            element.click();
+
+            var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
+
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+            console.log(suiteCount + ')  \t  ├  실제 결과 : ' + !result);
+
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            
+            browser.saveScreenshot(filePath);
+            console.log(suiteCount + ')  \t  └  스샷 저장: ' + filePath);
+        });
+
+        afterEach(function() {
+            browser.pause(200);
+            count++;
+        })
+
         after(function() {
-            if (index < 2)
+            index++;
+            count = 1;
+
+            if (index < 1)
             {
-                index++;
-                console.log(index + '/ ' + gameWebInfoList.length + ') next');
+                console.log('Next...');
                 runTestCase();
             }
             else
             {
-                console.log(index + '/ ' + gameWebInfoList.length + ') finish');
+                console.log('Finish!!!');
             }
         })
     });
 };
 
+function capturingdOroginalImage() {
+    describe('00. 테스트 준비', function() {
+        it('원본 NGM Layer 저장하기', function() {
+            console.log('init...');
+            console.log('원본 NGM Layer 이미지 저장 중...');
+            var testHtmlPath = 'file:///' + path.resolve('./src/', 'ngm-test.html');
+            
+            browser.url(testHtmlPath);
+            var buttonElement = $('#moroo-open_button');
+            buttonElement.click();
+            
+            var filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png');
+            
+            var result = browser.execute(function() {
+                var imgElements = document.getElementsByTagName('img');
+                var element;
+        
+                for (var index = 0; index < imgElements.length; index++)
+                {
+                    if (imgElements[index].getAttribute('src') != null)
+                    {
+                        if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+                        {
+                            element = imgElements[index].parentNode.parentNode;
+                        }
+                    }
+                }
+
+                return element.options[element.selectedIndex].value;
+            });
+            console.log(result.value)
+            browser.saveElementScreenshot(filePath, result.value);
+            console.log('원본 NGM Layer 이미지 저장 완료!!!');
+            console.log('Start!!!');
+        });
+    });
+};
+
+function setDigits(number, digits) {
+    var zero = '';
+    number = number.toString();
+
+    if (number.length < digits)
+    {
+        for (var i = 0; i < digits - number.length; i++)
+        {
+            zero += '0';
+        }
+    }
+
+    return zero + number;
+};
+
 function navigateToGameWeb(gameWebInfo, browser) {
     this.browser.url(gameWebInfo.url);
+    if (gameWebInfo.isCookie)
+    {
+        setCookie(gameWebInfo, this.browser);
+        this.browser.url(gameWebInfo.url);
+    }
+
     if (this.browser.getUrl() != gameWebInfo.url)
     {
-        if (gameWebInfo.isCookie)
+        console.log(this.browser.getUrl());
+    }
+
+    var tabs = this.browser.getTabIds();
+    
+    if (tabs.length > 1)
+    {
+        for(var i = tabs.length - 1; i == 1; i--)
         {
-            setCookie(gameWebInfo, browser);
-            this.browser.url(gameWebInfo.url);
+            this.browser.switchTab(tabs[i]);
+            this.browser.close();
         }
     }
 };
@@ -225,24 +467,24 @@ function navigateToGameWeb(gameWebInfo, browser) {
 function setCookie(gameWebInfo, browser) {
     if (gameWebInfo.getCookie != '')
     {
-        if (gameWebInfo.getCookie.indexof(',') > 0)
+        if (gameWebInfo.getCookie.indexOf(',') != -1)
         {
-            var cookies = gameWebInfo.getCookie.split(',').trim();
-            for (var cookie in cookies)
+            var cookies = gameWebInfo.getCookie.split(',');
+            for (var i = 0; i < cookies.length; i++)
             {
-                var splitCookie = value.split('=').trim();
-                this.browser.setCookie({name: splitCookie[0], value: splitCookie[1]});
+                var splitCookie = cookies[i].trim().split('=');
+                this.browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
             }
         }
         else
         {
-            var splitCookie = gameWebInfo.getCookie.split('=').trim();
-            this.browser.setCookie({name: splitCookie[0], value: splitCookie[1]});
+            var splitCookie = gameWebInfo.getCookie.trim().split('=');
+            this.browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
         }
     }
 };
 
-function runOpenNgmLayer(browser) {
+function loadedNgmLayer(browser) {
     this.browser.execute(function() {
         var loaded = false;
         var script = window.document.createElement('script');
@@ -255,14 +497,12 @@ function runOpenNgmLayer(browser) {
                     return;
                 }
                 loaded = true;
-                NgmLayer.openNgmLayer();
             }
         }
         script.onload = function() {
             loaded = true;
-            NgmLayer.openNgmLayer();
         }
-        script.src='http://127.0.0.1/moroo/ngm-layer.js';
+        script.src = 'http://127.0.0.1/moroo/ngm-layer.js';
         window.document.head.appendChild(script);
     });
 }
@@ -274,39 +514,38 @@ function checkLocation(browser) {
     var result = this.browser.execute(function() {
         var left;
         var top;
+        var element;
         var imgElements = document.getElementsByTagName('img');
         
         for (var index = 0; index < imgElements.length; index++)
         {
-            if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+            if (imgElements[index].getAttribute('src') != null)
             {
-                var element = imgElements[index].parentNode.parentNode;
-
-                left = element.offsetLeft - document.body.scrollLeft;
-                top = element.offsetTop - document.body.scrollTop;
+                if (imgElements[index].getAttribute('src').indexOf('http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif') != -1)
+                {
+                    element = imgElements[index].parentNode.parentNode;
+    
+                    left = element.offsetLeft;
+                    top = element.offsetTop;
+                }
             }
         }
-
-        return {'left': left, 'top': top};
+        
+        return {'left': left, 'top': top, 'width': window.innerWidth, 'height': window.innerHeight};
     });
-    
-    var viewportSize = this.browser.getViewportSize();
 
-    var positionX = viewportSize.width / 2 - 275;
-    var positionY = viewportSize.height / 2 - 100 + 30;
+    var positionX = result.value.width / 2 - 275;
+    var positionY = result.value.height / 2 - 100 - 30;
 
-    var checkedX = false; 
-    var checkedY = false;
-
-    if (result.value.left == positionX)
+    if (result.value.left != positionX)
     {
-        checkedX = true;
+        console.log(result.value.left + ' | ' + positionX);
     }
 
-    if (result.value.top == positionY - 60)
+    if (result.value.top != positionY)
     {
-        checkedY = true;
+        console.log(result.value.top + ' | ' + positionY);
     }
 
-    return {'checkedX': checkedX, 'checkedY': checkedY};
+    return {'positionX': positionX, 'positionY': (positionY)};
 }

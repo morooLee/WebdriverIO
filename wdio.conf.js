@@ -141,19 +141,26 @@ exports.config = {
     // before running any tests.
     framework: 'mocha',
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        // reporter: 'wdio-allure-reporter',
+        timeout: 99999999,
     },
     //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['spec'],
+    reporters: ['spec', 'allure'],
     reporterOptions: {
         // dot: {outputDir: './reports/dot-result/'},
         spec: {outputDir: './reports/spec-result/'},
-        // allure: {outputDir: './reports/allure-result/'},
+        allure: {outputDir: './reports/allure-result/'},
         // json: {outputDir: './reports/json-result/'}
+        // mochawesome: {outputDir: './reports/mochawesome-result/'},
     }, 
+    mochawesomeOpts: {
+        includeScreenshots: true,
+        screenshotUseRelativePath: true
+    },
     
     //
     // Options to be passed to Jasmine.
