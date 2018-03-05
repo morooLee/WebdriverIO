@@ -39,6 +39,7 @@ var gameWebInfoList = [
 ]
 var index = 0;
 var originalImage;
+var originalComputedStyleArray;
 
 initTest();
 runTestCase();
@@ -55,8 +56,7 @@ function initTest() {
             
             var filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png');            
             //originalImage = ngmLayerScreenshot(browser, filePath);
-
-            compareStyle();
+            originalComputedStyleArray = getComputedStyleArray();
             
             console.log('원본 NGM Layer 이미지 저장 완료!!!');
             console.log('Start!!!');
@@ -151,10 +151,12 @@ function runTestCase() {
         });
 
         it('[TC-05] NGM Layer UI 확인 (Style 비교 방식)', function() {
-            console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer UI 확인 (Image 비교 방식)');
+            console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer UI 확인 (Style 비교 방식)');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
 
+            var currentComputedStyleArray = getComputedStyleArray();
 
+            var result = compareStyle(originalComputedStyleArray, currentComputedStyleArray);
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
             chai.expect(result).to.be.true;
@@ -423,8 +425,68 @@ function runTestCase() {
     });
 };
 
-function compareStyle() {
-    var result = browser.execute(function() {
+function compareStyle(original, current) {
+    var result = true;
+
+    if (original == current)
+    {
+        return result;
+    }
+    else
+    {
+        for (var i = 0; i < original.length; i++)
+        {
+            result = compareObject(original[i], current[i], i);
+        }
+    }
+    
+    return result;
+};
+
+function compareObject(original, current, index) {
+    index++;
+
+    if (original === current)
+    {
+        return true;
+    }
+
+    for (var p in original)
+    {
+        if (!original.hasOwnProperty(p))
+        {
+            continue;
+        }
+
+        // chai.expect(current.hasOwnProperty(p), p).to.be.true;
+        if (!current.hasOwnProperty(p))
+        {
+            console.log('[ERROR]│\t  ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
+            return false;
+        }
+
+        // chai.expect(original[p], p).to.equal(current[p]);
+        if (original[p] != current[p])
+        {
+            console.log('[ERROR]│\t  ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
+            return false;
+        }
+    }
+    for (p in current)
+    {
+        // chai.expect(current.hasOwnProperty(p), p).to.equal(original.hasOwnProperty(p));
+        if (current.hasOwnProperty(p) && !original.hasOwnProperty(p))
+        {
+            console.log('[ERROR]│\t  ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
+            return false;
+        }
+    }
+
+    return true;
+};
+
+function getComputedStyleArray() {
+    var result = this.browser.execute(function() {
         window.NgmLayer.openNgmLayer();
 
         var imgElements = document.getElementsByTagName('img');
@@ -441,53 +503,40 @@ function compareStyle() {
                 }
             }
         }
-        computedStyleArray = [];
-        
-        computedStyleArray = setValueForComputedStyle(element);
 
-        //return computedStyleArray;
+        var computedStyleArray = createComputedStyleArray(element, new Array());
 
-        function setValueForComputedStyle(element) {
-            var styleNames = window.getComputedStyle(element, null);
-            var styleObject = {};
-            var array = [];
-            
-            for (var i = 0; i < styleNames.length; i++)
-            {
-                styleObject[styleNames[i]] = window.getComputedStyle(element, null).getPropertyValue(styleNames[i]);
-            }
-
-            array.push(styleObject);
+        function createComputedStyleArray(element, array) {
+            array.push(setValueForComputedStyle(element));
 
             if (element.childNodes.length > 0)
             {
-                for(var i = 0; i < element.childNodes; i++)
+                for (var i = 0; i < element.childNodes.length; i++)
                 {
-                    array.push(setValueForComputedStyle(element));
+                    createComputedStyleArray(element.childNodes[i], array);
+                }
+            }
+
+            return array;
+        }
+
+        function setValueForComputedStyle(element) {
+            var computedStyleObject = {};
+
+            if (element.nodeType == 1)
+            {
+                var styleNames = window.getComputedStyle(element, null);
+                
+                for (var i = 0; i < styleNames.length; i++)
+                {
+                    computedStyleObject[styleNames[i]] = window.getComputedStyle(element, null).getPropertyValue(styleNames[i]);
                 }
             }
             
-            return array;
+            return computedStyleObject;
         };
 
-        return setValueForComputedStyle;
-    });
-    console.log(result.value.length);
-    setValueForComputedStyle($('#moroo-NgmLayer'));
-};
-
-function setValueForComputedStyle(element) {
-    var result = browser.execute(function(element) {
-
-        var styleNames = window.getComputedStyle(element, null);
-        var styleObject = {};
-
-        for (var i = 0; i < styleNames.length; i++)
-        {
-            styleObject[styleNames[i]] = styleValues;
-        }
-
-        return styleObject;
+        return computedStyleArray;
     });
     
     return result.value;
