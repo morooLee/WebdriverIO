@@ -40,6 +40,7 @@ var gameWebInfoList = [
 var index = 0;
 var originalImage;
 var originalComputedStyleArray;
+var filePath;
 
 initTest();
 runTestCase();
@@ -54,7 +55,7 @@ function initTest() {
             browser.setViewportSize({width: 800, height: 800});
             browser.url(testHtmlPath);
             
-            var filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png');            
+            filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png');            
             //originalImage = ngmLayerScreenshot(browser, filePath);
             originalComputedStyleArray = getComputedStyleArray();
             
@@ -91,12 +92,11 @@ function runTestCase() {
             host = dotSplits[0]; 
 
             console.log(suiteCount + ') │\t  ├  실제 결과: ' + url);
-            chai.expect(url).to.equal(gameWebInfoList[index].url);
-
-            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
-            
+            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+            
+            chai.expect(url).to.equal(gameWebInfoList[index].url);
         });
 
         it('[TC-02] ngm-layer.js 적용', function() {
@@ -140,14 +140,14 @@ function runTestCase() {
             });
 
             var result = browser.isExisting('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]');
-
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
-            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
-
-            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
+            var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+            chai.expect('div h3 img[src="http://js.nx.com/s2/p3/ngm/txt_ngminstall.gif"]').not.to.be.there();
+
+            
         });
 
         it('[TC-05] NGM Layer UI 확인 (Style 비교 방식)', function() {
@@ -155,13 +155,19 @@ function runTestCase() {
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
 
             var currentComputedStyleArray = getComputedStyleArray();
-
             var result = compareStyle(originalComputedStyleArray, currentComputedStyleArray);
+            var failsText = '';
+            console.log(result.fails);
 
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
-            chai.expect(result).to.be.true;
+            for (var obj in result.fails)
+            {
+                console.log(obj);
+                failsText += '{"name": ' + obj.name + ', "original": ' + obj.original + ', "current": ' + obj.current + '}';
+            }
 
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result.value);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+            chai.expect(result.value, result.fails).to.be.true;
         });
 /*       
         it('[TC-05] NGM Layer UI 확인 (Image 비교 방식)', function() {
@@ -406,7 +412,7 @@ function runTestCase() {
         afterEach(function() {
             browser.pause(100);
             count++;
-        })
+        });
 
         after(function() {
             index++;
@@ -421,34 +427,47 @@ function runTestCase() {
             {
                 console.log('Finish!!!');
             }
-        })
+        });
     });
-};
+}
 
 function compareStyle(original, current) {
-    var result = true;
+    var failList = [];
+    var value = true;
+    var result;
 
     if (original == current)
     {
-        return result;
+        result = {'value': value, 'fails': ''};
     }
     else
     {
         for (var i = 0; i < original.length; i++)
         {
-            result = compareObject(original[i], current[i], i);
+            var obj = compareObject(original[i], current[i], i);
+            value = obj.value;
+            if (obj.fails != '')
+            {
+                failList.push(obj.fails);
+            }
         }
+        console.log(failList.length);
+        result = {'value': value, 'fails': failList};
     }
-    
+
     return result;
-};
+}
 
 function compareObject(original, current, index) {
     index++;
+    var value = true;
+    var result;
 
     if (original === current)
     {
-        return true;
+        //chai.expect(original).to.equal(current);
+        result = {'value': true, 'fails': ''};
+        return result;
     }
 
     for (var p in original)
@@ -462,14 +481,18 @@ function compareObject(original, current, index) {
         if (!current.hasOwnProperty(p))
         {
             console.log('[ERROR]│\t  ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
-            return false;
+            result = {'value': false, 'fails': {'name': p, 'original': original[p], 'current': current[p]}};
+            //chai.expect(current).to.have.ownPropertyDescriptor(p);
+            return result;
         }
 
         // chai.expect(original[p], p).to.equal(current[p]);
         if (original[p] != current[p])
         {
             console.log('[ERROR]│\t  ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
-            return false;
+            result = {'value': false, 'fails': {'name': p, 'original': original[p], 'current': current[p]}};
+            //chai.expect(original[p], p).to.equal(current[p]);
+            return result;
         }
     }
     for (p in current)
@@ -478,15 +501,21 @@ function compareObject(original, current, index) {
         if (current.hasOwnProperty(p) && !original.hasOwnProperty(p))
         {
             console.log('[ERROR]│\t  ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
-            return false;
+            result = {'value': false, 'fails': {'name': p, 'original': original[p], 'current': current[p]}};
+            //chai.expect(original).to.have.ownPropertyDescriptor(p);
+            return result;
         }
     }
 
-    return true;
-};
+    result = {'value': true, 'fails': ''};
+    return result;
+}
 
 function getComputedStyleArray() {
     var result = this.browser.execute(function() {
+        document.documentElement.style.overflowX = 'hidden';
+        document.documentElement.style.overflowY = 'hidden';
+
         window.NgmLayer.openNgmLayer();
 
         var imgElements = document.getElementsByTagName('img');
@@ -534,13 +563,14 @@ function getComputedStyleArray() {
             }
             
             return computedStyleObject;
-        };
+        }
 
+        window.NgmLayer.closeNgmLayer();
         return computedStyleArray;
     });
     
     return result.value;
-};
+}
 
 function ngmLayerScreenshot(browser, filePath) {
     this.browser.execute(function() {
@@ -582,7 +612,7 @@ function ngmLayerScreenshot(browser, filePath) {
     this.browser.setViewportSize({width: 800, height: 800});
 
     return image;
-};
+}
 
 function setDigits(number, digits) {
     var zero = '';
@@ -597,7 +627,7 @@ function setDigits(number, digits) {
     }
 
     return zero + number;
-};
+}
 
 function navigateToGameWeb(gameWebInfo, browser) {
     this.browser.url(gameWebInfo.url);
@@ -622,27 +652,28 @@ function navigateToGameWeb(gameWebInfo, browser) {
             this.browser.close();
         }
     }
-};
+}
 
 function setCookie(gameWebInfo, browser) {
     if (gameWebInfo.getCookie != '')
     {
+        var splitCookie;
         if (gameWebInfo.getCookie.indexOf(',') != -1)
         {
             var cookies = gameWebInfo.getCookie.split(',');
             for (var i = 0; i < cookies.length; i++)
             {
-                var splitCookie = cookies[i].trim().split('=');
+                splitCookie = cookies[i].trim().split('=');
                 this.browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
             }
         }
         else
         {
-            var splitCookie = gameWebInfo.getCookie.trim().split('=');
+            splitCookie = gameWebInfo.getCookie.trim().split('=');
             this.browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
         }
     }
-};
+}
 
 function loadedNgmLayer(browser) {
     this.browser.execute(function() {
