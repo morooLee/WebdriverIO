@@ -73,6 +73,7 @@ function runTestCase() {
         var host = '';
         var suiteCount = setDigits(index + 1, 2) + '/' + setDigits(gameWebInfoList.length, 2);;
         var caseCount = '';
+        var result;
 
         before(function() {
             console.log(suiteCount + ') ' + setDigits(index + 1, 2) + '. ' + gameWebInfoList[index].name);
@@ -88,22 +89,22 @@ function runTestCase() {
             
             //allure.createAttachment(filePath, browser.saveScreenshot(filePath), 'png');
 
-            navigateToGameWeb(gameWebInfoList[index], browser);
+            navigateToGameWeb(gameWebInfoList[index]);
 
-            var url = browser.getUrl();
-            var protocolSplits = url.split('//');
+            result = browser.getUrl();
+            var protocolSplits = result.split('//');
             var dotSplits = protocolSplits[1].split('.');
             host = dotSplits[0]; 
 
-            console.log(suiteCount + ') │\t  ├  실제 결과: ' + url);
+            console.log(suiteCount + ') │\t  ├  실제 결과: ' + result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
             addContext(this, {title: '기대 결과', value: gameWebInfoList[index].url});
-            addContext(this, {title: '실제 결과', value: url});
+            addContext(this, {title: '실제 결과', value: result});
 
-            chai.expect(url).to.equal(gameWebInfoList[index].url);
+            chai.expect(result).to.equal(gameWebInfoList[index].url);
         });
 
         it('[TC-02] ngm-layer.js 적용', function() {
@@ -111,11 +112,14 @@ function runTestCase() {
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
 
 
-            loadedNgmLayer(browser);
+            loadedNgmLayer();
 
-            var result = browser.isExisting('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]');  
+            result = browser.isExisting('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]');  
 
             console.log(suiteCount + ') │\t  └  실제 결과 : ' + result);
+
+            addContext(this, {title: '기대 결과', value: true});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]').to.be.there();
         });
@@ -128,12 +132,15 @@ function runTestCase() {
                 window.NgmLayer.openNgmLayer();
             });
             
-            var result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');            
+            result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');            
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: true});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').to.be.there();
 
@@ -147,12 +154,15 @@ function runTestCase() {
                 window.NgmLayer.closeNgmLayer();
             });
 
-            var result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+            result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: true});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -162,7 +172,7 @@ function runTestCase() {
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
 
             var currentComputedStyleArray = getComputedStyleArray();
-            var result = compareStyle(originalComputedStyleArray, currentComputedStyleArray);
+            result = compareStyle(originalComputedStyleArray, currentComputedStyleArray);
             var failsText = '';
 
             for (var i = 0; i < result.fails.length; i++)
@@ -174,6 +184,14 @@ function runTestCase() {
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: true});
+            addContext(this, {title: '실제 결과', value: result.value});
+
+            if (!result.value)
+            {
+                addContext(this, {title: 'Not Equal Style', value: failsText});
+            }
 
             chai.expect(result.value, failsText).to.be.true;
         });
@@ -213,12 +231,15 @@ function runTestCase() {
                 window.NgmLayer.openNgmLayer();
             });
             
-            var result = checkLocation(browser);
+            result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
+            addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
             chai.expect(result.positionX).to.equal(125);
             chai.expect(result.positionY).to.equal(270);
@@ -230,12 +251,15 @@ function runTestCase() {
 
             browser.setViewportSize({width: 600, height: 600});
             
-            var result = checkLocation(browser);
+            result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: 'Left : 25 / Top : 170'});
+            addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
             chai.expect(result.positionX).to.equal(25);
             chai.expect(result.positionY).to.equal(170);
@@ -247,12 +271,15 @@ function runTestCase() {
 
             browser.setViewportSize({width: 800, height: 800});
             
-            var result = checkLocation(browser);
+            result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
+            addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
             chai.expect(result.positionX).to.equal(125);
             chai.expect(result.positionY).to.equal(270);
@@ -271,12 +298,15 @@ function runTestCase() {
             
             browser.scroll('body', size.value.width, size.value.height);
 
-            var result = checkLocation(browser);
+            result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
+            addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
             chai.expect(result.positionX).to.equal(125);
             chai.expect(result.positionY).to.equal(270);
@@ -287,8 +317,12 @@ function runTestCase() {
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'http://help.nexon.com/Download/ngm');
 
             var element = $('div a img[src$="bt_ngminstall.gif"]').$('..');
+            result = element.getAttribute('href');
 
-            console.log(suiteCount + ') │\t  └  실제 결과 : ' + element.getAttribute('href'));
+            console.log(suiteCount + ') │\t  └  실제 결과 : ' + result);
+
+            addContext(this, {title: '기대 결과', value: 'http://help.nexon.com/Download/ngm'});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect(element.getAttribute('href')).to.equal('http://help.nexon.com/Download/ngm');
         });
@@ -298,10 +332,14 @@ function runTestCase() {
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + '_blank');
 
             var element = $('div a img[src$="bt_ngminstall.gif"]').$('..');
+            result = element.getAttribute('target');
 
-            console.log(suiteCount + ') │\t  └  실제 결과 : ' + element.getAttribute('target'));
+            console.log(suiteCount + ') │\t  └  실제 결과 : ' + result);
 
-            chai.expect(element.getAttribute('target')).to.equal('_blank');
+            addContext(this, {title: '기대 결과', value: '_blank'});
+            addContext(this, {title: '실제 결과', value: result});
+
+            chai.expect(result).to.equal('_blank');
         });
 
         it('[TC-12] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인', function() {
@@ -312,28 +350,37 @@ function runTestCase() {
             element.click();
 
             var tabIds = browser.getTabIds();
-            browser.switchTab(tabIds[1]);
-            var newUrl = browser.getUrl();
+            result = {};
+            result['tabCount'] = tabIds.length;
 
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Tab Count : '  + tabIds.length + ' / url : ' + newUrl);
+            browser.switchTab(tabIds[1]);
+            result['url'] = browser.getUrl();
+
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
             browser.close();
 
-            chai.expect(newUrl).to.equal('http://help.nexon.com/Download/ngm');
+            addContext(this, {title: '기대 결과', value: 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm'});
+            addContext(this, {title: '실제 결과', value: 'Tab Count : '  + result.tabCount + ' / url : ' + result.url});
+
+            chai.expect(result.url).to.equal('http://help.nexon.com/Download/ngm');
         });
 
         it('[TC-13] 버튼 클릭 후 NGM Layer 삭제 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer 삭제 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
 
-            var result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+            result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: true});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -347,12 +394,15 @@ function runTestCase() {
             });
             browser.pause(2000);
 
-            var result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+            result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: true});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -370,10 +420,14 @@ function runTestCase() {
             });
 
             var elements = browser.elements('div h3 img[src$="txt_ngminstall.gif"]');
+            result = elements.value.length;
             
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'NGM Layer Count : ' + elements.value.length);
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'NGM Layer Count : ' + result);
 
-            chai.expect(elements.value.length).to.equal(1);
+            addContext(this, {title: '기대 결과', value: 1});
+            addContext(this, {title: '실제 결과', value: result});
+
+            chai.expect('div h3 img[src$="txt_ngminstall.gif"]').to.have.count(1);
         });
 
         it('[TC-16] 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)', function() {
@@ -382,12 +436,15 @@ function runTestCase() {
 
             browser.pause(2000);
 
-            var result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+            result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: false});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -403,12 +460,15 @@ function runTestCase() {
             var element = $('div a img[src$="bt_close.gif"]').$('..');
             element.click();
 
-            var result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+            result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
-            console.log(suiteCount + ')  \t  ├  실제 결과 : ' + !result);
+            console.log(suiteCount + ')  \t  ├  실제 결과 : ' + result);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ')  \t  └  스샷 저장: ' + filePath);
+
+            addContext(this, {title: '기대 결과', value: false});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -422,7 +482,7 @@ function runTestCase() {
             index++;
             count = 1;
 
-            if (index < 1)
+            if (index < 2)
             {
                 console.log('Next...');
                 runTestCase();
@@ -544,21 +604,8 @@ function getComputedStyleArray() {
         {
             window.openNgmLayer();
         }
-
-        var imgElements = document.getElementsByTagName('img');         
-        var element;
         
-        for (var index = 0; index < imgElements.length; index++)
-        {
-            if (imgElements[index].getAttribute('src') != null)
-            {
-                if (imgElements[index].getAttribute('src').indexOf('txt_ngminstall.gif') != -1)
-                {
-                    element = imgElements[index].parentNode.parentNode;
-                    //element.setAttribute('id', 'moroo-NgmLayer');
-                }
-            }
-        }
+        var element = document.querySelector('div h3 img[src$="txt_ngminstall.gif"]').parentNode.parentNode;
 
         var computedStyleArray = createComputedStyleArray(element, new Array());
 
@@ -598,8 +645,8 @@ function getComputedStyleArray() {
     return result.value;
 }
 
-function ngmLayerScreenshot(browser, filePath) {
-    this.browser.execute(function() {
+function ngmLayerScreenshot(filePath) {
+    browser.execute(function() {
         if (typeof window.NgmLayer == 'function')
         {
             window.NgmLayer.openNgmLayer();
@@ -610,39 +657,27 @@ function ngmLayerScreenshot(browser, filePath) {
         }
     });
 
-    this.browser.setViewportSize({width: 550, height: 200});
+    browser.setViewportSize({width: 550, height: 200});
 
-    this.browser.execute(function() {
+    browser.execute(function() {
         document.documentElement.style.overflowX = 'hidden';
         document.documentElement.style.overflowY = 'hidden';
 
-        var imgElements = document.getElementsByTagName('img');
-        var element;
-        
-        for (var index = 0; index < imgElements.length; index++)
-        {
-            if (imgElements[index].getAttribute('src') != null)
-            {
-                if (imgElements[index].getAttribute('src').indexOf('txt_ngminstall.gif') != -1)
-                {
-                    element = imgElements[index].parentNode.parentNode;
-                    // element.setAttribute('id', 'moroo-NgmLayer');
-                    element.style.marginTop = '-100px';
-                }
-            }
-        }
+
+        var element = document.querySelector('div h3 img[src$="txt_ngminstall.gif"]').parentNode.parentNode;
+        element.style.marginTop = '-100px';
     });
     
     //browser.pause(3000);
-    // var image = this.browser.saveElementScreenshot(filePath, '#moroo-NgmLayer');
-    var image = this.browser.saveScreenshot(filePath);
+    // var image = browser.saveElementScreenshot(filePath, '#moroo-NgmLayer');
+    var image = browser.saveScreenshot(filePath);
 
     //browser.parentNode(500);
-    this.browser.execute(function() {
+    browser.execute(function() {
         window.NgmLayer.closeNgmLayer();
     });
 
-    this.browser.setViewportSize({width: 800, height: 800});
+    browser.setViewportSize({width: 800, height: 800});
 
     return image;
 }
@@ -662,32 +697,32 @@ function setDigits(number, digits) {
     return zero + number;
 }
 
-function navigateToGameWeb(gameWebInfo, browser) {
-    this.browser.url(gameWebInfo.url);
+function navigateToGameWeb(gameWebInfo) {
+    browser.url(gameWebInfo.url);
     if (gameWebInfo.isCookie)
     {
-        setCookie(gameWebInfo, this.browser);
-        this.browser.url(gameWebInfo.url);
+        setCookie(gameWebInfo);
+        browser.url(gameWebInfo.url);
     }
 
-    if (this.browser.getUrl() != gameWebInfo.url)
+    if (browser.getUrl() != gameWebInfo.url)
     {
-        console.log(this.browser.getUrl());
+        console.log(browser.getUrl());
     }
 
-    var tabs = this.browser.getTabIds();
+    var tabs = browser.getTabIds();
     
     if (tabs.length > 1)
     {
         for(var i = tabs.length - 1; i == 1; i--)
         {
-            this.browser.switchTab(tabs[i]);
-            this.browser.close();
+            browser.switchTab(tabs[i]);
+            browser.close();
         }
     }
 }
 
-function setCookie(gameWebInfo, browser) {
+function setCookie(gameWebInfo) {
     if (gameWebInfo.getCookie != '')
     {
         var splitCookie;
@@ -697,19 +732,19 @@ function setCookie(gameWebInfo, browser) {
             for (var i = 0; i < cookies.length; i++)
             {
                 splitCookie = cookies[i].trim().split('=');
-                this.browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
+                browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
             }
         }
         else
         {
             splitCookie = gameWebInfo.getCookie.trim().split('=');
-            this.browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
+            browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
         }
     }
 }
 
-function loadedNgmLayer(browser) {
-    this.browser.execute(function() {
+function loadedNgmLayer() {
+    browser.execute(function() {
         var loaded = false;
         var script = window.document.createElement('script');
         script.type= 'text/javascript';
@@ -731,30 +766,16 @@ function loadedNgmLayer(browser) {
     });
 }
 
-function checkLocation(browser) {
-    var element = this.$('div h3 img[src$="txt_ngminstall.gif"]').$('..').$('..');
+function checkLocation() {
+    var element = $('div h3 img[src$="txt_ngminstall.gif"]').$('..').$('..');
     var elementLocation = element.getLocation();
     
-    var result = this.browser.execute(function() {
+    var result = browser.execute(function() {
         var left;
         var top;
-        var element;
-        
-        var imgElements = document.getElementsByTagName('img');
-        
-        for (var index = 0; index < imgElements.length; index++)
-        {
-            if (imgElements[index].getAttribute('src') != null)
-            {
-                if (imgElements[index].getAttribute('src').indexOf('txt_ngminstall.gif') != -1)
-                {
-                    element = imgElements[index].parentNode.parentNode;
-    
-                    left = element.offsetLeft;
-                    top = element.offsetTop;
-                }
-            }
-        }
+        var element = document.querySelector('div h3 img[src$="txt_ngminstall.gif"]').parentNode.parentNode;
+        left = element.offsetLeft;
+        top = element.offsetTop;
         
         return {'left': left, 'top': top, 'width': window.innerWidth, 'height': window.innerHeight};
     });

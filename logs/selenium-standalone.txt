@@ -1,13 +1,3 @@
-05:45:17.659 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
-05:45:17.660 INFO - Launching a standalone Selenium Server
-2018-03-08 05:45:17.678:INFO::main: Logging initialized @306ms to org.seleniumhq.jetty9.util.log.StdErrLog
-05:45:17.743 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-05:45:17.779 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
- registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-05:45:17.836 INFO - Using the passthrough mode handler
-2018-03-08 05:45:17.862:INFO:osjs.Server:main: jetty-9.4.5.v20170502
-2018-03-08 05:45:17.890:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@34cd072c{/,null,STARTING} has uncovered http methods for path: /
-2018-03-08 05:45:17.896:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@34cd072c{/,null,AVAILABLE}
 Usage: <main class> [options]
   Options:
     --version, -version
@@ -47,6 +37,16 @@ Usage: <main class> [options]
        must also be set.
        Default: 1800
 
+07:57:48.120 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
+07:57:48.120 INFO - Launching a standalone Selenium Server
+2018-03-08 07:57:48.136:INFO::main: Logging initialized @267ms to org.seleniumhq.jetty9.util.log.StdErrLog
+07:57:48.189 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+07:57:48.216 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+ registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
+07:57:48.272 INFO - Using the passthrough mode handler
+2018-03-08 07:57:48.289:INFO:osjs.Server:main: jetty-9.4.5.v20170502
+2018-03-08 07:57:48.305:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@34cd072c{/,null,STARTING} has uncovered http methods for path: /
+2018-03-08 07:57:48.305:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@34cd072c{/,null,AVAILABLE}
 java.lang.RuntimeException: java.net.BindException: Address already in use: bind
 	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:191)
 	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:238)
