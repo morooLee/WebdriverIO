@@ -1,13 +1,13 @@
-03:52:30.758 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
-03:52:30.759 INFO - Launching a standalone Selenium Server
-2018-03-06 03:52:30.783:INFO::main: Logging initialized @311ms to org.seleniumhq.jetty9.util.log.StdErrLog
-03:52:30.848 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-03:52:30.891 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+05:45:17.659 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
+05:45:17.660 INFO - Launching a standalone Selenium Server
+2018-03-08 05:45:17.678:INFO::main: Logging initialized @306ms to org.seleniumhq.jetty9.util.log.StdErrLog
+05:45:17.743 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+05:45:17.779 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
  registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-03:52:30.947 INFO - Using the passthrough mode handler
-2018-03-06 03:52:30.978:INFO:osjs.Server:main: jetty-9.4.5.v20170502
-2018-03-06 03:52:31.006:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@34cd072c{/,null,STARTING} has uncovered http methods for path: /
-2018-03-06 03:52:31.014:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@34cd072c{/,null,AVAILABLE}
+05:45:17.836 INFO - Using the passthrough mode handler
+2018-03-08 05:45:17.862:INFO:osjs.Server:main: jetty-9.4.5.v20170502
+2018-03-08 05:45:17.890:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@34cd072c{/,null,STARTING} has uncovered http methods for path: /
+2018-03-08 05:45:17.896:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@34cd072c{/,null,AVAILABLE}
 Usage: <main class> [options]
   Options:
     --version, -version

@@ -13,6 +13,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-webdriverio": "^0.4.3",
+    "mochawesome": "^3.0.2",
     "mochawesome-report-generator": "^2.3.2",
     "wdio-allure-reporter": "^0.3.2",
     "wdio-chromedriver-service": "^0.1.2",

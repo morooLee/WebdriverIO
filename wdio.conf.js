@@ -51,14 +51,32 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
+    capabilities: [
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
-        //
-        browserName: 'chrome'
-    }],
+        { browserName: 'chrome' },
+        // { browserName: 'internet explorer' },
+        // { browserName: 'firefox', marionette: true },
+        // { browserName: 'MicrosoftEdge' }
+    ],
+    //
+    // Test runner services
+    // Services take over a specific job you don't want to take care of. They enhance
+    // your test setup with almost no effort. Unlike plugins, they don't add new
+    // commands. Instead, they hook themselves up into the test process.
+    services: [
+        // 'firefox-profile',
+        'selenium-standalone',
+        // 'chromedriver',
+        // 'iedriver'
+    ],
+    // seleniumArgs: {
+        // javaArgs: [
+            // '-Dwebdriver.edge.driver=<path>'
+        // ]
+    // },
+    seleniumLogs: './logs',
     //
     // ===================
     // Test Configurations
@@ -121,18 +139,6 @@ exports.config = {
         'wdio-screenshot': {}
     },
     //
-    // Test runner services
-    // Services take over a specific job you don't want to take care of. They enhance
-    // your test setup with almost no effort. Unlike plugins, they don't add new
-    // commands. Instead, they hook themselves up into the test process.
-    services: [
-        // 'firefox-profile',
-        'selenium-standalone',
-        // 'chromedriver',
-        // 'iedriver'
-    ],
-    seleniumLogs: './logs',
-    //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -149,13 +155,13 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['spec', 'allure'],
+    reporters: ['spec', 'mochawesome'],
     reporterOptions: {
         // dot: {outputDir: './reports/dot-result/'},
         spec: {outputDir: './reports/spec-result/'},
-        allure: {outputDir: './reports/allure-result/'},
+        // allure: {outputDir: './reports/allure-result/'},
         // json: {outputDir: './reports/json-result/'}
-        // mochawesome: {outputDir: './reports/mochawesome-result/'},
+        mochawesome: {outputDir: './reports/mochawesome-result/'},
     }, 
     mochawesomeOpts: {
         includeScreenshots: true,
