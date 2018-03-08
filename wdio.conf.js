@@ -56,7 +56,7 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         { browserName: 'chrome' },
-        // { browserName: 'internet explorer' },
+        // { browserName: 'internet explorer', version: 11 },
         // { browserName: 'firefox', marionette: true },
         // { browserName: 'MicrosoftEdge' }
     ],
@@ -102,7 +102,7 @@ exports.config = {
     bail: 0,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './reports/errorShots/',
+    screenshotPath: '/reports/errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -161,7 +161,7 @@ exports.config = {
         spec: {outputDir: './reports/spec-result/'},
         // allure: {outputDir: './reports/allure-result/'},
         // json: {outputDir: './reports/json-result/'}
-        mochawesome: {outputDir: './reports/mochawesome-result/'},
+        mochawesome: {outputDir: './reports/mochawesome-result/', overwrite: false,},
     }, 
     mochawesomeOpts: {
         includeScreenshots: true,

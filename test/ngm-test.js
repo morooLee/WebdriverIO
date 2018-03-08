@@ -38,14 +38,17 @@ var gameWebInfoList = [
     {'name': '테일즈위버', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
     {'name': '트리 오브 세이비어', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tos.nexon.com/main/v2/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '하이퍼유니버스', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://hu.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
-]
-var index = 0;
+];
+//var index = 0;
 var originalImage;
 var originalComputedStyleArray;
-var filePath;
+var browserType;
 
-initTest();
-runTestCase();
+//setBrowserMatch();
+//initTest();
+//runTestCase();
+
+gameWebInfoList.forEach(runTestCase);
 
 function initTest() {
     describe('00. 테스트 준비', function() {
@@ -53,9 +56,9 @@ function initTest() {
             console.log('init...');
             console.log('NGM Layer 기본값 저장 중...');
             // var testHtmlPath = 'file:///' + path.resolve('./src/', 'ngm-test.html');
-            
+            console.log(browserName);
             browser.setViewportSize({width: 800, height: 800});
-            browser.url('http://127.0.0.1/moroo/ngm-test.html');
+            browser.url('http://127.0.0.1/moroo/ngm-init.html');
             
             // filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png');            
             // originalImage = ngmLayerScreenshot(browser, filePath);
@@ -65,10 +68,19 @@ function initTest() {
             console.log('Start!!!');
         });
     });
-};
+}
 
-function runTestCase() {
-    describe(setDigits(index + 1, 2) + '. ' + gameWebInfoList[index].name, function() {
+function runTestCase(value, index, array) {
+/*     if (!gameWebInfoList[browserType])
+    {
+        describe(setDigits(index + 1, 2) + '. ' + gameWebInfoList[index].name, function() {
+
+        });
+        
+        return;
+    } */
+    
+    describe(setDigits(index + 1, 2) + '. ' + array[index].name, function() {
         var count = 1;
         var host = '';
         var suiteCount = setDigits(index + 1, 2) + '/' + setDigits(gameWebInfoList.length, 2);;
@@ -162,7 +174,7 @@ function runTestCase() {
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
             addContext(this, {title: '기대 결과', value: true});
-            addContext(this, {title: '실제 결과', value: result});
+            addContext(this, {title: '실제 결과', value: !result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -351,10 +363,10 @@ function runTestCase() {
 
             var tabIds = browser.getTabIds();
             result = {};
-            result['tabCount'] = tabIds.length;
+            result.tabCount = tabIds.length;
 
             browser.switchTab(tabIds[1]);
-            result['url'] = browser.getUrl();
+            result.url = browser.getUrl();
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
             filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
@@ -468,7 +480,7 @@ function runTestCase() {
             console.log(suiteCount + ')  \t  └  스샷 저장: ' + filePath);
 
             addContext(this, {title: '기대 결과', value: false});
-            addContext(this, {title: '실제 결과', value: result});
+            addContext(this, {title: '실제 결과', value: !result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -485,7 +497,7 @@ function runTestCase() {
             if (index < 2)
             {
                 console.log('Next...');
-                runTestCase();
+                //runTestCase();
             }
             else
             {
@@ -495,6 +507,31 @@ function runTestCase() {
     });
 }
 
+function setBrowserMatch() {
+    switch(browser.desiredCapabilities.browserName)
+    {
+        case 'chrome':
+        {
+            browserType = 'chrome';
+            break;
+        }
+        case 'internet explorer':
+        {
+            browserType = 'ie' + browser.desiredCapabilities.version;
+            break;
+        }
+        case 'firefox':
+        {
+            browserType = 'firefox';
+            break;
+        }
+        case 'MicrosoftEdge':
+        {
+            browserType = 'edge';
+            break;
+        }
+    }
+}
 function compareStyle(original, current) {
     var failList = [];
     var value = true;
