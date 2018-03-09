@@ -48,11 +48,14 @@ var browserType;
 //initTest();
 //runTestCase();
 
-gameWebInfoList.forEach(runTestCase);
+describe('NGM Layer Test', function() {
+    gameWebInfoList.forEach(runTestCase);
+});
+
 
 function initTest() {
     describe('00. 테스트 준비', function() {
-        it('NGM Layer 기본값 저장하기', function() {
+        it('NGM Layer 기본 Style 저장하기', function() {
             console.log('init...');
             console.log('NGM Layer 기본값 저장 중...');
             // var testHtmlPath = 'file:///' + path.resolve('./src/', 'ngm-test.html');
@@ -64,62 +67,63 @@ function initTest() {
             // originalImage = ngmLayerScreenshot(browser, filePath);
             originalComputedStyleArray = getComputedStyleArray();
             
-            console.log('NGM Layer 기본값 저장 완료!!!');
+            console.log('NGM Layer 기본 Style 저장 완료!!!');
             console.log('Start!!!');
         });
     });
 }
 
 function runTestCase(value, index, array) {
-/*     if (!gameWebInfoList[browserType])
-    {
-        describe(setDigits(index + 1, 2) + '. ' + gameWebInfoList[index].name, function() {
-
-        });
-        
-        return;
-    } */
     
-    describe(setDigits(index + 1, 2) + '. ' + array[index].name, function() {
-        var count = 1;
-        var host = '';
-        var suiteCount = setDigits(index + 1, 2) + '/' + setDigits(gameWebInfoList.length, 2);;
-        var caseCount = '';
+    setBrowserInfo();
+
+    if (!gameWebInfoList.browsers[browserType])
+    {
+        return;
+    }
+    
+    describe(setDigits(index + 1, 2) + '. ' + value.name, function() {
+        var count;
+        var host;
+        var suiteCount;
+        var caseCount;
         var result;
+        var filePath;
 
         before(function() {
-            console.log(suiteCount + ') ' + setDigits(index + 1, 2) + '. ' + gameWebInfoList[index].name);
+            count = 1;
+            host = getHostName();
+            suiteCount = setDigits(index + 1, 2) + '/' + setDigits(array.length, 2);
+            console.log(suiteCount + ') ' + setDigits(index + 1, 2) + '. ' + value.name);
         });
 
         beforeEach(function() {
             caseCount = 'TC-' + setDigits(count, 2);
+            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
         });
         
-        it('[TC-01] 게임웹 접속', function() {
+        it('[' + caseCount + '] 게임웹 접속', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] 게임웹 접속');
-            console.log(suiteCount + ') │\t  ├  기대 결과: ' + gameWebInfoList[index].url);
+            console.log(suiteCount + ') │\t  ├  기대 결과: ' + value.url);
             
             //allure.createAttachment(filePath, browser.saveScreenshot(filePath), 'png');
 
-            navigateToGameWeb(gameWebInfoList[index]);
+            navigateToGameWeb(value);
 
             result = browser.getUrl();
-            var protocolSplits = result.split('//');
-            var dotSplits = protocolSplits[1].split('.');
-            host = dotSplits[0]; 
+
 
             console.log(suiteCount + ') │\t  ├  실제 결과: ' + result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
-            addContext(this, {title: '기대 결과', value: gameWebInfoList[index].url});
+            addContext(this, {title: '기대 결과', value: value.url});
             addContext(this, {title: '실제 결과', value: result});
 
-            chai.expect(result).to.equal(gameWebInfoList[index].url);
+            chai.expect(result).to.equal(value.url);
         });
 
-        it('[TC-02] ngm-layer.js 적용', function() {
+        it('[' + caseCount + '] ngm-layer.js 적용', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] ngm-layer.js 적용');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');
 
@@ -136,7 +140,7 @@ function runTestCase(value, index, array) {
             chai.expect('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]').to.be.there();
         });
 
-        it('[TC-03] openNgmLayer() 기능 확인', function() {
+        it('[' + caseCount + '] openNgmLayer() 기능 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] openNgmLayer() 기능 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
 
@@ -147,7 +151,6 @@ function runTestCase(value, index, array) {
             result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');            
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -158,7 +161,7 @@ function runTestCase(value, index, array) {
 
         });
 
-        it('[TC-04] closeNgmLayer() 기능 확인', function() {
+        it('[' + caseCount + '] closeNgmLayer() 기능 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] closeNgmLayer() 기능 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
             
@@ -166,20 +169,19 @@ function runTestCase(value, index, array) {
                 window.NgmLayer.closeNgmLayer();
             });
 
-            result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+            result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
             
-            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + !result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+            console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
             addContext(this, {title: '기대 결과', value: true});
-            addContext(this, {title: '실제 결과', value: !result});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
 
-        it('[TC-05] NGM Layer UI 확인 (Style 비교 방식)', function() {
+        it('[' + caseCount + '] NGM Layer UI 확인 (Style 비교 방식)', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer UI 확인 (Style 비교 방식)');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
 
@@ -193,7 +195,6 @@ function runTestCase(value, index, array) {
             }
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result.value);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -231,7 +232,7 @@ function runTestCase(value, index, array) {
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
         });
         */        
-        it('[TC-06] NGM Layer 출력위치 확인', function() {
+        it('[' + caseCount + '] NGM Layer 출력위치 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer 출력위치 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 125 / Top : 270');            
             
@@ -246,7 +247,6 @@ function runTestCase(value, index, array) {
             result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -257,7 +257,7 @@ function runTestCase(value, index, array) {
             chai.expect(result.positionY).to.equal(270);
         });
 
-        it('[TC-07] 창크기 축소 후 NGM Layer 위치 확인', function() {
+        it('[' + caseCount + '] 창크기 축소 후 NGM Layer 위치 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] 창크기 축소 후 NGM Layer 위치 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 25 / Top : 170');            
 
@@ -266,7 +266,6 @@ function runTestCase(value, index, array) {
             result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -277,7 +276,7 @@ function runTestCase(value, index, array) {
             chai.expect(result.positionY).to.equal(170);
         });
 
-        it('[TC-08] 창크기 확대 후 NGM Layer 위치 확인', function() {
+        it('[' + caseCount + '] 창크기 확대 후 NGM Layer 위치 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] 창크기 확대 후 NGM Layer 위치 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 125 / Top : 270');            
 
@@ -286,7 +285,6 @@ function runTestCase(value, index, array) {
             result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -297,7 +295,7 @@ function runTestCase(value, index, array) {
             chai.expect(result.positionY).to.equal(270);
         });
 
-        it('[TC-09] 스크롤 이동 후 NGM Layer 위치 확인', function() {
+        it('[' + caseCount + '] 스크롤 이동 후 NGM Layer 위치 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] 스크롤 이동 후 NGM Layer 위치 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Left : 125 / Top : 270');            
 
@@ -313,7 +311,6 @@ function runTestCase(value, index, array) {
             result = checkLocation();
             
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -324,7 +321,7 @@ function runTestCase(value, index, array) {
             chai.expect(result.positionY).to.equal(270);
         });
 
-        it('[TC-10] NGM 설치하기 버튼 URL 확인', function() {
+        it('[' + caseCount + '] NGM 설치하기 버튼 URL 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM 설치하기 버튼 URL 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'http://help.nexon.com/Download/ngm');
 
@@ -339,7 +336,7 @@ function runTestCase(value, index, array) {
             chai.expect(element.getAttribute('href')).to.equal('http://help.nexon.com/Download/ngm');
         });
 
-        it('[TC-11] NGM 설치하기 버튼 Target 확인', function() {
+        it('[' + caseCount + '] NGM 설치하기 버튼 Target 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM 설치하기 버튼 Target 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + '_blank');
 
@@ -354,7 +351,7 @@ function runTestCase(value, index, array) {
             chai.expect(result).to.equal('_blank');
         });
 
-        it('[TC-12] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인', function() {
+        it('[' + caseCount + '] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm');
             
@@ -369,7 +366,6 @@ function runTestCase(value, index, array) {
             result.url = browser.getUrl();
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
             browser.close();
@@ -380,14 +376,13 @@ function runTestCase(value, index, array) {
             chai.expect(result.url).to.equal('http://help.nexon.com/Download/ngm');
         });
 
-        it('[TC-13] 버튼 클릭 후 NGM Layer 삭제 확인', function() {
+        it('[' + caseCount + '] 버튼 클릭 후 NGM Layer 삭제 확인', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer 삭제 확인');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
 
             result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -397,7 +392,7 @@ function runTestCase(value, index, array) {
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
         
-        it('[TC-14] 시간 설정 후 NGM Layer 삭제 확인(2초)', function() {
+        it('[' + caseCount + '] 시간 설정 후 NGM Layer 삭제 확인(2초)', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] 시간 설정 후 NGM Layer 삭제 확인(2초)');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'true');            
 
@@ -409,7 +404,6 @@ function runTestCase(value, index, array) {
             result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -419,7 +413,7 @@ function runTestCase(value, index, array) {
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
 
-        it('[TC-15] NGM Layer 중복 출력 여부 확인 (5회)', function() {
+        it('[' + caseCount + '] NGM Layer 중복 출력 여부 확인 (5회)', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] NGM Layer 중복 출력 여부 확인 (5회)');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'NGM Layer Count : 1');
 
@@ -442,7 +436,7 @@ function runTestCase(value, index, array) {
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').to.have.count(1);
         });
 
-        it('[TC-16] 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)', function() {
+        it('[' + caseCount + '] 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)', function() {
             console.log(suiteCount + ') ├ [' + caseCount + '] 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)');
             console.log(suiteCount + ') │\t  ├  기대 결과 : ' + 'false');            
 
@@ -451,7 +445,6 @@ function runTestCase(value, index, array) {
             result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
             console.log(suiteCount + ') │\t  ├  실제 결과 : ' + result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ') │\t  └  스샷 저장: ' + filePath);
 
@@ -461,7 +454,7 @@ function runTestCase(value, index, array) {
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
 
-        it('[TC-17] 닫기 버튼 클릭 시 NGM Layer 삭제 확인', function() {
+        it('[' + caseCount + '] 닫기 버튼 클릭 시 NGM Layer 삭제 확인', function() {
             console.log(suiteCount + ') └ [' + caseCount + '] 닫기 버튼 클릭 시 NGM Layer 삭제 확인');
             console.log(suiteCount + ')  \t  ├  기대 결과 : ' + 'true');            
 
@@ -475,12 +468,11 @@ function runTestCase(value, index, array) {
             result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
             console.log(suiteCount + ')  \t  ├  실제 결과 : ' + result);
-            filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
             browser.saveScreenshot(filePath);
             console.log(suiteCount + ')  \t  └  스샷 저장: ' + filePath);
 
             addContext(this, {title: '기대 결과', value: false});
-            addContext(this, {title: '실제 결과', value: !result});
+            addContext(this, {title: '실제 결과', value: result});
 
             chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
         });
@@ -494,7 +486,7 @@ function runTestCase(value, index, array) {
             index++;
             count = 1;
 
-            if (index < 2)
+            if (index < array.length - 1)
             {
                 console.log('Next...');
                 //runTestCase();
@@ -507,22 +499,12 @@ function runTestCase(value, index, array) {
     });
 }
 
-function setBrowserMatch() {
+function setBrowserInfo() {
     switch(browser.desiredCapabilities.browserName)
     {
-        case 'chrome':
-        {
-            browserType = 'chrome';
-            break;
-        }
         case 'internet explorer':
         {
             browserType = 'ie' + browser.desiredCapabilities.version;
-            break;
-        }
-        case 'firefox':
-        {
-            browserType = 'firefox';
             break;
         }
         case 'MicrosoftEdge':
@@ -530,8 +512,22 @@ function setBrowserMatch() {
             browserType = 'edge';
             break;
         }
+        default:
+        {
+            browserType = browser.desiredCapabilities.browserName;
+            break;
+        }
     }
 }
+
+function getHostName() {
+    var protocolSplits = result.split('//');
+    var dotSplits = protocolSplits[1].split('.');
+    var hostName = dotSplits[0];
+
+    return hostName;
+}
+
 function compareStyle(original, current) {
     var failList = [];
     var value = true;
@@ -738,7 +734,7 @@ function navigateToGameWeb(gameWebInfo) {
     browser.url(gameWebInfo.url);
     if (gameWebInfo.isCookie)
     {
-        setCookie(gameWebInfo);
+        setCookie(gameWebInfo.getCookie);
         browser.url(gameWebInfo.url);
     }
 
@@ -747,25 +743,25 @@ function navigateToGameWeb(gameWebInfo) {
         console.log(browser.getUrl());
     }
 
-    var tabs = browser.getTabIds();
+    var tabIds = browser.getTabIds();
     
-    if (tabs.length > 1)
+    if (tabIds.length > 1)
     {
-        for(var i = tabs.length - 1; i == 1; i--)
+        for(var i = tabIds.length - 1; i == 1; i--)
         {
-            browser.switchTab(tabs[i]);
+            browser.switchTab(tabIds[i]);
             browser.close();
         }
     }
 }
 
-function setCookie(gameWebInfo) {
-    if (gameWebInfo.getCookie != '')
+function setCookie(getCookie) {
+    if (getCookie != '')
     {
         var splitCookie;
-        if (gameWebInfo.getCookie.indexOf(',') != -1)
+        if (getCookie.indexOf(',') != -1)
         {
-            var cookies = gameWebInfo.getCookie.split(',');
+            var cookies = getCookie.split(',');
             for (var i = 0; i < cookies.length; i++)
             {
                 splitCookie = cookies[i].trim().split('=');
@@ -774,7 +770,7 @@ function setCookie(gameWebInfo) {
         }
         else
         {
-            splitCookie = gameWebInfo.getCookie.trim().split('=');
+            splitCookie = getCookie.trim().split('=');
             browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
         }
     }
