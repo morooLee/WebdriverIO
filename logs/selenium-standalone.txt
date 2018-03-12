@@ -1,13 +1,13 @@
-11:55:02.252 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
-11:55:02.252 INFO - Launching a standalone Selenium Server
-2018-03-08 11:55:02.267:INFO::main: Logging initialized @307ms to org.seleniumhq.jetty9.util.log.StdErrLog
-11:55:02.313 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-11:55:02.344 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+07:08:26.264 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
+07:08:26.265 INFO - Launching a standalone Selenium Server
+2018-03-12 07:08:26.290:INFO::main: Logging initialized @306ms to org.seleniumhq.jetty9.util.log.StdErrLog
+07:08:26.347 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+07:08:26.388 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
  registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-11:55:02.372 INFO - Using the passthrough mode handler
-2018-03-08 11:55:02.391:INFO:osjs.Server:main: jetty-9.4.5.v20170502
-2018-03-08 11:55:02.410:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@18c1321{/,null,STARTING} has uncovered http methods for path: /
-2018-03-08 11:55:02.413:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@18c1321{/,null,AVAILABLE}
+07:08:26.443 INFO - Using the passthrough mode handler
+2018-03-12 07:08:26.467:INFO:osjs.Server:main: jetty-9.4.5.v20170502
+2018-03-12 07:08:26.494:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@34cd072c{/,null,STARTING} has uncovered http methods for path: /
+2018-03-12 07:08:26.500:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@34cd072c{/,null,AVAILABLE}
 java.lang.RuntimeException: java.net.BindException: Address already in use: bind
 	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:191)
 	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:238)

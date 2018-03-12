@@ -55,8 +55,8 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        { browserName: 'chrome' },
-        // { browserName: 'internet explorer', version: 11 },
+        // { browserName: 'chrome' },
+        { browserName: 'internet explorer', version: 8},
         // { browserName: 'firefox', marionette: true },
         // { browserName: 'MicrosoftEdge' }
     ],
@@ -102,7 +102,7 @@ exports.config = {
     bail: 0,
     //
     // Saves a screenshot to a given path if a command fails.
-    screenshotPath: '/reports/errorShots/',
+    screenshotPath: './reports/errorShots/',
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
