@@ -13,11 +13,12 @@ var gameWebInfoList = [
     {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '던전앤파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
     {'name': '로브레이커즈', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lawbreakers.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'LBMV=Y'},
-    {'name': '마비노기', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1'},
+    {'name': '마비노기', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
     {'name': '마비노기듀얼', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://devcat.nexon.com/duel/kr/', 'isCookie': false, 'getCookie': ''},
     {'name': '마비노기영웅전', 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': false, 'chrome': true, 'firefox': false}, 'url': 'http://heroes.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '메이플스토리1', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Gnx.aspx?URL=home/index', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    {'name': '메이플스토리2(maview)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '바람의나라', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://baram.nexon.com/Home/Index', 'isCookie': false, 'getCookie': ''},
     {'name': '배틀라이트', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/', 'isCookie': true, 'getCookie': ' BTRIntro=BTR'},
     {'name': '버블파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://bf.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
@@ -33,7 +34,7 @@ var gameWebInfoList = [
     {'name': '카운터스트라이크온라인2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://csonline2.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '카트라이더', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://kart.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '크레이지아케이드', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://kart.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'Intro=true'},
-    {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
     {'name': '탱고파이브 : 더 라스트 댄스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://t5.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '테라', 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tera.nexon.com/Main/Index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '테일즈위버', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
@@ -42,9 +43,11 @@ var gameWebInfoList = [
 ];
 
 var gameWebInfoList2 = [
-    {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    // {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    // {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    // {'name': '메이플스토리2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    // {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
 ];
 //var index = 0;
 var originalImage;
@@ -64,8 +67,8 @@ setBrowserInfo();
 
 describe('NGM Layer Test', function() {
     setBrowserInfo();
-    initTest();
-    gameWebInfoList.forEach(runTestCase);
+    // initTest();
+    gameWebInfoList2.forEach(runTestCase);
 });
 
 
@@ -118,9 +121,10 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') │\t ├  기대 결과: ' + value.url);
                 
                 //allure.createAttachment(filePath, browser.saveScreenshot(filePath), 'png');
+                browser.setViewportSize({width: 800, height: 800});
 
                 navigateToGameWeb(value);
-
+                
                 result = browser.getUrl();
                 setHost();
                 filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
@@ -135,21 +139,21 @@ function runTestCase(value, index, array) {
                 chai.expect(result).to.equal(value.url);
             });
             // 02
-            it('[TC-' + setDigits(count++, 2) + '] ngm-layer.js 적용', function() {
-                console.log(suiteCount + ') ├ ' + caseCount + ' ngm-layer.js 적용');
+            it('[TC-' + setDigits(count++, 2) + '] ngm-layer.min.js 적용', function() {
+                console.log(suiteCount + ') ├ ' + caseCount + ' ngm-layer.min.js 적용');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');
 
 
                 loadedNgmLayer();
 
-                result = browser.isExisting('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]');  
+                result = browser.isExisting('head script[src="http://127.0.0.1/moroo/ngm-layer.min.js"]');  
 
                 console.log(suiteCount + ') │\t └  실제 결과 : ' + result);
 
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
-                chai.expect('head script[src="http://127.0.0.1/moroo/ngm-layer.js"]').to.be.there();
+                chai.expect('head script[src="http://127.0.0.1/moroo/ngm-layer.min.js"]').to.be.there();
             });
             // 03
             it('[TC-' + setDigits(count++, 2) + '] openNgmLayer() 기능 확인', function() {
@@ -193,6 +197,38 @@ function runTestCase(value, index, array) {
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
             });
             // 05
+            it('[TC-' + setDigits(count++, 2) + '] 게임웹 z-index 확인', function() {
+                console.log(suiteCount + ') ├ ' + caseCount + ' 게임웹 z-index 확인');
+                console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');            
+
+                var result = getDocumentComputedStyle();
+
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + result.length);
+
+                addContext(this, {title: '기대 결과', value: 0});
+                addContext(this, {title: '실제 결과', value: result.length});
+
+                if (result.length >= 1)
+                {
+                    var failes = '';
+
+                    for (var i = 0; i < result.length; i++)
+                    {
+                        console.log(result[i]);
+                        failes += '{\n';
+                        failes += '    tagName: ' + result[i].tagName + ',\n';
+                        failes += '    id: ' + result[i].id + ',\n';
+                        failes += '    class: ' + result[i].class + ',\n';
+                        failes += '    z-index: ' + result[i]['z-index'] + ',\n';
+                        failes += '}\n';
+                    }
+                    addContext(this, {title: 'Z-Index is more than 10000000', value: failes});
+                }
+
+                chai.expect(result).to.have.lengthOf(0);
+            });
+            // 05
+            /*
             it('[TC-' + setDigits(count++, 2) + '] NGM Layer UI 확인 (Style 비교 방식)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Style 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');            
@@ -220,6 +256,7 @@ function runTestCase(value, index, array) {
 
                 chai.expect(result.value, failsText).to.be.true;
             });
+            */
             /*       
             it('[TC-05] NGM Layer UI 확인 (Image 비교 방식)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Image 비교 방식)');
@@ -664,7 +701,7 @@ function getComputedStyleArray() {
         
         var element = document.querySelector('div h3 img[src$="txt_ngminstall.gif"]').parentNode.parentNode;
 
-        var computedStyleArray = createComputedStyleArray(element, new Array());
+        var computedStyleArray = createComputedStyleArray(element, []);
 
         function createComputedStyleArray(element, array) {
             array.push(setValueForComputedStyle(element));
@@ -705,6 +742,64 @@ function getComputedStyleArray() {
         }
         
         return computedStyleArray;
+    });
+    
+    return result.value;
+}
+
+function getDocumentComputedStyle() {
+    var result = browser.execute(function() {
+        var body = document.body;
+        var result = createComputedStyleArray(body, []);
+
+        return result;
+
+        function createComputedStyleArray(element, array) {
+            var obj = setValueForComputedStyle(element);
+            if (obj != null)
+            {
+                array.push(obj);
+            }
+
+            if (element.childNodes.length > 0)
+            {
+                for (var i = 0; i < element.childNodes.length; i++)
+                {
+                    createComputedStyleArray(element.childNodes[i], array);
+                }
+            }
+
+            return array;
+        }
+
+        function setValueForComputedStyle(element) {
+            var agent = navigator.userAgent.toLowerCase();
+            var result = null;
+            var zIndex;
+
+            if (element.nodeType == 1)
+            {
+                if (agent.indexOf('msie 8.0') != -1)
+                {
+                    zIndex =  element.currentStyle['z-index'];
+                }
+                else
+                {
+                    zIndex = window.getComputedStyle(element, null).getPropertyValue('z-index');
+                }
+
+                if (zIndex != 'auto' && zIndex >= 10000)
+                {
+                    result = {};
+                    result.tagName = element.tagName;
+                    result.id = element.getAttribute('id');
+                    result.class = element.getAttribute('class');
+                    result['z-index'] = zIndex;
+                }
+            }
+            
+            return result;
+        }
     });
     
     return result.value;
@@ -790,34 +885,25 @@ function navigateToGameWeb(gameWebInfo) {
 function setCookie(getCookie) {
     if (getCookie != '')
     {
-        var splitCookie;
-        if (getCookie.indexOf(',') != -1)
-        {
-            var cookies = getCookie.split(',');
-            for (var i = 0; i < cookies.length; i++)
+        var result = browser.execute(function(getCookie){
+            if (getCookie.indexOf(',') != -1)
             {
-                var cookie = cookies[i];
-                var result = browser.execute(function(cookie) {
-                    document.cookie = "LBMV=Y";
-                    return document.cookie;
-                }, cookie);
-                // console.log(result.value);
-                // splitCookie = cookies[i].trim().split('=');
-                // browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
+                var cookies = getCookie.split(',');
+                for (var i = 0; i < cookies.length; i++)
+                {
+                    document.cookie = cookies[i].trim();
+                }
             }
-        }
-        else
-        {
-            var cookie = getCookie;
-            var result = browser.execute(function(cookie) {
-                document.cookie = cookie;
-                return document.cookie;
-            }, cookie);
-            // console.log(result.value);
-            // splitCookie = getCookie.trim().split('=');
-            // browser.setCookie({name: splitCookie[0].trim(), value: splitCookie[1].trim()});
-        }
+            else
+            {
+                document.cookie = getCookie;
+            }
+
+            return document.cookie;
+        }, getCookie);
     }
+
+    console.log(result.value);
 }
 
 function loadedNgmLayer() {
@@ -838,7 +924,7 @@ function loadedNgmLayer() {
         script.onload = function() {
             loaded = true;
         }
-        script.src = 'http://127.0.0.1/moroo/ngm-layer.js';
+        script.src = 'http://127.0.0.1/moroo/ngm-layer.min.js';
         window.document.head.appendChild(script);
     });
 }

@@ -1,31 +1,3 @@
-07:08:26.264 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
-07:08:26.265 INFO - Launching a standalone Selenium Server
-2018-03-12 07:08:26.290:INFO::main: Logging initialized @306ms to org.seleniumhq.jetty9.util.log.StdErrLog
-07:08:26.347 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-07:08:26.388 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
- registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-07:08:26.443 INFO - Using the passthrough mode handler
-2018-03-12 07:08:26.467:INFO:osjs.Server:main: jetty-9.4.5.v20170502
-2018-03-12 07:08:26.494:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@34cd072c{/,null,STARTING} has uncovered http methods for path: /
-2018-03-12 07:08:26.500:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@34cd072c{/,null,AVAILABLE}
-java.lang.RuntimeException: java.net.BindException: Address already in use: bind
-	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:191)
-	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:238)
-	at org.openqa.grid.selenium.GridLauncherV3.main(GridLauncherV3.java:99)
-Caused by: java.net.BindException: Address already in use: bind
-	at sun.nio.ch.Net.bind0(Native Method)
-	at sun.nio.ch.Net.bind(Unknown Source)
-	at sun.nio.ch.Net.bind(Unknown Source)
-	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
-	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
-	at org.seleniumhq.jetty9.server.ServerConnector.open(ServerConnector.java:298)
-	at org.seleniumhq.jetty9.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80)
-	at org.seleniumhq.jetty9.server.ServerConnector.doStart(ServerConnector.java:236)
-	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
-	at org.seleniumhq.jetty9.server.Server.doStart(Server.java:431)
-	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
-	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:189)
-	... 2 more
 Usage: <main class> [options]
   Options:
     --version, -version
@@ -65,3 +37,31 @@ Usage: <main class> [options]
        must also be set.
        Default: 1800
 
+21:06:16.007 INFO - Selenium build info: version: '3.7.1', revision: '8a0099a'
+21:06:16.008 INFO - Launching a standalone Selenium Server
+2018-03-13 21:06:16.022:INFO::main: Logging initialized @300ms to org.seleniumhq.jetty9.util.log.StdErrLog
+21:06:16.062 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+21:06:16.092 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+ registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
+21:06:16.122 INFO - Using the passthrough mode handler
+2018-03-13 21:06:16.142:INFO:osjs.Server:main: jetty-9.4.5.v20170502
+2018-03-13 21:06:16.159:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@18c1321{/,null,STARTING} has uncovered http methods for path: /
+2018-03-13 21:06:16.162:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@18c1321{/,null,AVAILABLE}
+java.lang.RuntimeException: java.net.BindException: Address already in use: bind
+	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:191)
+	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:238)
+	at org.openqa.grid.selenium.GridLauncherV3.main(GridLauncherV3.java:99)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.seleniumhq.jetty9.server.ServerConnector.open(ServerConnector.java:298)
+	at org.seleniumhq.jetty9.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80)
+	at org.seleniumhq.jetty9.server.ServerConnector.doStart(ServerConnector.java:236)
+	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.seleniumhq.jetty9.server.Server.doStart(Server.java:431)
+	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:189)
+	... 2 more
