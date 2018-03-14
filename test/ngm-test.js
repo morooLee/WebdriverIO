@@ -67,7 +67,7 @@ setBrowserInfo();
 
 describe('NGM Layer Test', function() {
     setBrowserInfo();
-    // initTest();
+    initTest();
     gameWebInfoList2.forEach(runTestCase);
 });
 
@@ -82,15 +82,13 @@ function initTest() {
             browser.setViewportSize({width: 800, height: 800});
             browser.url('http://127.0.0.1/moroo/ngm-init.html');
 
-            console.log(count);
-
             setBrowserInfo();
+            filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png'); 
             
-            // originalImage = ngmLayerScreenshot(browser, filePath);
+            originalImage = ngmLayerScreenshot(filePath);
             originalComputedStyleArray = getComputedStyleArray();
-
-            filePath = path.resolve('./reports/screenshot-results/',  '00_original_NgmLayer.png');            
-            browser.saveScreenshot(filePath);
+                       
+            // browser.saveScreenshot(filePath);
             
             console.log('NGM Layer 기본 Style 저장 완료!!!');
             console.log('Start!!!');
@@ -197,8 +195,8 @@ function runTestCase(value, index, array) {
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
             });
             // 05
-            it('[TC-' + setDigits(count++, 2) + '] 게임웹 z-index 확인', function() {
-                console.log(suiteCount + ') ├ ' + caseCount + ' 게임웹 z-index 확인');
+            it('[TC-' + setDigits(count++, 2) + '] z-index 10000000 이상인 엘리먼트 검색', function() {
+                console.log(suiteCount + ') ├ ' + caseCount + ' z-index 10000000 이상인 엘리먼트 검색');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');            
 
                 var result = getDocumentComputedStyle();
@@ -214,7 +212,7 @@ function runTestCase(value, index, array) {
 
                     for (var i = 0; i < result.length; i++)
                     {
-                        console.log(result[i]);
+                        console.log(suiteCount + ') │\t  { tagName: ' + result[i].tagName + ', id: ' + result[i].id + ', class: ' + result[i].class + ', z-index: ' + result[i]['z-index'] + ' }');
                         failes += '{\n';
                         failes += '    tagName: ' + result[i].tagName + ',\n';
                         failes += '    id: ' + result[i].id + ',\n';
@@ -257,13 +255,13 @@ function runTestCase(value, index, array) {
                 chai.expect(result.value, failsText).to.be.true;
             });
             */
-            /*       
-            it('[TC-05] NGM Layer UI 확인 (Image 비교 방식)', function() {
+                   
+            it('[TC-' + setDigits(count++, 2) + '] NGM Layer UI 확인 (Image 비교 방식)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Image 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');
 
                 var filePath = path.resolve('./reports/screenshot-results/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
-                var image = ngmLayerScreenshot(browser, filePath);
+                var image = ngmLayerScreenshot(filePath);
                 var result = false;
 
                 if (image === originalImage)
@@ -273,6 +271,8 @@ function runTestCase(value, index, array) {
                 else
                 {
                     result = false;
+                    console.log(image);
+                    console.log(originalImage);
                 }
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
@@ -280,7 +280,7 @@ function runTestCase(value, index, array) {
 
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
             });
-            */
+            
             // 06      
             it('[TC-' + setDigits(count++, 2) + '] NGM Layer 출력위치 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer 출력위치 확인');
@@ -807,7 +807,7 @@ function getDocumentComputedStyle() {
 
 function ngmLayerScreenshot(filePath) {
     browser.execute(function() {
-        if (typeof window.NgmLayer == 'function')
+        if (typeof window.NgmLayer == 'object')
         {
             window.NgmLayer.openNgmLayer();
         }
@@ -834,7 +834,14 @@ function ngmLayerScreenshot(filePath) {
 
     //browser.parentNode(500);
     browser.execute(function() {
-        window.NgmLayer.closeNgmLayer();
+        if (typeof window.NgmLayer == 'object')
+        {
+            window.NgmLayer.closeNgmLayer();
+        }
+        else
+        {
+            window.closeNgmLayer();
+        }
     });
 
     browser.setViewportSize({width: 800, height: 800});
