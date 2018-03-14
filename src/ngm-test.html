@@ -97,8 +97,6 @@
                         clearInterval(interval);
                     }
                 }, 100);
-
-
             })
             document.getElementById('moroo-close_button').addEventListener('click', function() {
                 NgmLayer.closeNgmLayer();
@@ -120,13 +118,11 @@
                     bodyElement.style.removeProperty('height');
                 }
             })
-
             function displayTime(progress) {
                 var format = (progress / 10).toFixed(1) + '초';
                 var target = document.getElementById("moroo-timer");
                     target.innerText = format;
             }
-
             function findNgmLayerElement() {
                 var isFound = false;
                 var imgElements = document.getElementsByTagName('img');

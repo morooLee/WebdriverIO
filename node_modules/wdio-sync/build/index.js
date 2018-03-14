@@ -29,10 +29,6 @@ var _setPrototypeOf = require('babel-runtime/core-js/object/set-prototype-of');
 
 var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _promise = require('babel-runtime/core-js/promise');
 
 var _promise2 = _interopRequireDefault(_promise);
@@ -375,7 +371,7 @@ var applyPrototype = function applyPrototype(result, helperScope) {
     /**
      * don't overload result for none objects, arrays and buffer
      */
-    if (!result || (typeof result === 'undefined' ? 'undefined' : (0, _typeof3.default)(result)) !== 'object' || Array.isArray(result) && !_get__('isElements')(result) && !_get__('is$$')(result) || Buffer.isBuffer(result)) {
+    if (!result || typeof result !== 'object' || Array.isArray(result) && !_get__('isElements')(result) && !_get__('is$$')(result) || Buffer.isBuffer(result)) {
         return result;
     }
 
@@ -509,20 +505,20 @@ var wrapCommands = function wrapCommands(instance, beforeCommand, afterCommand) 
             fn = arguments[2];
             forceOverwrite = arguments[3];
 
-            switch ((0, _typeof3.default)(commandGroup[namespace])) {
+            switch (typeof commandGroup[namespace]) {
                 case 'function':
-                    throw new Error('Command namespace "' + namespace + '" is used internally, and can\'t be overwritten!');
+                    throw new Error(`Command namespace "${namespace}" is used internally, and can't be overwritten!`);
                 case 'undefined':
                     commandGroup[namespace] = {};
                     break;
             }
 
-            commandName = namespace + '.' + fnName;
+            commandName = `${namespace}.${fnName}`;
             commandGroup = commandGroup[namespace];
         }
 
         if (commandGroup[fnName] && !forceOverwrite) {
-            throw new Error('Command ' + fnName + ' is already defined!');
+            throw new Error(`Command ${fnName} is already defined!`);
         }
 
         /**
@@ -687,7 +683,7 @@ var runHook = function runHook(hookFn, origFn, before, after) {
 
     var hookError = function hookError(hookName) {
         return function (e) {
-            return console.error('Error in ' + hookName + ': ' + e.stack);
+            return console.error(`Error in ${hookName}: ${e.stack}`);
         };
     };
 
@@ -1061,7 +1057,7 @@ function _update_operation__(operation, variableName, prefix) {
 function _set__(variableName, value) {
     var rewireData = _getRewiredData__();
 
-    if ((typeof variableName === 'undefined' ? 'undefined' : (0, _typeof3.default)(variableName)) === 'object') {
+    if (typeof variableName === 'object') {
         (0, _keys2.default)(variableName).forEach(function (name) {
             rewireData[name] = variableName[name];
         });
