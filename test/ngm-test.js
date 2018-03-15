@@ -9,7 +9,8 @@ var xlsx = require('xlsx');
 var fs = require('fs');
 var PNG = require('pngjs').PNG;
 var pixelmatch = require('pixelmatch');
-var imagediff = require('imagediff');
+// var imagediff = require('imagediff');
+// var Cavas = require('canvas');
 
 var gameWebInfoList = [
     {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
@@ -86,7 +87,7 @@ function initTest() {
             // var testHtmlPath = 'file:///' + path.resolve('./src/', 'ngm-test.html');
             
             browser.setViewportSize({width: 800, height: 800});
-            browser.url('http://127.0.0.1/moroo/ngm-init.html');
+            browser.url('http://127.0.0.1/moroo/layer.html');
 
             setBrowserInfo();
             filePath = path.resolve('./reports/screenshot-result/',  '00_original_NgmLayer.png'); 
@@ -268,7 +269,16 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Image 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');
 
-                var image = ngmLayerScreenshot(filePath);
+                var image2 = ngmLayerScreenshot(filePath);
+
+                
+                // var imageSrc2 = new Image();
+                // imageSrc1.src = filePath;
+                
+                // console.log(imagediff.isImageType(imageSrc1));
+                // console.log(imagediff.isImageType(PNG.sync.read(image2)));
+
+                
                 var deffPath = path.resolve('./reports/screenshot-result/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff.png');
 
                 result = compareNgmLayerImage(originalImage, filePath, deffPath);
@@ -284,8 +294,8 @@ function runTestCase(value, index, array) {
                     console.log(originalImage);
                 } */
                 
-                var missMatch = imagediff.diff(image1, image2);
-                imagediff.imageDataToPNG(missMatch, deffPath);
+                // var missMatch = imagediff.diff(imagediff.toImageData(imageSrc1), imagediff.toImageData(imageSrc2));
+                // imagediff.imageDataToPNG(missMatch, deffPath);
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + deffPath);
                 
@@ -802,7 +812,7 @@ function getDocumentComputedStyle() {
                     zIndex = window.getComputedStyle(element, null).getPropertyValue('z-index');
                 }
 
-                if (zIndex != 'auto' && zIndex >= 10000)
+                if (zIndex != 'auto' && zIndex >= 10000000)
                 {
                     result = {};
                     result.tagName = element.tagName;
@@ -865,10 +875,9 @@ function ngmLayerScreenshot(filePath) {
 
 function compareNgmLayerImage(imgPath1, imgPaht2, diffPath)
 {
+    var missMatchedPixels;
     var img1 = fs.createReadStream(imgPath1).pipe(new PNG()).on('parsed', doneReading);
     var img2 = fs.createReadStream(imgPaht2).pipe(new PNG()).on('parsed', doneReading);
-    var filesRead = 0;
-    var missMatch;
 
     function doneReading() {
       if (!img1.data || !img2.data)
@@ -888,12 +897,31 @@ function compareNgmLayerImage(imgPath1, imgPaht2, diffPath)
         threshold: 0.1,
         includeAA: true
       });
-      console.log(missMatch);
 
       diff.pack().pipe(fs.createWriteStream(diffPath));
     }
-    console.log(missMatch);
+
     return missMatch;
+
+    /* var img1 = readImage(imgPath1, function() {
+        var img2 = readImage(imgPath2, function () {
+            var expectedDiff  = readImage(diffPath, function () {
+                var diff = new PNG({width: img1.width, height: img1.height});
+
+                missMatchedPixels = match(img1.data, img2.data, diff.data, diff.width, diff.height, {
+                    threshold: 0.1,
+                    includeAA: true
+                });
+            });
+        });
+    });
+    
+    console.log(missMatchedPixels);
+    return missMatchedPixels;
+
+    function readImage(name, done) {
+        return fs.createReadStream(name).pipe(new PNG()).on('parsed', done);
+    } */
 }
 
 function setDigits(number, digits) {

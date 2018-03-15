@@ -68,7 +68,7 @@ exports.config = {
     // commands. Instead, they hook themselves up into the test process.
     services: [
         'selenium-standalone',
-        'screenshots-cleanup'
+        // 'screenshots-cleanup'
     ],
     // seleniumArgs: {
         // javaArgs: [
