@@ -167,10 +167,10 @@ exports.config = {
         // dot: {outputDir: './reports/dot-result/'},
         spec: {outputDir: './reports/spec-result/'},
         // allure: {outputDir: './reports/allure-result/'},
-        mochawesome: {outputDir: './reports/mochawesome-result/', overwrite: false,},
+        mochawesome: {outputDir: './reports/mochawesome-result/', overwrite: true,},
     }, 
     mochawesomeOpts: {
-        includeScreenshots: true,
+        includeScreenshots: false,
         screenshotUseRelativePath: true
     },
     //

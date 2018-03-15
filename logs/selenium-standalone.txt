@@ -1,24 +1,24 @@
-16:58:15.574 INFO - Selenium build info: version: '3.8.1', revision: '6e95a6684b'
-16:58:15.574 INFO - Launching a standalone Selenium Server
-2018-03-15 16:58:15.634:INFO::main: Logging initialized @352ms to org.seleniumhq.jetty9.util.log.StdErrLog
-16:58:15.664 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
-16:58:15.675 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
-16:58:15.677 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
-16:58:15.677 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-16:58:15.678 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
-16:58:15.678 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
-16:58:15.678 INFO - Driver class not found: org.openqa.selenium.phantomjs.PhantomJSDriver
-16:58:15.703 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+01:18:39.825 INFO - Selenium build info: version: '3.8.1', revision: '6e95a6684b'
+01:18:39.826 INFO - Launching a standalone Selenium Server
+2018-03-16 01:18:39.906:INFO::main: Logging initialized @330ms to org.seleniumhq.jetty9.util.log.StdErrLog
+01:18:39.943 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
+01:18:39.961 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+01:18:39.964 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
+01:18:39.964 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+01:18:39.964 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
+01:18:39.965 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
+01:18:39.966 INFO - Driver class not found: org.openqa.selenium.phantomjs.PhantomJSDriver
+01:18:39.997 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
  registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-16:58:15.728 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
-16:58:15.728 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
-16:58:15.728 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
-16:58:15.729 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
-16:58:15.729 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
-16:58:15.737 INFO - Using the passthrough mode handler
-2018-03-15 16:58:15.756:INFO:osjs.Server:main: jetty-9.4.7.v20170914
-2018-03-15 16:58:15.773:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@17942a1{/,null,STARTING} has uncovered http methods for path: /
-2018-03-15 16:58:15.776:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@17942a1{/,null,AVAILABLE}
+01:18:40.033 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+01:18:40.034 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
+01:18:40.034 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
+01:18:40.035 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
+01:18:40.035 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
+01:18:40.046 INFO - Using the passthrough mode handler
+2018-03-16 01:18:40.069:INFO:osjs.Server:main: jetty-9.4.7.v20170914
+2018-03-16 01:18:40.093:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@4671e53b{/,null,STARTING} has uncovered http methods for path: /
+2018-03-16 01:18:40.097:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@4671e53b{/,null,AVAILABLE}
 java.lang.RuntimeException: java.net.BindException: Address already in use: bind
 	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:198)
 	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:237)

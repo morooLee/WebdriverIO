@@ -56,8 +56,8 @@ var gameWebInfoList2 = [
     // {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
 ];
 //var index = 0;
-var originalImage;
-var originalComputedStyleArray;
+var BasicImagePath;
+var basicComputedStyleArray;
 var browserType;
 var count;
 var host;
@@ -65,7 +65,7 @@ var suiteCount;
 var caseCount;
 var result;
 var filePath;
-var image1;
+var BasicImage;
 
 //setBrowserMatch();
 //initTest();
@@ -81,25 +81,27 @@ describe('NGM Layer Test', function() {
 
 function initTest() {
     describe('00. 테스트 준비', function() {
-        it('NGM Layer 기본 Style 저장하기', function() {
+        it('기본 NGM Layer 설정', function() {
             console.log('init...');
-            console.log('NGM Layer 기본 Style 저장 중...');
+            console.log('NGM Layer 기본 스타일 저장 중...');
             // var testHtmlPath = 'file:///' + path.resolve('./src/', 'ngm-test.html');
             
             browser.setViewportSize({width: 800, height: 800});
-            browser.url('http://127.0.0.1/moroo/layer.html');
+            browser.url('http://127.0.0.1/moroo/ngm-init.html');
 
             setBrowserInfo();
             filePath = path.resolve('./reports/screenshot-result/',  '00_original_NgmLayer.png'); 
             
-            // originalImage = ngmLayerScreenshot(filePath);
-            image1 = ngmLayerScreenshot(filePath);
-            originalImage = filePath;
-            originalComputedStyleArray = getComputedStyleArray();
-                       
-            // browser.saveScreenshot(filePath);
+            basicComputedStyleArray = getComputedStyleArray();
             
-            console.log('NGM Layer 기본 Style 저장 완료!!!');
+            console.log('NGM Layer 기본 스타일 저장 완료!!!');
+
+            console.log('NGM Layer 기본 이미지 저장 중...');
+            BasicImagePath = filePath;
+            BasicImage = ngmLayerScreenshot(filePath);
+
+            addContext(this, {title: 'Screenshot', value: filePath});
+            console.log('NGM Layer 기본 이미지 저장 완료!!!');
             console.log('Start!!!');
         });
     });
@@ -177,6 +179,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -198,6 +201,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -235,7 +239,7 @@ function runTestCase(value, index, array) {
                 chai.expect(result).to.have.lengthOf(0);
             });
             // 05
-            /*
+        /*
             it('[TC-' + setDigits(count++, 2) + '] NGM Layer UI 확인 (Style 비교 방식)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Style 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');            
@@ -263,44 +267,53 @@ function runTestCase(value, index, array) {
 
                 chai.expect(result.value, failsText).to.be.true;
             });
-            */
+        */
                    
             it('[TC-' + setDigits(count++, 2) + '] NGM Layer UI 확인 (Image 비교 방식)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Image 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');
 
-                var image2 = ngmLayerScreenshot(filePath);
-
-                
-                // var imageSrc2 = new Image();
-                // imageSrc1.src = filePath;
-                
-                // console.log(imagediff.isImageType(imageSrc1));
-                // console.log(imagediff.isImageType(PNG.sync.read(image2)));
-
+                var gameWebImage = ngmLayerScreenshot(filePath);
                 
                 var deffPath = path.resolve('./reports/screenshot-result/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff.png');
 
-                result = compareNgmLayerImage(originalImage, filePath, deffPath);
+                var img1 = fs.createReadStream(filePath).pipe(new PNG()).on('parsed', doneReading);
+                var img2 = fs.createReadStream(BasicImagePath).pipe(new PNG()).on('parsed', doneReading);
+                var filesRead = 0;
+
+                function doneReading() {
+                    if (++filesRead < 2) return;
+                    var diff = new PNG({width: img1.width, height: img1.height});
                 
-                /* if (image === originalImage)
-                {
-                    result = true;
+                    result = pixelmatch(img1.data, img2.data, diff.data, img1.width, img1.height, {threshold: 0.1});
+                
+                    diff.pack().pipe(fs.createWriteStream(deffPath));
                 }
-                else
-                {
-                    result = false;
-                    console.log(image);
-                    console.log(originalImage);
-                } */
-                
-                // var missMatch = imagediff.diff(imagediff.toImageData(imageSrc1), imagediff.toImageData(imageSrc2));
-                // imagediff.imageDataToPNG(missMatch, deffPath);
+
+                browser.pause(200);
+
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + deffPath);
                 
-                addContext(this, {title: '기대 결과', value: 0});
-                addContext(this, {title: '실제 결과', value: result});
+                addContext(this, {title: 'Mismatched Pixels', value: result});
+
+                /*if (result > 0)
+                {
+                    var gameWebComputedStyleArray = getComputedStyleArray();
+                    diffStyles = compareStyle(basicComputedStyleArray, gameWebComputedStyleArray);
+                    var failsText = '';
+
+                    for (var i = 0; i < diffStyles.fails.length; i++)
+                    {
+                        failsText += 'Style: ' + diffStyles.fails[i].name + ' = ' + diffStyles.fails[i].original + ' | ' + diffStyles.fails[i].current + '\n';
+                    }
+
+                    addContext(this, {title: 'Not Equal Style', value: failsText});
+                }*/
+
+                addContext(this, {title: 'Diff Image', value: deffPath});
+                addContext(this, {title: 'GameWeb Image', value: filePath});
+                addContext(this, {title: 'Basic Image', value: BasicImagePath});
 
                 chai.expect(result).to.equal(0);
             });
@@ -324,6 +337,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -343,6 +357,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: 'Left : 25 / Top : 170'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -362,6 +377,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -388,6 +404,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -444,6 +461,7 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
                 browser.close();
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm'});
                 addContext(this, {title: '실제 결과', value: 'Tab Count : '  + result.tabCount + ' / url : ' + result.url});
 
@@ -460,6 +478,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -473,14 +492,16 @@ function runTestCase(value, index, array) {
                 browser.execute(function() {
                     window.NgmLayer.openNgmLayer(2);
                 });
-                browser.pause(2000);
 
-                result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+                result = browser.waitUntil(function () {
+                    return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
+                }, 2200, '설정된 시간이 초과되었습니다. (2초)');
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -496,7 +517,7 @@ function runTestCase(value, index, array) {
                     window.NgmLayer.openNgmLayer(2);
                     window.NgmLayer.openNgmLayer(2);
                     window.NgmLayer.openNgmLayer(2);
-                    window.NgmLayer.openNgmLayer(10);
+                    window.NgmLayer.openNgmLayer(2);
                 });
 
                 var elements = browser.elements('div h3 img[src$="txt_ngminstall.gif"]');
@@ -514,7 +535,15 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'false');            
 
-                browser.pause(2000);
+                browser.execute(function() {
+                    window.NgmLayer.closeNgmLayer();
+                    window.NgmLayer.openNgmLayer(2);
+                    window.NgmLayer.openNgmLayer(10);
+                });
+
+                result = browser.waitUntil(function () {
+                    return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
+                }, 2200, '설정된 시간이 초과되었습니다. (2초)');
 
                 result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
@@ -522,6 +551,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: false});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -545,6 +575,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ')  \t └  스샷 저장: ' + filePath);
 
+                addContext(this, {title: 'Screenshot', value: filePath});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -852,7 +883,7 @@ function ngmLayerScreenshot(filePath) {
         element.style.marginTop = '-100px';
     });
     
-    //browser.pause(3000);
+    browser.pause(500);
     // var image = browser.saveElementScreenshot(filePath, '#moroo-NgmLayer');
     var image = browser.saveScreenshot(filePath);
 
@@ -873,13 +904,12 @@ function ngmLayerScreenshot(filePath) {
     return image;
 }
 
-function compareNgmLayerImage(imgPath1, imgPaht2, diffPath)
-{
-    var missMatchedPixels;
+function compareNgmLayerImage(imgPath1, imgPaht2, diffPath) {
+    var misMatchedPixels;
     var img1 = fs.createReadStream(imgPath1).pipe(new PNG()).on('parsed', doneReading);
     var img2 = fs.createReadStream(imgPaht2).pipe(new PNG()).on('parsed', doneReading);
 
-    function doneReading() {
+    function doneReading(done) {
       if (!img1.data || !img2.data)
       {
         return;
@@ -892,23 +922,25 @@ function compareNgmLayerImage(imgPath1, imgPaht2, diffPath)
       }
 
       var diff = new PNG({width: img1.width, height: img1.height});
-
-      missMatch = pixelmatch(img1.data, img2.data, diff.data, diff.width, diff.height, {
+      
+      misMatchedPixels = pixelmatch(img1.data, img2.data, diff.data, diff.width, diff.height, {
         threshold: 0.1,
         includeAA: true
       });
 
       diff.pack().pipe(fs.createWriteStream(diffPath));
+      // console.log(misMatchedPixels);
     }
-
-    return missMatch;
-
-    /* var img1 = readImage(imgPath1, function() {
+    
+    return misMatchedPixels;
+/*
+    var misMatchedPixels;
+    var img1 = readImage(imgPath1, function() {
         var img2 = readImage(imgPath2, function () {
             var expectedDiff  = readImage(diffPath, function () {
                 var diff = new PNG({width: img1.width, height: img1.height});
 
-                missMatchedPixels = match(img1.data, img2.data, diff.data, diff.width, diff.height, {
+                misMatchedPixels = match(img1.data, img2.data, diff.data, diff.width, diff.height, {
                     threshold: 0.1,
                     includeAA: true
                 });
@@ -916,12 +948,12 @@ function compareNgmLayerImage(imgPath1, imgPaht2, diffPath)
         });
     });
     
-    console.log(missMatchedPixels);
     return missMatchedPixels;
 
     function readImage(name, done) {
         return fs.createReadStream(name).pipe(new PNG()).on('parsed', done);
-    } */
+    }
+*/
 }
 
 function setDigits(number, digits) {
