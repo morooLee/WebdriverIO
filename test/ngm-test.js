@@ -26,12 +26,12 @@ var gameWebInfoList = [
     {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
     {'name': '메이플스토리2(maview)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '바람의나라', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://baram.nexon.com/Home/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': '배틀라이트', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/', 'isCookie': true, 'getCookie': ' BTRIntro=BTR'},
+    {'name': '배틀라이트', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/Main/Index', 'isCookie': true, 'getCookie': ' BTRIntro=BTR'},
     {'name': '버블파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://bf.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
     {'name': '서든어택', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://sa.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'SAIntroCheckNX=true, SAIntroTodayNX=true'},
     {'name': '아르피엘', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://arpiel.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '아스가르드', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://asgard.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
-    {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
     {'name': '어둠의전설', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lod.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
     {'name': '엘소드', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://elsword.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '일랜시아', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://elancia.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
@@ -52,8 +52,11 @@ var gameWebInfoList2 = [
     // {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     // {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
     // {'name': '메이플스토리2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    // {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
     // {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
+    // {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
+    // {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
 ];
 //var index = 0;
 var BasicImagePath;
@@ -66,6 +69,8 @@ var caseCount;
 var result;
 var filePath;
 var BasicImage;
+var reporterPath;
+var reporterName;
 
 //setBrowserMatch();
 //initTest();
@@ -90,7 +95,18 @@ function initTest() {
             browser.url('http://127.0.0.1/moroo/ngm-init.html');
 
             setBrowserInfo();
-            filePath = path.resolve('./reports/screenshot-result/',  '00_original_NgmLayer.png'); 
+
+            reporterPath = './reports/screenshot-result/' + browserType;
+            reporterName = '00_original_NgmLayer_' + browserType + '.png';
+
+            try {
+                fs.mkdirSync(reporterPath);
+            }
+            catch(e) {
+                if ( e.code != 'EEXIST' ) throw e;
+            }
+
+            filePath = path.resolve(reporterPath, reporterName); 
             
             basicComputedStyleArray = getComputedStyleArray();
             
@@ -121,7 +137,9 @@ function runTestCase(value, index, array) {
         
             beforeEach(function() {
                 caseCount = '[TC-' + setDigits(count, 2) + ']';
-                filePath = path.resolve('./reports/screenshot-result/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+                reporterPath = './reports/screenshot-result/' + browserType;
+                reporterName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
+                filePath = path.resolve(reporterPath, reporterName); 
             });
             
             // 01
@@ -131,12 +149,16 @@ function runTestCase(value, index, array) {
                 
                 //allure.createAttachment(filePath, browser.saveScreenshot(filePath), 'png');
                 browser.setViewportSize({width: 800, height: 800});
-
+                
                 navigateToGameWeb(value);
                 
-                result = browser.getUrl();
+                // result = browser.getUrl();
+                
                 setHost();
-                filePath = path.resolve('./reports/screenshot-result/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '.png');
+
+                reporterPath = './reports/screenshot-result/' + browserType;
+                reporterName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
+                filePath = path.resolve(reporterPath, reporterName); 
 
                 console.log(suiteCount + ') │\t ├  실제 결과: ' + result);
                 browser.saveScreenshot(filePath);
@@ -274,8 +296,8 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');
 
                 var gameWebImage = ngmLayerScreenshot(filePath);
-                
-                var deffPath = path.resolve('./reports/screenshot-result/',  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff.png');
+
+                var deffPath = path.resolve(reporterPath,  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff_' + browserType + '.png');
 
                 var img1 = fs.createReadStream(filePath).pipe(new PNG()).on('parsed', doneReading);
                 var img2 = fs.createReadStream(BasicImagePath).pipe(new PNG()).on('parsed', doneReading);
@@ -297,19 +319,28 @@ function runTestCase(value, index, array) {
                 
                 addContext(this, {title: 'Mismatched Pixels', value: result});
 
-                /*if (result > 0)
+                if (result > 0)
                 {
                     var gameWebComputedStyleArray = getComputedStyleArray();
                     diffStyles = compareStyle(basicComputedStyleArray, gameWebComputedStyleArray);
                     var failsText = '';
-
-                    for (var i = 0; i < diffStyles.fails.length; i++)
+                    
+                    for (var i = 0; i < diffStyles.failes.length; i++)
                     {
-                        failsText += 'Style: ' + diffStyles.fails[i].name + ' = ' + diffStyles.fails[i].original + ' | ' + diffStyles.fails[i].current + '\n';
+                        if (diffStyles.failes[i].styles.length > 0)
+                        {
+                            failsText += 'Element = tagName: ' + diffStyles.failes[i].element.tagName + ', id: ' + diffStyles.failes[i].elementid + ', class: ' + diffStyles.failes[i].element.class + '\n';
+                            failsText += '{\n';
+                            for (var j = 0;  j < diffStyles.failes[i].styles.length; j++)
+                            {
+                                failsText += '    Style = ' + diffStyles.failes[i].styles[j].style + ' | basic: ' + diffStyles.failes[i].styles[j].basic + ' | gameWeb: ' + diffStyles.failes[i].styles[j].gameWeb + '\n';
+                            }
+                            failsText += '}\n';
+                        }
                     }
 
                     addContext(this, {title: 'Not Equal Style', value: failsText});
-                }*/
+                }
 
                 addContext(this, {title: 'Diff Image', value: deffPath});
                 addContext(this, {title: 'GameWeb Image', value: filePath});
@@ -448,11 +479,11 @@ function runTestCase(value, index, array) {
                 
                 var element = $('div a img[src$="bt_ngminstall.gif"]').$('..');        
                 element.click();
-
+                browser.pause(200);
                 var tabIds = browser.getTabIds();
                 result = {};
                 result.tabCount = tabIds.length;
-
+                
                 browser.switchTab(tabIds[1]);
                 result.url = browser.getUrl();
 
@@ -644,99 +675,96 @@ function setHost() {
     host = dotSplits[0];
 }
 
-function compareStyle(original, current) {
+function compareStyle(basic, gameWeb) {
     var failList = [];
     var value = true;
     var result;
 
-    if (original == current)
+    if (basic !== gameWeb)
     {
-        result = {'value': value, 'fails': ''};
-    }
-    else
-    {
-        for (var i = 0; i < original.length; i++)
+        for (var i = 0; i < basic.length; i++)
         {
-            var obj = compareObject(original[i], current[i], i);
-            value = obj.value;
-            if (obj.fails != '')
+            var obj = compareObject(basic[i].style, gameWeb[i].style, i);
+            
+            if (obj.failes.length > 0)
             {
-                failList.push(obj.fails);
+                failList.push({'element': basic[i].element, 'styles': obj.failes});
             }
         }
-        
-        result = {'value': value, 'fails': failList};
     }
-
+    
+    result = {'value': value, 'failes': failList};
     return result;
 }
 
-function compareObject(original, current, index) {
+function compareObject(basic, gameWeb, index) {
     index++;
     var value = true;
+    var failes = [];
     var result;
 
-    if (original === current)
+    if (basic === gameWeb)
     {
-        //chai.expect(original).to.equal(current);
-        result = {'value': true, 'fails': ''};
+        // chai.expect(basic).to.equal(gameWeb);
+        result = {'value': value, 'failes': failes};
         return result;
     }
     
-    if (!(original instanceof Object) || !(current instanceof Object))
+    if (!(basic instanceof Object) || !(gameWeb instanceof Object))
     {
-        console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') ' + original + ' | ' + current);
-        result = {'value': false, 'fails': ''};
+        console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') ' + basic + ' | ' + gameWeb);
+        result = {'value': value, 'failes': failes};
         return result;
      }
      // if they are not strictly equal, they both need to be Objects
-     if (original.constructor !== current.constructor)
+     if (basic.constructor !== gameWeb.constructor)
      {
-        console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') ' + original + ' | ' + current);
-        result = {'value': false, 'fails': ''};
+        console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') ' + basic + ' | ' + gameWeb);
+        result = {'value': value, 'failes': failes};
         return result;
      }
      // they must have the exact same prototype chain, the closest we can do is
      // test there constructor.
 
-    for (var p in original)
+    for (var p in basic)
     {
-        if (!original.hasOwnProperty(p))
+        if (!basic.hasOwnProperty(p))
         {
             continue;
         }
 
-        // chai.expect(current.hasOwnProperty(p), p).to.be.true;
-        if (!current.hasOwnProperty(p))
+        // chai.expect(gameWeb.hasOwnProperty(p), p).to.be.true;
+        if (!gameWeb.hasOwnProperty(p))
         {
-            console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
-            result = {'value': false, 'fails': {'name': p, 'original': original[p], 'current': current[p]}};
-            //chai.expect(current).to.have.ownPropertyDescriptor(p);
-            return result;
+            console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') Style: ' + p + ' | basic: ' + basic[p] + ' | gameWeb: ' + gameWeb[p]);
+            failes.push({'style': p, 'basic': basic[p], 'gameWeb': gameWeb[p]});
+            // chai.expect(gameWeb).to.have.ownPropertyDescriptor(p);
+            // return result;
         }
 
-        // chai.expect(original[p], p).to.equal(current[p]);
-        if (original[p] != current[p])
+        // chai.expect(basic[p], p).to.equal(gameWeb[p]);
+        if (basic[p] != gameWeb[p])
         {
-            console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
-            result = {'value': false, 'fails': {'name': p, 'original': original[p], 'current': current[p]}};
-            //chai.expect(original[p], p).to.equal(current[p]);
-            return result;
+            console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') Style: ' + p + ' | basic: ' + basic[p] + ' | gameWeb: ' + gameWeb[p]);
+            failes.push({'style': p, 'basic': basic[p], 'gameWeb': gameWeb[p]});
+            // chai.expect(basic[p], p).to.equal(gameWeb[p]);
+            // return result;
         }
     }
-    for (p in current)
+    for (p in gameWeb)
     {
-        // chai.expect(current.hasOwnProperty(p), p).to.equal(original.hasOwnProperty(p));
-        if (current.hasOwnProperty(p) && !original.hasOwnProperty(p))
+        // chai.expect(gameWeb.hasOwnProperty(p), p).to.equal(original.hasOwnProperty(p));
+        if (gameWeb.hasOwnProperty(p) && !basic.hasOwnProperty(p))
         {
-            console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') Name: ' + p + ' | Original: ' + original[p] + ' | Current: ' + current[p]);
-            result = {'value': false, 'fails': {'name': p, 'original': original[p], 'current': current[p]}};
-            //chai.expect(original).to.have.ownPropertyDescriptor(p);
-            return result;
+            console.log('[ERROR]│\t ├  ' + setDigits(index,2) + ') Style: ' + p + ' | basic: ' + basic[p] + ' | gameWeb: ' + gameWeb[p]);
+            failes.push({'style': p, 'basic': basic[p], 'gameWeb': gameWeb[p]});
+            // chai.expect(basic).to.have.ownPropertyDescriptor(p);
+            // return result;
         }
     }
 
-    result = {'value': true, 'fails': ''};
+    result = {'value': value, 'failes': failes};
+
     return result;
 }
 
@@ -755,9 +783,9 @@ function getComputedStyleArray() {
         }
         
         var element = document.querySelector('div h3 img[src$="txt_ngminstall.gif"]').parentNode.parentNode;
-
+        
         var computedStyleArray = createComputedStyleArray(element, []);
-
+        
         function createComputedStyleArray(element, array) {
             array.push(setValueForComputedStyle(element));
 
@@ -778,18 +806,22 @@ function getComputedStyleArray() {
 
             if (element.nodeType == 1)
             {
+                computedStyleObject.element = {'tagName': element.tagName, 'id': element.getAttribute('id'), 'clss': element.getAttribute('class')};
+
                 if (agent.indexOf('msie 8.0') != -1)
                 {
-                    computedStyleObject = element.currentStyle;
+                    computedStyleObject.style = element.currentStyle;
                 }
                 else
                 {
                     var styleNames = window.getComputedStyle(element, null);
-
+                    var obj = {};
                     for (var i = 0; i < styleNames.length; i++)
                     {
-                        computedStyleObject[styleNames[i]] = window.getComputedStyle(element, null).getPropertyValue(styleNames[i]);
+                        obj[styleNames[i]] = window.getComputedStyle(element, null).getPropertyValue(styleNames[i]);
                     }
+
+                    computedStyleObject.style = obj;
                 }
             }
             
@@ -873,7 +905,7 @@ function ngmLayerScreenshot(filePath) {
     });
 
     browser.setViewportSize({width: 550, height: 200});
-
+    
     browser.execute(function() {
         document.documentElement.style.overflowX = 'hidden';
         document.documentElement.style.overflowY = 'hidden';
@@ -973,12 +1005,13 @@ function setDigits(number, digits) {
 
 function navigateToGameWeb(gameWebInfo) {
     browser.url(gameWebInfo.url);
+    
     if (gameWebInfo.isCookie)
     {
         setCookie(gameWebInfo.getCookie);
         browser.url(gameWebInfo.url);
     }
-
+    
     if (browser.getUrl() != gameWebInfo.url)
     {
         console.log(browser.getUrl());
