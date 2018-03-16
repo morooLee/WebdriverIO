@@ -1,24 +1,24 @@
-22:54:42.006 INFO - Selenium build info: version: '3.8.1', revision: '6e95a6684b'
-22:54:42.007 INFO - Launching a standalone Selenium Server
-2018-03-16 22:54:42.069:INFO::main: Logging initialized @352ms to org.seleniumhq.jetty9.util.log.StdErrLog
-22:54:42.101 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
-22:54:42.111 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
-22:54:42.113 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
-22:54:42.113 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-22:54:42.114 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
-22:54:42.114 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
-22:54:42.114 INFO - Driver class not found: org.openqa.selenium.phantomjs.PhantomJSDriver
-22:54:42.137 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+01:41:29.732 INFO - Selenium build info: version: '3.8.1', revision: '6e95a6684b'
+01:41:29.732 INFO - Launching a standalone Selenium Server
+2018-03-17 01:41:29.814:INFO::main: Logging initialized @396ms to org.seleniumhq.jetty9.util.log.StdErrLog
+01:41:29.853 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
+01:41:29.865 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+01:41:29.867 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
+01:41:29.868 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+01:41:29.868 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
+01:41:29.868 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
+01:41:29.869 INFO - Driver class not found: org.openqa.selenium.phantomjs.PhantomJSDriver
+01:41:29.901 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
  registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-22:54:42.159 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
-22:54:42.159 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
-22:54:42.159 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
-22:54:42.160 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
-22:54:42.160 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
-22:54:42.167 INFO - Using the passthrough mode handler
-2018-03-16 22:54:42.184:INFO:osjs.Server:main: jetty-9.4.7.v20170914
-2018-03-16 22:54:42.202:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@17942a1{/,null,STARTING} has uncovered http methods for path: /
-2018-03-16 22:54:42.205:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@17942a1{/,null,AVAILABLE}
+01:41:29.926 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+01:41:29.927 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
+01:41:29.927 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
+01:41:29.927 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
+01:41:29.927 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
+01:41:29.936 INFO - Using the passthrough mode handler
+2018-03-17 01:41:30.003:INFO:osjs.Server:main: jetty-9.4.7.v20170914
+2018-03-17 01:41:30.055:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@17942a1{/,null,STARTING} has uncovered http methods for path: /
+2018-03-17 01:41:30.062:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@17942a1{/,null,AVAILABLE}
 Usage: <main class> [options]
   Options:
     --version, -version

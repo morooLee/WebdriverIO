@@ -57,9 +57,9 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         // { browserName: 'chrome' },
-        // { browserName: 'internet explorer', version: 11},
+        { browserName: 'internet explorer', version: 11},
         // { browserName: 'firefox', marionette: true },
-        { browserName: 'MicrosoftEdge' }
+        // { browserName: 'MicrosoftEdge' }
     ],
     //
     // Test runner services

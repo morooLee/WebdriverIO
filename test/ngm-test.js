@@ -15,7 +15,7 @@ var pixelmatch = require('pixelmatch');
 var gameWebInfoList = [
     {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/events/180301/contract', 'isCookie': false, 'getCookie': ''},
     {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '던전앤파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
     {'name': '로브레이커즈', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lawbreakers.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'LBMV=Y'},
@@ -55,8 +55,8 @@ var gameWebInfoList2 = [
     // {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
     // {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
     // {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
-    // {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/events/180301/contract', 'isCookie': false, 'getCookie': ''},
+    {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
 ];
 //var index = 0;
 var BasicImagePath;
@@ -152,7 +152,7 @@ function runTestCase(value, index, array) {
                 
                 navigateToGameWeb(value);
                 
-                // result = browser.getUrl();
+                result = browser.getUrl();
                 
                 setHost();
 
@@ -489,6 +489,7 @@ function runTestCase(value, index, array) {
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
                 browser.saveScreenshot(filePath);
+                browser.pause(100);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
                 browser.close();
 
@@ -526,7 +527,7 @@ function runTestCase(value, index, array) {
 
                 result = browser.waitUntil(function () {
                     return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
-                }, 2200, '설정된 시간이 초과되었습니다. (2초)');
+                }, 2500, '설정된 시간이 초과되었습니다. (2초)');
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
                 browser.saveScreenshot(filePath);
@@ -574,7 +575,7 @@ function runTestCase(value, index, array) {
 
                 result = browser.waitUntil(function () {
                     return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
-                }, 2200, '설정된 시간이 초과되었습니다. (2초)');
+                }, 2500, '설정된 시간이 초과되었습니다. (2초)');
 
                 result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
