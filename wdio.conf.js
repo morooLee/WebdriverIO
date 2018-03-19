@@ -13,7 +13,9 @@ exports.config = {
     host: '127.0.0.1',
     port: 4444,
     path: '/wd/hub',
-    
+    // port: 5555,
+    // path: '/',
+
     //
     // ==================
     // Specify Test Files
@@ -57,25 +59,23 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         // { browserName: 'chrome' },
-        { browserName: 'internet explorer', version: 11},
+        { browserName: 'internet explorer', version:11},
         // { browserName: 'firefox', marionette: true },
         // { browserName: 'MicrosoftEdge' }
     ],
+
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [
+        // 'firefox-profile',
         'selenium-standalone',
+        // 'chromedriver',
+        // 'iedriver',
         // 'screenshots-cleanup'
     ],
-    // seleniumArgs: {
-        // javaArgs: [
-            // '-Dwebdriver.edge.driver=<path>'
-        // ]
-    // },
-    seleniumLogs: './logs',
     //
     // ===================
     // Test Configurations
@@ -107,7 +107,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    // baseUrl: 'http://localhost/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -137,6 +137,7 @@ exports.config = {
     //     browserevent: {},
         'wdio-screenshot': {}
     },
+    
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -146,19 +147,10 @@ exports.config = {
     // before running any tests.
     framework: 'mocha',
     //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        ui: 'bdd',
-        // reporter: 'wdio-allure-reporter',
-        timeout: 99999999,
-    },
-    //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
     reporters: [
-        // 'dot',
         'spec',
         // 'allure',
         'mochawesome',
@@ -167,11 +159,20 @@ exports.config = {
         // dot: {outputDir: './reports/dot-result/'},
         spec: {outputDir: './reports/spec-result/'},
         // allure: {outputDir: './reports/allure-result/'},
-        mochawesome: {outputDir: './reports/mochawesome-result/', overwrite: true,},
+        mochawesome: {outputDir: './reports/mochawesome-result/', overwrite: false,},
     }, 
     mochawesomeOpts: {
         includeScreenshots: false,
         screenshotUseRelativePath: true
+    },
+    
+    //
+    // Options to be passed to Mocha.
+    // See the full list at http://mochajs.org/
+    mochaOpts: {
+        ui: 'bdd',
+        // reporter: 'wdio-allure-reporter',
+        timeout: 99999999,
     },
     //
     // =====
@@ -284,4 +285,4 @@ exports.config = {
      */
     // onComplete: function(exitCode, config, capabilities) {
     // }
-};
+}

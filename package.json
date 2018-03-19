@@ -8,16 +8,25 @@
     "generateMochawesome": "marge ./reports/mochawesome-result/wdiomochawesome.json",
     "allureReport": "allure generate ./reports/allure-result/ --clean && allure report open"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morooLee/WebdriverIO.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morooLee/WebdriverIO/issues"
+  },
+  "homepage": "https://github.com/morooLee/WebdriverIO#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-webdriverio": "^0.4.3",
-    "imagediff": "^1.0.8",
     "mochawesome": "^3.0.2",
     "pixelmatch": "^4.0.2",
-    "wdio-allure-reporter": "^0.5.0",
-    "wdio-dot-reporter": "0.0.9",
+    "wdio-allure-reporter": "^0.5.1",
+    "wdio-chromedriver-service": "^0.1.2",
+    "wdio-firefox-profile-service": "^0.1.1",
+    "wdio-iedriver-service": "^0.1.0",
     "wdio-mocha-framework": "^0.5.13",
     "wdio-mochawesome-reporter": "^1.3.0",
     "wdio-screenshot": "^0.6.0",

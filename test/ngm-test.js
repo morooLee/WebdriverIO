@@ -15,7 +15,7 @@ var pixelmatch = require('pixelmatch');
 var gameWebInfoList = [
     {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/events/180301/contract', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
     {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '던전앤파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
     {'name': '로브레이커즈', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lawbreakers.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'LBMV=Y'},
@@ -23,10 +23,10 @@ var gameWebInfoList = [
     {'name': '마비노기듀얼', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://devcat.nexon.com/duel/kr/', 'isCookie': false, 'getCookie': ''},
     {'name': '마비노기영웅전', 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': false, 'chrome': true, 'firefox': false}, 'url': 'http://heroes.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '메이플스토리1', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Gnx.aspx?URL=home/index', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/beginner', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
     {'name': '메이플스토리2(maview)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '바람의나라', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://baram.nexon.com/Home/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': '배틀라이트', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/Main/Index', 'isCookie': true, 'getCookie': ' BTRIntro=BTR'},
+    {'name': '배틀라이트', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'BTRIntro=BTR'},
     {'name': '버블파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://bf.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
     {'name': '서든어택', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://sa.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'SAIntroCheckNX=true, SAIntroTodayNX=true'},
     {'name': '아르피엘', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://arpiel.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
@@ -55,8 +55,10 @@ var gameWebInfoList2 = [
     // {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
     // {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
     // {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
-    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/events/180301/contract', 'isCookie': false, 'getCookie': ''},
-    {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '테일즈위버', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    // {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    // {'name': '마비노기', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
 ];
 //var index = 0;
 var BasicImagePath;
@@ -68,9 +70,9 @@ var suiteCount;
 var caseCount;
 var result;
 var filePath;
-var BasicImage;
-var reporterPath;
-var reporterName;
+var BasicImageName;
+var screenShotPath;
+var screenShotName;
 
 //setBrowserMatch();
 //initTest();
@@ -80,7 +82,7 @@ setBrowserInfo();
 describe('NGM Layer Test', function() {
     setBrowserInfo();
     initTest();
-    gameWebInfoList2.forEach(runTestCase);
+    gameWebInfoList.forEach(runTestCase);
 });
 
 
@@ -93,20 +95,21 @@ function initTest() {
             
             browser.setViewportSize({width: 800, height: 800});
             browser.url('http://127.0.0.1/moroo/ngm-init.html');
-
+            
             setBrowserInfo();
 
-            reporterPath = './reports/screenshot-result/' + browserType;
-            reporterName = '00_original_NgmLayer_' + browserType + '.png';
+            screenShotPath = './reports/screenshot-result/' + browserType + '/';
+            screenShotName = '00_original_NgmLayer_' + browserType + '.png';
+            BasicImageName = screenShotName;
 
             try {
-                fs.mkdirSync(reporterPath);
+                fs.mkdirSync(screenShotPath);
             }
             catch(e) {
                 if ( e.code != 'EEXIST' ) throw e;
             }
 
-            filePath = path.resolve(reporterPath, reporterName); 
+            filePath = path.resolve(screenShotPath, screenShotName);
             
             basicComputedStyleArray = getComputedStyleArray();
             
@@ -114,9 +117,9 @@ function initTest() {
 
             console.log('NGM Layer 기본 이미지 저장 중...');
             BasicImagePath = filePath;
-            BasicImage = ngmLayerScreenshot(filePath);
+            ngmLayerScreenshot(filePath);
 
-            addContext(this, {title: 'Screenshot', value: filePath});
+            addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
             console.log('NGM Layer 기본 이미지 저장 완료!!!');
             console.log('Start!!!');
         });
@@ -137,9 +140,9 @@ function runTestCase(value, index, array) {
         
             beforeEach(function() {
                 caseCount = '[TC-' + setDigits(count, 2) + ']';
-                reporterPath = './reports/screenshot-result/' + browserType;
-                reporterName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
-                filePath = path.resolve(reporterPath, reporterName); 
+                screenShotPath = './reports/screenshot-result/' + browserType + '/';
+                screenShotName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
+                filePath = path.resolve(screenShotPath, screenShotName); 
             });
             
             // 01
@@ -148,19 +151,19 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') │\t ├  기대 결과: ' + value.url);
                 
                 //allure.createAttachment(filePath, browser.saveScreenshot(filePath), 'png');
-                browser.setViewportSize({width: 800, height: 800});
+                // browser.setViewportSize({width: 800, height: 800});
                 
+                host = setHost(value.url);
                 navigateToGameWeb(value);
                 
                 result = browser.getUrl();
-                
-                setHost();
 
-                reporterPath = './reports/screenshot-result/' + browserType;
-                reporterName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
-                filePath = path.resolve(reporterPath, reporterName); 
+                screenShotPath = './reports/screenshot-result/' + browserType + '/';
+                screenShotName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
+                filePath = path.resolve(screenShotPath, screenShotName); 
 
                 console.log(suiteCount + ') │\t ├  실제 결과: ' + result);
+                browser.pause(500);
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
@@ -177,7 +180,7 @@ function runTestCase(value, index, array) {
 
                 loadedNgmLayer();
 
-                result = browser.isExisting('head script[src="http://127.0.0.1/moroo/ngm-layer.min.js"]');  
+                result = browser.waitForExist ('head script[src="http://127.0.0.1/moroo/ngm-layer.min.js"]', 5000);
 
                 console.log(suiteCount + ') │\t └  실제 결과 : ' + result);
 
@@ -201,7 +204,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -223,7 +226,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -297,7 +300,8 @@ function runTestCase(value, index, array) {
 
                 var gameWebImage = ngmLayerScreenshot(filePath);
 
-                var deffPath = path.resolve(reporterPath,  setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff_' + browserType + '.png');
+                var deffName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff_' + browserType + '.png';
+                var deffPath = path.resolve(screenShotPath,  deffName);
 
                 var img1 = fs.createReadStream(filePath).pipe(new PNG()).on('parsed', doneReading);
                 var img2 = fs.createReadStream(BasicImagePath).pipe(new PNG()).on('parsed', doneReading);
@@ -342,9 +346,9 @@ function runTestCase(value, index, array) {
                     addContext(this, {title: 'Not Equal Style', value: failsText});
                 }
 
-                addContext(this, {title: 'Diff Image', value: deffPath});
-                addContext(this, {title: 'GameWeb Image', value: filePath});
-                addContext(this, {title: 'Basic Image', value: BasicImagePath});
+                addContext(this, {title: 'Diff Image', value: screenShotPath + deffName});
+                addContext(this, {title: 'GameWeb Image', value: screenShotPath + screenShotName});
+                addContext(this, {title: 'Basic Image', value: screenShotPath + BasicImageName});
 
                 chai.expect(result).to.equal(0);
             });
@@ -368,7 +372,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -388,7 +392,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 25 / Top : 170'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -408,7 +412,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -435,7 +439,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -477,23 +481,44 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM 설치하기 버튼 클릭 시 새창에서 이동 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm');
                 
-                var element = $('div a img[src$="bt_ngminstall.gif"]').$('..');        
+                var element = $('div a img[src$="bt_ngminstall.gif"]').$('..');
+
+                browser.execute(function() {
+                    if (location.host == 'tfo.nexon.com' || location.host == 'needforspeed-edge.nexon.com')
+                    {
+                        if (document.documentElement.lastChild.tagName.toLowerCase() == 'iframe')
+                        {
+                            var element = document.documentElement.lastChild;
+                            document.documentElement.removeChild(element);
+                        }
+                    }
+                });
+
                 element.click();
-                browser.pause(200);
+                
                 var tabIds = browser.getTabIds();
+                
                 result = {};
                 result.tabCount = tabIds.length;
-                
-                browser.switchTab(tabIds[1]);
-                result.url = browser.getUrl();
 
+                browser.switchTab(tabIds[1]);
+
+                browser.waitUntil(function() {
+                    return browser.switchTab(tabIds[1]).getUrl() == 'http://help.nexon.com/Download/ngm';
+                }, 5000);
+                
+                result.url = browser.switchTab(tabIds[1]).getUrl();
+                
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
                 browser.saveScreenshot(filePath);
-                browser.pause(100);
+                browser.pause(500);
+                
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
-                browser.close();
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                browser.close();
+                browser.switchTab();
+                
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm'});
                 addContext(this, {title: '실제 결과', value: 'Tab Count : '  + result.tabCount + ' / url : ' + result.url});
 
@@ -510,7 +535,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -525,15 +550,17 @@ function runTestCase(value, index, array) {
                     window.NgmLayer.openNgmLayer(2);
                 });
 
-                result = browser.waitUntil(function () {
+                /* result = browser.waitUntil(function () {
                     return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
-                }, 2500, '설정된 시간이 초과되었습니다. (2초)');
+                }, 2500, '설정된 시간이 초과되었습니다. (2초)'); */
+
+                result = browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -573,17 +600,17 @@ function runTestCase(value, index, array) {
                     window.NgmLayer.openNgmLayer(10);
                 });
 
-                result = browser.waitUntil(function () {
+                /* result = browser.waitUntil(function () {
                     return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
-                }, 2500, '설정된 시간이 초과되었습니다. (2초)');
+                }, 2500, '설정된 시간이 초과되었습니다. (2초)'); */
 
-                result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
+                result = !browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: false});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -607,7 +634,7 @@ function runTestCase(value, index, array) {
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ')  \t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: filePath});
+                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -670,10 +697,10 @@ function setBrowserInfo() {
     }
 }
 
-function setHost() {
-    var protocolSplits = result.split('//');
+function setHost(url) {
+    var protocolSplits = url.split('//');
     var dotSplits = protocolSplits[1].split('.');
-    host = dotSplits[0];
+    return dotSplits[0];
 }
 
 function compareStyle(basic, gameWeb) {
@@ -770,7 +797,7 @@ function compareObject(basic, gameWeb, index) {
 }
 
 function getComputedStyleArray() {
-    var result = browser.execute(function() {
+    browser.execute(function() {
         document.documentElement.style.overflowX = 'hidden';
         document.documentElement.style.overflowY = 'hidden';
         
@@ -782,13 +809,23 @@ function getComputedStyleArray() {
         {
             window.openNgmLayer();
         }
+    });
+    
+    browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 1000);
+
+    var result = browser.execute(function() {
         
         var element = document.querySelector('div h3 img[src$="txt_ngminstall.gif"]').parentNode.parentNode;
         
         var computedStyleArray = createComputedStyleArray(element, []);
         
         function createComputedStyleArray(element, array) {
-            array.push(setValueForComputedStyle(element));
+            var obj = setValueForComputedStyle(element);
+
+            if (Object.keys(obj).length > 1)
+            {
+                array.push(setValueForComputedStyle(element));
+            }
 
             if (element.childNodes.length > 0)
             {
@@ -808,8 +845,7 @@ function getComputedStyleArray() {
             if (element.nodeType == 1)
             {
                 computedStyleObject.element = {'tagName': element.tagName, 'id': element.getAttribute('id'), 'clss': element.getAttribute('class')};
-
-                if (agent.indexOf('msie 8.0') != -1)
+                if (agent.indexOf('msie 8') != -1)
                 {
                     computedStyleObject.style = element.currentStyle;
                 }
@@ -1005,29 +1041,89 @@ function setDigits(number, digits) {
 }
 
 function navigateToGameWeb(gameWebInfo) {
-    browser.url(gameWebInfo.url);
+
+    if (host == 'tfo' || host == 'needforspeed-edge')
+    {
+        var url = browser.execute(function(gameWebInfo) {
+            location.href = gameWebInfo.url;
+        }, gameWebInfo);
+    
+        browser.waitUntil(function () {
+            return gameWebInfo.url === browser.getUrl();
+        }, 10000);
+        
+        browser.execute(function() {
+            if (location.host == 'tfo.nexon.com' || location.host == 'needforspeed-edge.nexon.com')
+            {
+                if (document.documentElement.lastChild.tagName.toLowerCase() == 'iframe')
+                {
+                    var element = document.documentElement.lastChild;
+                    document.documentElement.removeChild(element);
+                }
+            }
+        });
+    }
+    else
+    {
+        browser.url(gameWebInfo.url);
+    }
     
     if (gameWebInfo.isCookie)
     {
-        setCookie(gameWebInfo.getCookie);
-        browser.url(gameWebInfo.url);
+        var cookie = setCookie(gameWebInfo.getCookie);
+
+        console.log(cookie);
+
+        if (host == 'tfo' || host == 'needforspeed-edge')
+        {
+            browser.execute(function(gameWebInfo) {
+                location.href = gameWebInfo.url;
+            }, gameWebInfo);
+        }
+        else
+        {
+            browser.url(gameWebInfo.url);
+        }
     }
     
     if (browser.getUrl() != gameWebInfo.url)
     {
-        console.log(browser.getUrl());
+        // console.log(browser.getUrl());
     }
 
     var tabIds = browser.getTabIds();
     
     if (tabIds.length > 1)
     {
+        browser.pause(500);
         for(var i = tabIds.length - 1; i == 1; i--)
         {
             browser.switchTab(tabIds[i]);
             browser.close();
         }
     }
+
+    // browser.execute(function() {
+    //     var agent = navigator.userAgent;
+        
+    //     if (agent.indexOf('MSIE 7') != -1)
+    //     {
+    //         var metas = window.document.getElementsByTagName('meta');
+            
+    //         for (var i = 0; i < metas.length; i++)
+    //         {
+    //             var content = metas[i].cotent;
+                
+    //             if (metas[i].content != null)
+    //             {
+    //                 if (metas[i].content.indexOf('IE') != -1)
+    //                 {
+    //                     metas[i].content = 'IE=edge';
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
 }
 
 function setCookie(getCookie) {
@@ -1037,6 +1133,7 @@ function setCookie(getCookie) {
             if (getCookie.indexOf(',') != -1)
             {
                 var cookies = getCookie.split(',');
+                
                 for (var i = 0; i < cookies.length; i++)
                 {
                     document.cookie = cookies[i].trim();
@@ -1049,29 +1146,19 @@ function setCookie(getCookie) {
 
             return document.cookie;
         }, getCookie);
+
+        return result.value;
     }
 }
 
 function loadedNgmLayer() {
     browser.execute(function() {
-        var loaded = false;
         var script = window.document.createElement('script');
         script.type= 'text/javascript';
         script.charset = "utf-8";
-        
-        script.onreadystatechange = function() {
-            if (this.readyState == 'loaded' || this.readyState == 'complete') {
-                if (loaded) {
-                    return;
-                }
-                loaded = true;
-            }
-        };
-        script.onload = function() {
-            loaded = true;
-        };
         script.src = 'http://127.0.0.1/moroo/ngm-layer.min.js';
-        window.document.head.appendChild(script);
+
+        document.getElementsByTagName('head')[0].appendChild(script);
     });
 }
 
