@@ -1,4 +1,5 @@
 exports.config = {
+    debug: true,
     //
     // =====================
     // Server Configurations
@@ -59,7 +60,7 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         // { browserName: 'chrome' },
-        { browserName: 'internet explorer', version:11},
+        { browserName: 'internet explorer', version:8},
         // { browserName: 'firefox', marionette: true },
         // { browserName: 'MicrosoftEdge' }
     ],
@@ -85,7 +86,7 @@ exports.config = {
     // By default WebdriverIO commands are executed in a synchronous way using
     // the wdio-sync package. If you still want to run your tests in an async way
     // e.g. using promises you can set the sync option to false.
-    sync: true,
+    sync: false,
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
     logLevel: 'silent',
