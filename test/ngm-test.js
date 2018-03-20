@@ -13,60 +13,58 @@ var pixelmatch = require('pixelmatch');
 // var Cavas = require('canvas');
 
 var gameWebInfoList = [
-    {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
-    {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '던전앤파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
-    {'name': '로브레이커즈', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lawbreakers.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'LBMV=Y'},
-    {'name': '마비노기', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
-    {'name': '마비노기듀얼', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://devcat.nexon.com/duel/kr/', 'isCookie': false, 'getCookie': ''},
-    {'name': '마비노기영웅전', 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': false, 'chrome': true, 'firefox': false}, 'url': 'http://heroes.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리1', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/beginner', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
-    {'name': '메이플스토리2(maview)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '바람의나라', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://baram.nexon.com/Home/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': '배틀라이트', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'BTRIntro=BTR'},
-    {'name': '버블파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://bf.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': '서든어택', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://sa.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'SAIntroCheckNX=true, SAIntroTodayNX=true'},
-    {'name': '아르피엘', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://arpiel.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '아스가르드', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://asgard.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
-    {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
-    {'name': '어둠의전설', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lod.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
-    {'name': '엘소드', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://elsword.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '일랜시아', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://elancia.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
-    {'name': '천애명월도', 'browsers': {'ie8': false, 'ie9': false, 'ie10': false, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://sky.nexon.com/Main/Index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '카운터스트라이크온라인1', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://csonline.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'todayChkCSO=true'},
-    {'name': '카운터스트라이크온라인2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://csonline2.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '카트라이더', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://kart.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '크레이지아케이드', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://kart.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'Intro=true'},
-    {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
-    {'name': '탱고파이브 : 더 라스트 댄스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://t5.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '테라', 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tera.nexon.com/Main/Index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '테일즈위버', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': '트리 오브 세이비어', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tos.nexon.com/main/v2/index.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '하이퍼유니버스', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://hu.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': 'EA SPORTS™ FIFA ONLINE 3', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': 'EA SPORTS™ FIFA ONLINE 4', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    {'name': 'TITANFALL™ ONLINE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '던전앤파이터', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
+    {'name': '로브레이커즈', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lawbreakers.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'LBMV=Y'},
+    {'name': '마비노기', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
+    {'name': '마비노기듀얼', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://devcat.nexon.com/duel/kr/', 'isCookie': false, 'getCookie': ''},
+    {'name': '마비노기영웅전', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': false, 'chrome': true, 'firefox': false}, 'url': 'http://heroes.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리2(maplestory2)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/beginner', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    {'name': '메이플스토리2(maview)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '바람의나라', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://baram.nexon.com/Home/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': '배틀라이트', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'BTRIntro=BTR'},
+    {'name': '버블파이터', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://bf.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': '서든어택', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://sa.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'SAIntroCheckNX=true, SAIntroTodayNX=true'},
+    {'name': '아르피엘', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://arpiel.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '아스가르드', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://asgard.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
+    {'name': '아스텔리아', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
+    {'name': '어둠의전설', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://lod.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
+    {'name': '엘소드', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://elsword.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '일랜시아', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://elancia.nexon.com/main/page/nx.aspx?url=home/index', 'isCookie': false, 'getCookie': ''},
+    {'name': '천애명월도', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': false, 'ie10': false, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://sky.nexon.com/Main/Index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '카운터스트라이크온라인1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://csonline.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'todayChkCSO=true'},
+    {'name': '카운터스트라이크온라인2', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://csonline2.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '카트라이더', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://kart.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '크레이지아케이드', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://kart.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'Intro=true'},
+    {'name': '클로저스', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
+    {'name': '탱고파이브 : 더 라스트 댄스', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://t5.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    {'name': '테라', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tera.nexon.com/Main/Index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '테일즈위버', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': '트리 오브 세이비어', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tos.nexon.com/main/v2/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '하이퍼유니버스', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://hu.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
 ];
 
 var gameWebInfoList2 = [
-    // {'name': 'EA SPORTS™ FIFA ONLINE 3', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
-    // {'name': 'EA SPORTS™ FIFA ONLINE 4', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    // {'name': '메이플스토리2', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    // {'name': '메이플스토리2(maplestory2)', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
-    // {'name': '클로저스', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
-    // {'name': '아스텔리아', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
-    // {'name': '던전앤파이터', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
-    {'name': '메이플스토리1', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '테일즈위버', 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
-    // {'name': 'NEED FOR SPEED™ EDGE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
-    // {'name': 'TITANFALL™ ONLINE', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    // {'name': '마비노기', 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
+    // {'name': 'EA SPORTS™ FIFA ONLINE 3', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline3.nexon.com/main/index.aspx', 'isCookie': false, 'getCookie': ''},
+    // {'name': 'EA SPORTS™ FIFA ONLINE 4', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://fifaonline4.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    // {'name': '메이플스토리2(maplestory2)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    // {'name': '클로저스', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
+    // {'name': '아스텔리아', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
+    // {'name': '던전앤파이터', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
+    {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '테일즈위버', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': 'NEED FOR SPEED™ EDGE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    // {'name': 'TITANFALL™ ONLINE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
+    // {'name': '마비노기', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
 ];
 //var index = 0;
 var BasicImagePath;
 var basicComputedStyleArray;
 var browserType;
-var count;
 var host;
 var suiteCount;
 var caseCount;
@@ -75,7 +73,7 @@ var filePath;
 var BasicImageName;
 var screenShotPath;
 var screenShotName;
-
+var isDocModeIE7;
 //setBrowserMatch();
 //initTest();
 //runTestCase();
@@ -129,9 +127,22 @@ function initTest() {
 }
 
 function runTestCase(value, index, array) {
-    count = 1;
+    var count = 1;
 
-    if (value.browsers[browserType])
+    if (value.isDocModeIE7)
+    {
+        describe.skip(setDigits(index + 1, 2) + '. ' + value.name, function() {
+            before(function() {
+                count = 1;
+                suiteCount = setDigits(index + 1, 2) + '/' + setDigits(array.length, 2);
+                console.log(suiteCount + ') ' + setDigits(index + 1, 2) + '. ' + value.name);
+            });
+            it('게임웹의 문서모드가 IE=7로 설정되어 있어서 테스트 제외함', function() {
+                console.log(suiteCount + ') └   게임웹의 문서모드가 IE=7로 설정되어 있어서 테스트 제외함');
+            });
+        });
+    }
+    else if (value.browsers[browserType])
     {
         describe(setDigits(index + 1, 2) + '. ' + value.name, function() {
             before(function() {
@@ -148,7 +159,7 @@ function runTestCase(value, index, array) {
             });
             
             // 01
-            it('[TC-' + setDigits(count++, 2) + '] 게임웹 접속', function() {
+            it('[TC-01] 게임웹 접속', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 게임웹 접속');
                 console.log(suiteCount + ') │\t ├  기대 결과: ' + value.url);
                 
@@ -156,6 +167,7 @@ function runTestCase(value, index, array) {
                 // browser.setViewportSize({width: 800, height: 800});
                 
                 host = setHost(value.url);
+                
                 navigateToGameWeb(value);
                 
                 result = browser.getUrl();
@@ -165,7 +177,6 @@ function runTestCase(value, index, array) {
                 filePath = path.resolve(screenShotPath, screenShotName); 
 
                 console.log(suiteCount + ') │\t ├  실제 결과: ' + result);
-                browser.pause(500);
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
@@ -175,7 +186,7 @@ function runTestCase(value, index, array) {
                 chai.expect(result).to.equal(value.url);
             });
             // 02
-            it('[TC-' + setDigits(count++, 2) + '] ngm-layer.min.js 적용', function() {
+            it('[TC-02] ngm-layer.min.js 적용', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' ngm-layer.min.js 적용');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');
 
@@ -192,14 +203,14 @@ function runTestCase(value, index, array) {
                 chai.expect('head script[src="http://127.0.0.1/moroo/ngm-layer.min.js"]').to.be.there();
             });
             // 03
-            it('[TC-' + setDigits(count++, 2) + '] openNgmLayer() 기능 확인', function() {
+            it('[TC-03] openNgmLayer() 기능 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' openNgmLayer() 기능 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');            
 
                 browser.execute(function() {
                     window.NgmLayer.openNgmLayer();
                 });
-                browser.pause(10000);
+                
                 result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');            
 
                 console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
@@ -214,7 +225,7 @@ function runTestCase(value, index, array) {
 
             });
             // 04
-            it('[TC-' + setDigits(count++, 2) + '] closeNgmLayer() 기능 확인', function() {
+            it('[TC-04] closeNgmLayer() 기능 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' closeNgmLayer() 기능 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');            
                 
@@ -235,7 +246,7 @@ function runTestCase(value, index, array) {
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
             });
             // 05
-            it('[TC-' + setDigits(count++, 2) + '] z-index 10000000 이상인 엘리먼트 검색', function() {
+            it('[TC-05] z-index 10000000 이상인 엘리먼트 검색', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' z-index 10000000 이상인 엘리먼트 검색');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');            
 
@@ -295,8 +306,8 @@ function runTestCase(value, index, array) {
                 chai.expect(result.value, failsText).to.be.true;
             });
         */
-                   
-            it('[TC-' + setDigits(count++, 2) + '] NGM Layer UI 확인 (Image 비교 방식)', function() {
+            // 06
+            it('[TC-06] NGM Layer UI 확인 (Image 비교 방식)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Image 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');
 
@@ -358,8 +369,8 @@ function runTestCase(value, index, array) {
                 chai.expect(result).to.equal(0);
             });
             
-            // 06      
-            it('[TC-' + setDigits(count++, 2) + '] NGM Layer 출력위치 확인', function() {
+            // 07    
+            it('[TC-07] NGM Layer 출력위치 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer 출력위치 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'Left : 125 / Top : 270');            
                 
@@ -384,8 +395,8 @@ function runTestCase(value, index, array) {
                 chai.expect(result.positionX).to.equal(125);
                 chai.expect(result.positionY).to.equal(270);
             });
-            // 07
-            it('[TC-' + setDigits(count++, 2) + '] 창크기 축소 후 NGM Layer 위치 확인', function() {
+            // 08
+            it('[TC-08] 창크기 축소 후 NGM Layer 위치 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 창크기 축소 후 NGM Layer 위치 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'Left : 25 / Top : 170');            
 
@@ -404,8 +415,8 @@ function runTestCase(value, index, array) {
                 chai.expect(result.positionX).to.equal(25);
                 chai.expect(result.positionY).to.equal(170);
             });
-            // 08
-            it('[TC-' + setDigits(count++, 2) + '] 창크기 확대 후 NGM Layer 위치 확인', function() {
+            // 09
+            it('[TC-09] 창크기 확대 후 NGM Layer 위치 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 창크기 확대 후 NGM Layer 위치 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'Left : 125 / Top : 270');            
 
@@ -424,8 +435,8 @@ function runTestCase(value, index, array) {
                 chai.expect(result.positionX).to.equal(125);
                 chai.expect(result.positionY).to.equal(270);
             });
-            // 09
-            it('[TC-' + setDigits(count++, 2) + '] 스크롤 이동 후 NGM Layer 위치 확인', function() {
+            // 10
+            it('[TC-10] 스크롤 이동 후 NGM Layer 위치 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 스크롤 이동 후 NGM Layer 위치 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'Left : 125 / Top : 270');            
 
@@ -451,8 +462,8 @@ function runTestCase(value, index, array) {
                 chai.expect(result.positionX).to.equal(125);
                 chai.expect(result.positionY).to.equal(270);
             });
-            // 10
-            it('[TC-' + setDigits(count++, 2) + '] NGM 설치하기 버튼 URL 확인', function() {
+            // 11
+            it('[TC-11] NGM 설치하기 버튼 URL 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM 설치하기 버튼 URL 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'http://help.nexon.com/Download/ngm');
 
@@ -466,8 +477,8 @@ function runTestCase(value, index, array) {
 
                 chai.expect(element.getAttribute('href')).to.equal('http://help.nexon.com/Download/ngm');
             });
-            // 11
-            it('[TC-' + setDigits(count++, 2) + '] NGM 설치하기 버튼 Target 확인', function() {
+            // 12
+            it('[TC-12] NGM 설치하기 버튼 Target 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM 설치하기 버튼 Target 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '_blank');
 
@@ -481,8 +492,8 @@ function runTestCase(value, index, array) {
 
                 chai.expect(result).to.equal('_blank');
             });
-            // 12
-            it('[TC-' + setDigits(count++, 2) + '] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인', function() {
+            // 13
+            it('[TC-13] NGM 설치하기 버튼 클릭 시 새창에서 이동 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM 설치하기 버튼 클릭 시 새창에서 이동 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm');
                 
@@ -525,7 +536,7 @@ function runTestCase(value, index, array) {
                 result.tabCount = tabIds.length;
 
                 browser.switchTab(tabIds[1]);
-
+                
                 browser.waitUntil(function() {
                     return browser.switchTab(tabIds[1]).getUrl() == 'http://help.nexon.com/Download/ngm';
                 }, 5000);
@@ -537,9 +548,8 @@ function runTestCase(value, index, array) {
                 browser.pause(500);
                 
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
-
-                browser.close();
-                browser.switchTab();
+                
+                browser.close(tabIds[0]);
                 
                 addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm'});
@@ -547,8 +557,8 @@ function runTestCase(value, index, array) {
 
                 chai.expect(result.url).to.equal('http://help.nexon.com/Download/ngm');
             });
-            // 13
-            it('[TC-' + setDigits(count++, 2) + '] 버튼 클릭 후 NGM Layer 삭제 확인', function() {
+            // 14
+            it('[TC-14] 버튼 클릭 후 NGM Layer 삭제 확인', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer 삭제 확인');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');            
 
@@ -564,8 +574,8 @@ function runTestCase(value, index, array) {
 
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
             });
-            // 14
-            it('[TC-' + setDigits(count++, 2) + '] 시간 설정 후 NGM Layer 삭제 확인(2초)', function() {
+            // 15
+            it('[TC-15] 시간 설정 후 NGM Layer 삭제 확인(2초)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 시간 설정 후 NGM Layer 삭제 확인(2초)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'true');            
 
@@ -589,8 +599,8 @@ function runTestCase(value, index, array) {
 
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
             });
-            // 15
-            it('[TC-' + setDigits(count++, 2) + '] NGM Layer 중복 출력 여부 확인 (5회)', function() {
+            // 16
+            it('[TC-16] NGM Layer 중복 출력 여부 확인 (5회)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer 중복 출력 여부 확인 (5회)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'NGM Layer Count : 1');
 
@@ -612,8 +622,8 @@ function runTestCase(value, index, array) {
 
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').to.have.count(1);
             });
-            // 16
-            it('[TC-' + setDigits(count++, 2) + '] 중복 실행 시 타이머 초기화 여부 확인 (2초 설정 후 10초)', function() {
+            // 17
+            it('[TC-17] 중복 실행 시 타이머 초기화 여부 확인 (2초 설정 후 10초)', function() {
                 console.log(suiteCount + ') ├ ' + caseCount + ' 중복 실행 시 타이머 초기화 여부 확인 (2초 5회)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + 'false');            
 
@@ -639,11 +649,11 @@ function runTestCase(value, index, array) {
 
                 chai.expect('div h3 img[src$="txt_ngminstall.gif"]').not.to.be.there();
             });
-            // 17
-            it('[TC-' + setDigits(count++, 2) + '] 닫기 버튼 클릭 시 NGM Layer 삭제 확인', function() {
+            // 18
+            it('[TC-18] 닫기 버튼 클릭 시 NGM Layer 삭제 확인', function() {
                 console.log(suiteCount + ') └ ' + caseCount + ' 닫기 버튼 클릭 시 NGM Layer 삭제 확인');
                 console.log(suiteCount + ')  \t ├  기대 결과 : ' + 'true');            
-                console.log('1');
+                
                 browser.execute(function() {
                     window.NgmLayer.openNgmLayer();
                     var imgElements = document.getElementsByTagName('img');
@@ -667,7 +677,7 @@ function runTestCase(value, index, array) {
                 // element.click();
                 
                 // result = !browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]');
-                result = !browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
+                result = browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
 
                 console.log(suiteCount + ')  \t ├  실제 결과 : ' + result);
                 browser.saveScreenshot(filePath);
@@ -702,7 +712,7 @@ function runTestCase(value, index, array) {
     }
     else
     {
-        describe(setDigits(index + 1, 2) + '. ' + value.name, function() {
+        it.skip(setDigits(index + 1, 2) + '. ' + value.name, function() {
             before(function() {
                 count = 1;
                 suiteCount = setDigits(index + 1, 2) + '/' + setDigits(array.length, 2);
@@ -735,12 +745,7 @@ function setBrowserInfo() {
         }
     }
 }
-/**
- * 
- * 
- * @param {any} url 
- * @returns 
- */
+
 function setHost(url) {
     var protocolSplits = url.split('//');
     var dotSplits = protocolSplits[1].split('.');
@@ -996,7 +1001,6 @@ function ngmLayerScreenshot(filePath) {
         element.style.marginTop = '-100px';
     });
     
-    browser.pause(500);
     // var image = browser.saveElementScreenshot(filePath, '#moroo-NgmLayer');
     var image = browser.saveScreenshot(filePath);
 
@@ -1069,28 +1073,21 @@ function compareNgmLayerImage(imgPath1, imgPaht2, diffPath) {
 */
 }
 
-function setDigits(number, digits) {
-    var zero = '';
-    number = number.toString();
-
-    if (number.length < digits)
-    {
-        for (var i = 0; i < digits - number.length; i++)
-        {
-            zero += '0';
-        }
-    }
-
-    return zero + number;
-}
-
-function navigateToGameWeb(gameWebInfo) {
-
+function checkDocModeIE7(gameWebInfo) {
     if (host == 'tfo' || host == 'needforspeed-edge')
     {
         var url = browser.execute(function(gameWebInfo) {
             location.href = gameWebInfo.url;
         }, gameWebInfo);
+
+        try {
+            if (browser.alertText()) {
+                browser.alertAccept();
+            }
+        }
+        catch (e) {
+            
+        }
     
         browser.waitUntil(function () {
             return gameWebInfo.url === browser.getUrl();
@@ -1110,6 +1107,86 @@ function navigateToGameWeb(gameWebInfo) {
     else
     {
         browser.url(gameWebInfo.url);
+
+        try {
+            if (browser.alertText()) {
+                browser.alertAccept();
+            }
+        }
+        catch (e) {
+            
+        }
+    }
+
+    var isDocModeIE7 = browser.execute(function() {
+        var agent = navigator.userAgent;
+        var isDocModeIE7 = false;
+
+        if (agent.indexOf('MSIE 7') != -1)
+        {
+            isDocModeIE7 = true;
+        }
+
+        return isDocModeIE7;
+    });
+
+    return isDocModeIE7.value;
+}
+function setDigits(number, digits) {
+    var zero = '';
+    number = number.toString();
+
+    if (number.length < digits)
+    {
+        for (var i = 0; i < digits - number.length; i++)
+        {
+            zero += '0';
+        }
+    }
+
+    return zero + number;
+}
+
+function navigateToGameWeb(gameWebInfo) {
+
+    if (host == 'tfo' || host == 'needforspeed-edge')
+    {
+        try {
+            var url = browser.execute(function(gameWebInfo) {
+                location.href = gameWebInfo.url;
+            }, gameWebInfo);
+        }
+        catch (e) {
+            if (browser.alertText()) {
+                browser.alertAccept();
+            }
+        }
+    
+        browser.waitUntil(function () {
+            return gameWebInfo.url === browser.getUrl();
+        }, 10000);
+        
+        browser.execute(function() {
+            if (location.host == 'tfo.nexon.com' || location.host == 'needforspeed-edge.nexon.com')
+            {
+                if (document.documentElement.lastChild.tagName.toLowerCase() == 'iframe')
+                {
+                    var element = document.documentElement.lastChild;
+                    document.documentElement.removeChild(element);
+                }
+            }
+        });
+    }
+    else
+    {
+        try {
+            browser.url(gameWebInfo.url);
+        }
+        catch (e) {
+            if (browser.alertText()) {
+                browser.alertAccept();
+            }
+        }
     }
     
     if (gameWebInfo.isCookie)
@@ -1120,13 +1197,27 @@ function navigateToGameWeb(gameWebInfo) {
 
         if (host == 'tfo' || host == 'needforspeed-edge')
         {
-            browser.execute(function(gameWebInfo) {
-                location.href = gameWebInfo.url;
-            }, gameWebInfo);
+            try {
+                browser.execute(function(gameWebInfo) {
+                    location.href = gameWebInfo.url;
+                }, gameWebInfo);
+            }
+            catch (e) {
+                if (browser.alertText()) {
+                    browser.alertAccept();
+                }
+            }
         }
         else
         {
-            browser.url(gameWebInfo.url);
+            try {
+                browser.url(gameWebInfo.url);
+            }
+            catch (e) {
+                if (browser.alertText()) {
+                    browser.alertAccept();
+                }
+            }
         }
     }
     
@@ -1139,7 +1230,6 @@ function navigateToGameWeb(gameWebInfo) {
     
     if (tabIds.length > 1)
     {
-        browser.pause(500);
         for(var i = tabIds.length - 1; i == 1; i--)
         {
             browser.switchTab(tabIds[i]);
