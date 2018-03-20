@@ -55,9 +55,9 @@ var gameWebInfoList2 = [
     // {'name': '클로저스', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
     // {'name': '아스텔리아', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
     // {'name': '던전앤파이터', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
-    {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
+    // {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '테일즈위버', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': 'NEED FOR SPEED™ EDGE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
+    // {'name': 'NEED FOR SPEED™ EDGE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
     // {'name': 'TITANFALL™ ONLINE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
     // {'name': '마비노기', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
 ];
@@ -80,6 +80,7 @@ var isDocModeIE7;
 setBrowserInfo();
 
 describe('NGM Layer Test', function() {
+    console.log(browser.desiredCapabilities);
     setBrowserInfo();
     initTest();
     gameWebInfoList2.forEach(runTestCase);
@@ -129,7 +130,7 @@ function initTest() {
 function runTestCase(value, index, array) {
     var count = 1;
 
-    if (value.isDocModeIE7)
+    if (!value.isDocModeIE7)
     {
         describe.skip(setDigits(index + 1, 2) + '. ' + value.name, function() {
             before(function() {
@@ -1132,6 +1133,7 @@ function checkDocModeIE7(gameWebInfo) {
 
     return isDocModeIE7.value;
 }
+
 function setDigits(number, digits) {
     var zero = '';
     number = number.toString();
@@ -1151,17 +1153,10 @@ function navigateToGameWeb(gameWebInfo) {
 
     if (host == 'tfo' || host == 'needforspeed-edge')
     {
-        try {
-            var url = browser.execute(function(gameWebInfo) {
-                location.href = gameWebInfo.url;
-            }, gameWebInfo);
-        }
-        catch (e) {
-            if (browser.alertText()) {
-                browser.alertAccept();
-            }
-        }
-    
+        var url = browser.execute(function(gameWebInfo) {
+            location.href = gameWebInfo.url;
+        }, gameWebInfo);
+
         browser.waitUntil(function () {
             return gameWebInfo.url === browser.getUrl();
         }, 10000);
@@ -1179,14 +1174,7 @@ function navigateToGameWeb(gameWebInfo) {
     }
     else
     {
-        try {
-            browser.url(gameWebInfo.url);
-        }
-        catch (e) {
-            if (browser.alertText()) {
-                browser.alertAccept();
-            }
-        }
+        browser.url(gameWebInfo.url);
     }
     
     if (gameWebInfo.isCookie)
@@ -1197,27 +1185,13 @@ function navigateToGameWeb(gameWebInfo) {
 
         if (host == 'tfo' || host == 'needforspeed-edge')
         {
-            try {
-                browser.execute(function(gameWebInfo) {
-                    location.href = gameWebInfo.url;
-                }, gameWebInfo);
-            }
-            catch (e) {
-                if (browser.alertText()) {
-                    browser.alertAccept();
-                }
-            }
+            browser.execute(function(gameWebInfo) {
+                location.href = gameWebInfo.url;
+            }, gameWebInfo);
         }
         else
         {
-            try {
-                browser.url(gameWebInfo.url);
-            }
-            catch (e) {
-                if (browser.alertText()) {
-                    browser.alertAccept();
-                }
-            }
+            browser.url(gameWebInfo.url);
         }
     }
     
@@ -1237,27 +1211,28 @@ function navigateToGameWeb(gameWebInfo) {
         }
     }
 
-    // browser.execute(function() {
-    //     var agent = navigator.userAgent;
+    browser.execute(function() {
+        var agent = navigator.userAgent;
         
-    //     if (agent.indexOf('MSIE 7') != -1)
-    //     {
-    //         var metas = window.document.getElementsByTagName('meta');
+        if (agent.indexOf('MSIE 7') != -1)
+        {
+            var metas = window.document.getElementsByTagName('meta');
             
-    //         for (var i = 0; i < metas.length; i++)
-    //         {
-    //             var content = metas[i].cotent;
+            for (var i = 0; i < metas.length; i++)
+            {
+                var content = metas[i].cotent;
                 
-    //             if (metas[i].content != null)
-    //             {
-    //                 if (metas[i].content.indexOf('IE') != -1)
-    //                 {
-    //                     metas[i].content = 'IE=edge';
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
+                if (metas[i].content != null)
+                {
+                    if (metas[i].content.indexOf('IE') != -1)
+                    {
+                        metas[i].content = 'IE=edge';
+                    }
+                }
+            }
+            location.reload();
+        }
+    });
 }
 
 function setCookie(getCookie) {

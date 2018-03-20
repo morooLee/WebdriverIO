@@ -1,5 +1,12 @@
 exports.config = {
-    // debug: true,
+    //
+    // When enabled opens a debug port for node-inspector and pauses execution
+    // on `debugger` statements. The node-inspector can be attached with:
+    // `node-inspector --debug-port 5859 --no-preload`
+    // When debugging it is also recommended to change the timeout interval of
+    // test runner (eg. jasmineNodeOpts.defaultTimeoutInterval) to a very high
+    // value and setting maxInstances to 1.
+    debug: false,
     //
     // =====================
     // Server Configurations
@@ -14,6 +21,7 @@ exports.config = {
     host: '127.0.0.1',
     port: 4444,
     path: '/wd/hub',
+    seleniumLogs: './logs',
     // port: 5555,
     // path: '/',
 
@@ -59,10 +67,11 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
+        // unexpectedAlertBehaviour: 'ignore'
         // { browserName: 'chrome' },
-        { browserName: 'internet explorer', version:10},
+        { browserName: 'internet explorer', version: 10, unexpectedAlertBehaviour: 'accept'},
         // { browserName: 'firefox', marionette: true },
-        // { browserName: 'MicrosoftEdge' }
+        // { browserName: 'MicrosoftEdge' },
     ],
 
     //
