@@ -25,6 +25,7 @@
     "pixelmatch": "^4.0.2",
     "wdio-allure-reporter": "^0.5.1",
     "wdio-chromedriver-service": "^0.1.2",
+    "wdio-dot-reporter": "0.0.9",
     "wdio-firefox-profile-service": "^0.1.1",
     "wdio-iedriver-service": "^0.1.0",
     "wdio-mocha-framework": "^0.5.13",
@@ -33,8 +34,9 @@
     "wdio-screenshots-cleanup-service": "0.0.7",
     "wdio-selenium-standalone-service": "0.0.10",
     "wdio-spec-reporter": "^0.1.4",
+    "wdio-tap-reporter": "0.0.5",
     "webdriverio": "^4.12.0",
-    "xlsx": "^0.12.5"
+    "xlsx": "^0.12.6"
   },
   "dependencies": {
     "mochawesome-report-generator": "^2.3.2"

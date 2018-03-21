@@ -1,43 +1,24 @@
-04:27:43.968 INFO - Selenium build info: version: '3.8.1', revision: '6e95a6684b'
-04:27:43.969 INFO - Launching a standalone Selenium Server
-2018-03-21 04:27:44.046:INFO::main: Logging initialized @326ms to org.seleniumhq.jetty9.util.log.StdErrLog
-04:27:44.083 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
-04:27:44.098 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
-04:27:44.100 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
-04:27:44.101 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-04:27:44.101 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
-04:27:44.102 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
-04:27:44.102 INFO - Driver class not found: org.openqa.selenium.phantomjs.PhantomJSDriver
-04:27:44.132 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
+15:39:14.298 INFO - Selenium build info: version: '3.8.1', revision: '6e95a6684b'
+15:39:14.298 INFO - Launching a standalone Selenium Server
+2018-03-21 15:39:14.357:INFO::main: Logging initialized @349ms to org.seleniumhq.jetty9.util.log.StdErrLog
+15:39:14.390 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
+15:39:14.401 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+15:39:14.403 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
+15:39:14.403 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+15:39:14.403 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
+15:39:14.404 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
+15:39:14.405 INFO - Driver class not found: org.openqa.selenium.phantomjs.PhantomJSDriver
+15:39:14.431 INFO - Driver provider class org.openqa.selenium.safari.SafariDriver registration is skipped:
  registration capabilities Capabilities {browserName: safari, platform: MAC, version: } does not match the current platform WIN10
-04:27:44.167 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
-04:27:44.168 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
-04:27:44.169 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
-04:27:44.169 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
-04:27:44.169 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
-04:27:44.180 INFO - Using the passthrough mode handler
-2018-03-21 04:27:44.201:INFO:osjs.Server:main: jetty-9.4.7.v20170914
-2018-03-21 04:27:44.226:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@4671e53b{/,null,STARTING} has uncovered http methods for path: /
-2018-03-21 04:27:44.231:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@4671e53b{/,null,AVAILABLE}
-java.lang.RuntimeException: java.net.BindException: Address already in use: bind
-	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:198)
-	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:237)
-	at org.openqa.grid.selenium.GridLauncherV3.main(GridLauncherV3.java:82)
-Caused by: java.net.BindException: Address already in use: bind
-	at sun.nio.ch.Net.bind0(Native Method)
-	at sun.nio.ch.Net.bind(Unknown Source)
-	at sun.nio.ch.Net.bind(Unknown Source)
-	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
-	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
-	at org.seleniumhq.jetty9.server.ServerConnector.openAcceptChannel(ServerConnector.java:334)
-	at org.seleniumhq.jetty9.server.ServerConnector.open(ServerConnector.java:302)
-	at org.seleniumhq.jetty9.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80)
-	at org.seleniumhq.jetty9.server.ServerConnector.doStart(ServerConnector.java:238)
-	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
-	at org.seleniumhq.jetty9.server.Server.doStart(Server.java:428)
-	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
-	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:196)
-	... 2 more
+15:39:14.457 INFO - Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+15:39:14.458 INFO - Using `new EdgeOptions()` is preferred to `DesiredCapabilities.edge()`
+15:39:14.458 INFO - Using `new FirefoxOptions()` is preferred to `DesiredCapabilities.firefox()`
+15:39:14.458 INFO - Using `new OperaOptions()` is preferred to `DesiredCapabilities.operaBlink()`
+15:39:14.458 INFO - Using `new SafariOptions()` is preferred to `DesiredCapabilities.safari()`
+15:39:14.466 INFO - Using the passthrough mode handler
+2018-03-21 15:39:14.487:INFO:osjs.Server:main: jetty-9.4.7.v20170914
+2018-03-21 15:39:14.504:WARN:osjs.SecurityHandler:main: ServletContext@o.s.j.s.ServletContextHandler@17942a1{/,null,STARTING} has uncovered http methods for path: /
+2018-03-21 15:39:14.507:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@17942a1{/,null,AVAILABLE}
 Usage: <main class> [options]
   Options:
     --version, -version
@@ -77,3 +58,22 @@ Usage: <main class> [options]
        must also be set.
        Default: 1800
 
+java.lang.RuntimeException: java.net.BindException: Address already in use: bind
+	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:198)
+	at org.openqa.grid.selenium.GridLauncherV3$1.launch(GridLauncherV3.java:237)
+	at org.openqa.grid.selenium.GridLauncherV3.main(GridLauncherV3.java:82)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.seleniumhq.jetty9.server.ServerConnector.openAcceptChannel(ServerConnector.java:334)
+	at org.seleniumhq.jetty9.server.ServerConnector.open(ServerConnector.java:302)
+	at org.seleniumhq.jetty9.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80)
+	at org.seleniumhq.jetty9.server.ServerConnector.doStart(ServerConnector.java:238)
+	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.seleniumhq.jetty9.server.Server.doStart(Server.java:428)
+	at org.seleniumhq.jetty9.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.openqa.selenium.remote.server.SeleniumServer.boot(SeleniumServer.java:196)
+	... 2 more

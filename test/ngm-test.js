@@ -22,8 +22,9 @@ var gameWebInfoList = [
     {'name': '마비노기', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
     {'name': '마비노기듀얼', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://devcat.nexon.com/duel/kr/', 'isCookie': false, 'getCookie': ''},
     {'name': '마비노기영웅전', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': false, 'chrome': true, 'firefox': false}, 'url': 'http://heroes.nexon.com/', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '메이플스토리2(maplestory2)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/beginner', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
+    {'name': '메이플스토리1(home)', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Gnx.aspx?URL=home/index', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리1(Optimize)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리2(maplestory2)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory2.nexon.com/home/20180222/all', 'isCookie': true, 'getCookie': 'HideIntroEvent=Y'},
     {'name': '메이플스토리2(maview)', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maview.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '바람의나라', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://baram.nexon.com/Home/Index', 'isCookie': false, 'getCookie': ''},
     {'name': '배틀라이트', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://battlerite.nexon.com/Main/Index', 'isCookie': true, 'getCookie': 'BTRIntro=BTR'},
@@ -44,7 +45,7 @@ var gameWebInfoList = [
     {'name': '탱고파이브 : 더 라스트 댄스', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://t5.nexon.com/', 'isCookie': false, 'getCookie': ''},
     {'name': '테라', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': false, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tera.nexon.com/Main/Index.aspx', 'isCookie': false, 'getCookie': ''},
     {'name': '테일즈위버', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
-    {'name': '트리 오브 세이비어', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tos.nexon.com/main/v2/index.aspx', 'isCookie': false, 'getCookie': ''},
+    {'name': '트리 오브 세이비어', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://tos.nexon.com/main/v2/index.aspx', 'isCookie': true, 'getCookie': '167772186_141=done'},
     {'name': '하이퍼유니버스', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://hu.nexon.com/Main/Index', 'isCookie': false, 'getCookie': ''},
 ];
 
@@ -55,8 +56,8 @@ var gameWebInfoList2 = [
     // {'name': '클로저스', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://closers.nexon.com/main/index.aspx', 'isCookie': true, 'getCookie': 'teaser180308=done'},
     // {'name': '아스텔리아', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://astellia.nexon.com/main/index', 'isCookie': true, 'getCookie': 'Hide180315Video=Y'},
     // {'name': '던전앤파이터', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://df.nexon.com/df/home', 'isCookie': true, 'getCookie': 'skipIntro=1'},
-    // {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
-    {'name': '테일즈위버', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
+    {'name': '메이플스토리1', 'isDocModeIE7': false, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://maplestory.nexon.com/MapleStory/Page/Optimize.aspx', 'isCookie': false, 'getCookie': ''},
+    // {'name': '테일즈위버', 'isDocModeIE7': true, 'browsers': {'ie8': true, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tales.nexon.com/tales2/page/gnx.aspx?URL=Home/Index', 'isCookie': false, 'getCookie': ''},
     // {'name': 'NEED FOR SPEED™ EDGE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://needforspeed-edge.nexon.com/main/index', 'isCookie': false, 'getCookie': ''},
     // {'name': 'TITANFALL™ ONLINE', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': true}, 'url': 'http://tfo.nexon.com/', 'isCookie': false, 'getCookie': ''},
     // {'name': '마비노기', 'isDocModeIE7': false, 'browsers': {'ie8': false, 'ie9': true, 'ie10': true, 'ie11': true, 'edge': true, 'chrome': true, 'firefox': false}, 'url': 'http://mabinogi.nexon.com/page/main/index.asp', 'isCookie': true, 'getCookie': 'introMovie=1; path=/;'},
@@ -80,10 +81,9 @@ var isDocModeIE7;
 setBrowserInfo();
 
 describe('NGM Layer Test', function() {
-    console.log(browser.desiredCapabilities);
     setBrowserInfo();
     initTest();
-    gameWebInfoList2.forEach(runTestCase);
+    gameWebInfoList.forEach(runTestCase);
 });
 
 
@@ -93,6 +93,8 @@ function initTest() {
             console.log('init...');
             console.log('NGM Layer 기본 스타일 저장 중...');
             // var testHtmlPath = 'file:///' + path.resolve('./src/', 'ngm-test.html');
+            
+            // browser.desiredCapabilities.unexpectedAlertBehaviour = 'accept';
             
             browser.setViewportSize({width: 800, height: 800});
             browser.url('http://127.0.0.1/moroo/ngm-init.html');
@@ -130,7 +132,7 @@ function initTest() {
 function runTestCase(value, index, array) {
     var count = 1;
 
-    if (!value.isDocModeIE7)
+    if (browserType.indexOf('ie') > -1 && value.isDocModeIE7)
     {
         describe.skip(setDigits(index + 1, 2) + '. ' + value.name, function() {
             before(function() {
@@ -177,9 +179,9 @@ function runTestCase(value, index, array) {
                 screenShotName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_' + browserType + '.png';
                 filePath = path.resolve(screenShotPath, screenShotName); 
 
-                console.log(suiteCount + ') │\t ├  실제 결과: ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과: ' + result);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
                 addContext(this, {title: '기대 결과', value: value.url});
                 addContext(this, {title: '실제 결과', value: result});
@@ -214,11 +216,11 @@ function runTestCase(value, index, array) {
                 
                 result = browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');            
 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + result);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -236,11 +238,11 @@ function runTestCase(value, index, array) {
 
                 result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
                 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + result);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -292,7 +294,7 @@ function runTestCase(value, index, array) {
                     failsText += 'Style: ' + result.fails[i].name + ' = ' + result.fails[i].original + ' | ' + result.fails[i].current + '\n';
                 }
 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + result.value);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + result.value);
                 browser.saveScreenshot(filePath);
                 console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
@@ -312,7 +314,7 @@ function runTestCase(value, index, array) {
                 console.log(suiteCount + ') ├ ' + caseCount + ' NGM Layer UI 확인 (Image 비교 방식)');
                 console.log(suiteCount + ') │\t ├  기대 결과 : ' + '0');
 
-                var gameWebImage = ngmLayerScreenshot(filePath);
+                ngmLayerScreenshot(filePath);
 
                 var deffName = setDigits(index + 1, 2) + '_' + host + '_TC-' + setDigits(count, 2) + '_diff_' + browserType + '.png';
                 var deffPath = path.resolve(screenShotPath,  deffName);
@@ -346,7 +348,7 @@ function runTestCase(value, index, array) {
                     
                     for (var i = 0; i < diffStyles.failes.length; i++)
                     {
-                        console.log(diffStyles.failes[i].styles.length);
+                        //console.log(diffStyles.failes[i].styles.length);
 
                         if (diffStyles.failes[i].styles.length > 0)
                         {
@@ -385,11 +387,11 @@ function runTestCase(value, index, array) {
                 
                 result = checkLocation();
                 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -405,11 +407,11 @@ function runTestCase(value, index, array) {
                 
                 result = checkLocation();
                 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 25 / Top : 170'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -425,11 +427,11 @@ function runTestCase(value, index, array) {
                 
                 result = checkLocation();
                 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -452,11 +454,11 @@ function runTestCase(value, index, array) {
 
                 result = checkLocation();
                 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Left : 125 / Top : 270'});
                 addContext(this, {title: '실제 결과', value: 'Left : ' + result.positionX + ' / ' + 'Top : ' + result.positionY});
 
@@ -510,7 +512,10 @@ function runTestCase(value, index, array) {
                         }
                     }
                 });
-                
+
+                var currentID = browser.getCurrentTabId();
+                console.log(currentID);
+
                 browser.execute(function() {
                     window.NgmLayer.openNgmLayer();
                     var imgElements = document.getElementsByTagName('img');
@@ -530,29 +535,29 @@ function runTestCase(value, index, array) {
                 });
 
                 // element.click();
-                
+                browser.pause(1000);
                 var tabIds = browser.getTabIds();
                 
                 result = {};
                 result.tabCount = tabIds.length;
-
+                
                 browser.switchTab(tabIds[1]);
                 
                 browser.waitUntil(function() {
-                    return browser.switchTab(tabIds[1]).getUrl() == 'http://help.nexon.com/Download/ngm';
+                    return browser.getCurrentTabId() != currentID;
                 }, 5000);
+                console.log(browser.getCurrentTabId());
                 
-                result.url = browser.switchTab(tabIds[1]).getUrl();
+                result.url = browser.getUrl();
                 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
-                browser.saveScreenshot(filePath);
-                browser.pause(500);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + 'Tab Count : '  + result.tabCount + ' / url : ' + result.url);
+                // browser.saveScreenshot(filePath);
                 
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
                 
-                browser.close(tabIds[0]);
+                browser.close(currentID);
                 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: 'Tab Count : 2 / url : http://help.nexon.com/Download/ngm'});
                 addContext(this, {title: '실제 결과', value: 'Tab Count : '  + result.tabCount + ' / url : ' + result.url});
 
@@ -565,11 +570,11 @@ function runTestCase(value, index, array) {
 
                 result = !browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]');
 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + result);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -584,17 +589,17 @@ function runTestCase(value, index, array) {
                     window.NgmLayer.openNgmLayer(2);
                 });
 
-                /* result = browser.waitUntil(function () {
+                result = browser.waitUntil(function () {
                     return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
-                }, 2500, '설정된 시간이 초과되었습니다. (2초)'); */
+                }, 2500, '설정된 시간이 초과되었습니다. (2초)', 200);
 
-                result = browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
+                // result = browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + result);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -634,17 +639,17 @@ function runTestCase(value, index, array) {
                     window.NgmLayer.openNgmLayer(10);
                 });
 
-                /* result = browser.waitUntil(function () {
+                result = browser.waitUntil(function () {
                     return browser.isExisting('div h3 img[src$="txt_ngminstall.gif"]') === false;
-                }, 2500, '설정된 시간이 초과되었습니다. (2초)'); */
+                }, 2500, '설정된 시간이 초과되었습니다. (2초)', 200);
 
-                result = !browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
+                // result = !browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, 200, true);
 
-                console.log(suiteCount + ') │\t ├  실제 결과 : ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
+                console.log(suiteCount + ') │\t └  실제 결과 : ' + !result);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ') │\t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: false});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -681,10 +686,10 @@ function runTestCase(value, index, array) {
                 result = browser.waitForExist('div h3 img[src$="txt_ngminstall.gif"]', 2500, true);
 
                 console.log(suiteCount + ')  \t ├  실제 결과 : ' + result);
-                browser.saveScreenshot(filePath);
-                console.log(suiteCount + ')  \t └  스샷 저장: ' + filePath);
+                // browser.saveScreenshot(filePath);
+                // console.log(suiteCount + ')  \t └  스샷 저장: ' + filePath);
 
-                addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
+                // addContext(this, {title: 'Screenshot', value: screenShotPath + screenShotName});
                 addContext(this, {title: '기대 결과', value: true});
                 addContext(this, {title: '실제 결과', value: result});
 
@@ -713,7 +718,7 @@ function runTestCase(value, index, array) {
     }
     else
     {
-        it.skip(setDigits(index + 1, 2) + '. ' + value.name, function() {
+        describe.skip(setDigits(index + 1, 2) + '. ' + value.name, function() {
             before(function() {
                 count = 1;
                 suiteCount = setDigits(index + 1, 2) + '/' + setDigits(array.length, 2);
@@ -1051,27 +1056,27 @@ function compareNgmLayerImage(imgPath1, imgPaht2, diffPath) {
     }
     
     return misMatchedPixels;
-/*
-    var misMatchedPixels;
-    var img1 = readImage(imgPath1, function() {
-        var img2 = readImage(imgPath2, function () {
-            var expectedDiff  = readImage(diffPath, function () {
-                var diff = new PNG({width: img1.width, height: img1.height});
+    /*
+        var misMatchedPixels;
+        var img1 = readImage(imgPath1, function() {
+            var img2 = readImage(imgPath2, function () {
+                var expectedDiff  = readImage(diffPath, function () {
+                    var diff = new PNG({width: img1.width, height: img1.height});
 
-                misMatchedPixels = match(img1.data, img2.data, diff.data, diff.width, diff.height, {
-                    threshold: 0.1,
-                    includeAA: true
+                    misMatchedPixels = match(img1.data, img2.data, diff.data, diff.width, diff.height, {
+                        threshold: 0.1,
+                        includeAA: true
+                    });
                 });
             });
         });
-    });
-    
-    return missMatchedPixels;
+        
+        return missMatchedPixels;
 
-    function readImage(name, done) {
-        return fs.createReadStream(name).pipe(new PNG()).on('parsed', done);
-    }
-*/
+        function readImage(name, done) {
+            return fs.createReadStream(name).pipe(new PNG()).on('parsed', done);
+        }
+    */
 }
 
 function checkDocModeIE7(gameWebInfo) {
@@ -1175,13 +1180,22 @@ function navigateToGameWeb(gameWebInfo) {
     else
     {
         browser.url(gameWebInfo.url);
+        browser.pause(1000);
+        try {
+            if (browser.alertText())
+            {
+                browser.alertAccept();
+            }
+        }
+        catch (e) 
+        {
+            //console.log(e);
+        }
     }
     
     if (gameWebInfo.isCookie)
     {
         var cookie = setCookie(gameWebInfo.getCookie);
-
-        console.log(cookie);
 
         if (host == 'tfo' || host == 'needforspeed-edge')
         {

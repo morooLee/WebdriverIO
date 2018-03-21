@@ -68,10 +68,10 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         // unexpectedAlertBehaviour: 'ignore'
-        // { browserName: 'chrome' },
-        { browserName: 'internet explorer', version: 10, unexpectedAlertBehaviour: 'accept'},
-        // { browserName: 'firefox', marionette: true },
-        // { browserName: 'MicrosoftEdge' },
+        // { browserName: 'chrome', unexpectedAlertBehaviour: 'accept' },
+        { browserName: 'internet explorer', version: 11, unexpectedAlertBehaviour: 'accept' },
+        // { browserName: 'firefox', marionette: true, unexpectedAlertBehaviour: 'accept' },
+        // { browserName: 'MicrosoftEdge', unexpectedAlertBehaviour: 'accept' },
     ],
 
     //
@@ -161,6 +161,7 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
     reporters: [
+        // 'dot',
         'spec',
         // 'allure',
         'mochawesome',
@@ -173,7 +174,9 @@ exports.config = {
     }, 
     mochawesomeOpts: {
         includeScreenshots: false,
-        screenshotUseRelativePath: true
+        screenshotUseRelativePath: true,
+        quiet: true,
+        // html: true,
     },
     
     //
