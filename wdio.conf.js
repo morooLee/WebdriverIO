@@ -69,8 +69,8 @@ exports.config = {
         // 5 instances get started at a time.
         // unexpectedAlertBehaviour: 'ignore'
         // { browserName: 'chrome', unexpectedAlertBehaviour: 'accept' },
-        { browserName: 'internet explorer', version: 11, unexpectedAlertBehaviour: 'accept' },
-        // { browserName: 'firefox', marionette: true, unexpectedAlertBehaviour: 'accept' },
+        // { browserName: 'internet explorer', version: 11, unexpectedAlertBehaviour: 'accept' },
+        { browserName: 'firefox', marionette: true, unexpectedAlertBehaviour: 'accept' },
         // { browserName: 'MicrosoftEdge', unexpectedAlertBehaviour: 'accept' },
     ],
 
